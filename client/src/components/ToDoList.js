@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const List = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  align-items: center;
   border: 1px solid black;
   border-radius: 5px;
   width: 250px;
@@ -21,6 +21,36 @@ const List = styled.div`
     margin: 12px;
     border-bottom: 1px solid black;
   }
+  .name{
+      margin-top: -10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
+  .items{
+      width: 80%;
+      text-align: left;
+      min-height: 200px;
+  }
+  .edit-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: whitesmoke;
+      color: black;
+      border: 1px solid grey;
+      border-radius: 10px;
+      width: 55px;
+      height: 25px;
+      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+      margin: 15px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
+      &:hover{
+          background-color: lightgray;
+          color: white;
+      }
+  }
 `
 
 function ToDoList (){
@@ -29,16 +59,20 @@ function ToDoList (){
         <>
         <List>
             <div className='title'>Title of List</div>
-            <div>Item 1</div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
-            <div>Item 5</div>
-            <div>Item 6</div>
-            <div>Item 7</div>
-            <div>Item 8</div>
-            <div>Item 9</div>
-            <div>Item 10</div>
+            <div className='name'>-Volunteer Name-</div>
+            <div className='items'>
+                <div>Item 1</div>
+                <div>Item 2</div>
+                <div>Item 3</div>
+                <div>Item 4</div>
+                <div>Item 5</div>
+                <div>Item 6</div>
+                <div>Item 7</div>
+                <div>Item 8</div>
+                <div>Item 9</div>
+                <div>Item 10</div>
+            </div>
+            <div className='edit-button'>Edit</div>
         </List>
         </>
     )
