@@ -15,3 +15,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.formfield{
+  margin: 10px 0;
+  border: 0px;
+  border-bottom: 1px solid grey;
+  width: 270px;
+}
