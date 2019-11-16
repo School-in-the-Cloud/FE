@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
-import axios from 'axios';
+
+import { authActionCreators } from '../actions'
 
 const Container = styled.div`
     display: flex;
@@ -73,7 +75,7 @@ const SignUpForm = ({values, errors, touched, status})=> {
           error = 'Email already in use!';
         }
         return error;
-      }
+    }
 
     return (
         <>
@@ -81,36 +83,36 @@ const SignUpForm = ({values, errors, touched, status})=> {
             <Login>
                 <Form>
                     <p>Please enter the following information:</p>
-                    <Field type='text' name='fname' placeholder='First name' className='formfield' />
-                    {touched.fname && errors.fname && (<ErrorMsg>{errors.fname}</ErrorMsg>)}
-                    <Field type='text' name='lname' placeholder='Last name' className='formfield' />
-                    {touched.lname && errors.lname && (<ErrorMsg>{errors.lname}</ErrorMsg>)}
+                    <Field type='text' name='first_name' placeholder='First name' className='formfield' />
+                    {touched.first_name && errors.first_name && (<ErrorMsg>{errors.first_name}</ErrorMsg>)}
+                    <Field type='text' name='last_name' placeholder='Last name' className='formfield' />
+                    {touched.last_name && errors.last_name && (<ErrorMsg>{errors.last_name}</ErrorMsg>)}
                     <Field type='email' name='email' placeholder='Email' validate={validateEmail} className='formfield' />
                     {touched.email && errors.email && (<ErrorMsg>{errors.email}</ErrorMsg>)}
                     <Field type='password' name='password' placeholder='Password' className='formfield' />
                     {touched.password && errors.password && (<ErrorMsg>{errors.password}</ErrorMsg>)}
                     <Dropdown>
                         Role:
-                        <Field as="select" name="role" className='select'>
-                            <option selected hidden value>-- select a role --</option>
-                            <option value="Volunteer">Volunteer</option>
-                            <option value="Student">Student</option>
-                            <option value="Admin">Admin</option>
+                        <Field as="select" name="type" className='select'>
+                            <option defaultValue hidden value>-- select a type --</option>
+                            <option value="volunteer">Volunteer</option>
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>
                         </Field>
                     </Dropdown>    
-                    {values.role === 'Volunteer' &&
+                    {values.type === 'volunteer' &&
                     <>
                         <Field type='text' name="country" placeholder='Country' className="formfield" />
                         <Field type='text' name="availability" placeholder='Availability' className="formfield" />
                     </>}
-                    <Checkbox>
+                    {/* <Checkbox>
                         <label>
                         <p>Do you agree to the terms of service?
                         <Field type="checkbox" name="tos" checked={values.tos} /></p>
                         {touched.tos && errors.tos && (<ErrorMsg>{errors.tos}</ErrorMsg>)}
                         <span>View our terms of service here</span>
                         </label>
-                    </Checkbox>
+                    </Checkbox> */}
                     <button type='submit'>Sign Up!</button>
                 </Form>
             </Login>
@@ -120,33 +122,33 @@ const SignUpForm = ({values, errors, touched, status})=> {
   }
 
 const FormikSignUpForm = withFormik({
-    mapPropsToValues({fname, lname, email, password, role, country, availability, tos}){
+    mapPropsToValues({first_name, last_name, email, password, type, country, availability, tos}){
         return {
-            fname: fname || '',
-            lname: lname || '',
+            first_name: first_name || '',
+            last_name: last_name || '',
             email: email || '',
             password: password || '',
-            role: role || '',
+            type: type || '',
             country: country || '',
             availability: availability || '',
-            tos: tos || false
+            // tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({
-        fname: Yup.string().required('First name required!'),
-        lname: Yup.string().required('Last name required!'),
+        first_name: Yup.string().required('First name required!'),
+        last_name: Yup.string().required('Last name required!'),
         email: Yup.string().email('Invalid email!').required('Email required!'),
         password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
         tos: Yup.bool().oneOf([true],('Please Agree To Terms of Service!'))
     }),
-    handleSubmit(values, {setStatus}){
-    axios.post('', values)
-    .then (res =>{
-        setStatus(res.data);
-        console.log(res)
-    })
-    .catch (err => console.log(err.response))
+    handleSubmit(values, {props, setStatus}){
+        props.registerUser(values, () => props.history.push('/admin'));
+        
     }
 })(SignUpForm);
 
-export default FormikSignUpForm;
+const mapDispatchToProps = {
+    registerUser: authActionCreators.registerUser
+};
+
+export default connect(null, mapDispatchToProps)(FormikSignUpForm);
