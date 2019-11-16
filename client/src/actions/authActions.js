@@ -37,7 +37,7 @@ const authenticateUser = (values, redirect) => dispatch => {
         .catch(err => dispatch({type: LOGIN_FAIL, payload: err.message}));
 }
 
-const logoutUser = redirect => dispatch => {
+const logoutUser = () => dispatch => {
     dispatch({type: LOGOUT});
     sessionStorage.clear();
 }

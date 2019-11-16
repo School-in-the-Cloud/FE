@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActionCreators } from '../actions';
+import { NavLink, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Headerwrap = styled.div`
@@ -43,6 +45,12 @@ const Navwrap = styled.div`
 `
 
 function Navbar() {
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(authActionCreators.logoutUser());
+  }
+
   return (
     <>
     <Headerwrap>
@@ -51,9 +59,9 @@ function Navbar() {
         <Navwrap>
         <nav>
             <NavLink exact to='/'>Home</NavLink>
-            <NavLink exact to='/'>Profile</NavLink>
+            <NavLink exact to='/admin'>Profile</NavLink> 
             <NavLink exact to='/'>Volunteers</NavLink>
-            <NavLink exact to='/'>Sign out</NavLink>
+            <NavLink onClick={logout} to='/'>Sign out</NavLink>
         </nav>
         </Navwrap>
     </header>
