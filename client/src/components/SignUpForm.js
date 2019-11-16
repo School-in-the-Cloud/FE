@@ -143,7 +143,6 @@ const FormikSignUpForm = withFormik({
     }),
     handleSubmit(values, {props, setStatus}){
         props.registerUser(values, () => props.history.push('/admin'));
-        
     }
 })(SignUpForm);
 
