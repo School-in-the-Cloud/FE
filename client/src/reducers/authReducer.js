@@ -1,11 +1,11 @@
-import { getIsAuthenticated } from '../utils';
-import { authActionTypes, authActionCreators } from '../actions';
+import { hasToken } from '../utils';
+import { authActionTypes } from '../actions';
 
 const { REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAIL,
  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT} = authActionTypes;
 
 const initialState = {
-    isAuthenticated: getIsAuthenticated(),
+    isAuthenticated: hasToken(),
     isLoading: false,
     error: null
 }
