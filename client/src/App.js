@@ -10,6 +10,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Route exact path='/' component={Home} />
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
