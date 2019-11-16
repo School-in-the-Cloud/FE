@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ToDoList from './ToDoList';
 
 const MainWrap = styled.div`
   display: flex;
@@ -14,7 +15,6 @@ const MainWrap = styled.div`
       margin:55px;
   }
 `
-
 
 const Main = styled.section`
 /* border: 1px solid red; */
@@ -49,7 +49,7 @@ const ToDoListContainer = styled.div`
     flex-direction: column;
     width: 350px;
     /* border: 1px solid yellow; */
-    width: 50%;
+    width: 45%;
     .button-container{
         width: 100%;
         display: flex;
@@ -60,9 +60,26 @@ const ToDoListContainer = styled.div`
     }
     .lists{
         /* border: 1px solid blue; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         width: 100%;
         height: 100%;
         overflow: auto;
+        margin: 10px;
+        margin-left: 2px;
+    }
+    .lists::-webkit-scrollbar {
+    width: 5px;
+    }
+    .lists::-webkit-scrollbar-track {
+    }
+    .lists::-webkit-scrollbar-thumb {
+    background: lightgray;
+    height: 100px; 
+    }
+    .lists::-webkit-scrollbar-thumb:hover {
+    background: #888; 
     }
 `
 
@@ -81,11 +98,16 @@ function AdminDashboard() {
             <div className='button-container'>
                 <div className='button'>Create To Do List</div>
                 <div className='button'>Edit To Do List</div>
-
             </div>
-            
             <div className='lists'>
-                Lists here
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
+                <ToDoList />
             </div>
         </ToDoListContainer>
     </Main>
