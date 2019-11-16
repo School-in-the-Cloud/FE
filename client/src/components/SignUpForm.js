@@ -65,7 +65,7 @@ const Checkbox = styled.div `
         color: darkgray;
     }
 `
-const LoginForm = ({values, errors, touched, status})=> {
+const SignUpForm = ({values, errors, touched, status})=> {
 
     function validateEmail(value) {
         let error;
@@ -81,11 +81,31 @@ const LoginForm = ({values, errors, touched, status})=> {
             <Login>
                 <Form>
                     <p>Please enter the following information:</p>
+                    <Field type='text' name='fname' placeholder='First name' className='formfield' />
+                    {touched.fname && errors.fname && (<ErrorMsg>{errors.fname}</ErrorMsg>)}
+                    <Field type='text' name='lname' placeholder='Last name' className='formfield' />
+                    {touched.lname && errors.lname && (<ErrorMsg>{errors.lname}</ErrorMsg>)}
                     <Field type='email' name='email' placeholder='Email' validate={validateEmail} className='formfield' />
                     {touched.email && errors.email && (<ErrorMsg>{errors.email}</ErrorMsg>)}
                     <Field type='password' name='password' placeholder='Password' className='formfield' />
                     {touched.password && errors.password && (<ErrorMsg>{errors.password}</ErrorMsg>)}
-                    <button type='submit'>Login!</button>
+                    <Dropdown>
+                        Role:
+                        <Field as="select" name="role" className='select'>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Student">Student</option>
+                        <option value="Admin">Admin</option>
+                        </Field>
+                    </Dropdown>    
+                    <Checkbox>
+                        <label>
+                        <p>Do you agree to the terms of service?
+                        <Field type="checkbox" name="tos" checked={values.tos} /></p>
+                        {touched.tos && errors.tos && (<ErrorMsg>{errors.tos}</ErrorMsg>)}
+                        <span>View our terms of service here</span>
+                        </label>
+                    </Checkbox>
+                    <button type='submit'>Sign Up!</button>
                 </Form>
             </Login>
         </Container>
@@ -93,16 +113,23 @@ const LoginForm = ({values, errors, touched, status})=> {
     );
   }
 
-const FormikLoginForm = withFormik({
-    mapPropsToValues({email, password}){
+const FormikSignUpForm = withFormik({
+    mapPropsToValues({fname, lname, email, password, role, tos}){
         return {
+            fname: fname || '',
+            lname: lname || '',
             email: email || '',
             password: password || '',
+            role: role || '',
+            tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({
+        fname: Yup.string().required('First name required!'),
+        lname: Yup.string().required('Last name required!'),
         email: Yup.string().email('Invalid email!').required('Email required!'),
         password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
+        tos: Yup.bool().oneOf([true],('Please Agree To Terms of Service!'))
     }),
     handleSubmit(values, {setStatus}){
     axios.post('', values)
@@ -112,6 +139,6 @@ const FormikLoginForm = withFormik({
     })
     .catch (err => console.log(err.response))
     }
-})(LoginForm);
+})(SignUpForm);
 
-export default FormikLoginForm;
+export default FormikSignUpForm;
