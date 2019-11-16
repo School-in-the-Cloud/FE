@@ -1,10 +1,10 @@
 import React from 'react'
 
-function LoginForm() {
+function Navbar() {
     return (
         <>
         </>
     );
   }
 
-export default LoginForm
+export default Navbar
