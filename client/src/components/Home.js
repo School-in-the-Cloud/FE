@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Head = styled.section`
@@ -21,7 +22,7 @@ const Head = styled.section`
       justify-content: space-between;
       width: 30%;
   }
-  button{
+  .button{
       background-color: white;
       color: black;
       border-radius: 10px;
@@ -29,6 +30,7 @@ const Head = styled.section`
       height: 45px;
       box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
       margin: 30px;
+      text-decoration: none;
       &:hover{
           background-color: lightblue;
       }
@@ -46,8 +48,8 @@ function Home() {
           alt="Cloud" width="450px"
         />
         <div>
-            <button>Login</button>
-            <button>Sign Up</button>
+            <Link to='/login' className='button'>Login</Link>
+            <Link to='/signup' className='button'>Sign Up</Link>
         </div>
     </Head>
     </>
