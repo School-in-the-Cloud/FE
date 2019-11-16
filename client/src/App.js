@@ -12,6 +12,7 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
+      <Route path='/navbar' component={Navbar} /> {/* testing nav here */}
     </div>
   );
 }
