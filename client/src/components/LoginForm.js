@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
-import axios from 'axios';
+
+import { authActionCreators } from '../actions';
 
 const Container = styled.div`
     display: flex;
@@ -104,14 +106,13 @@ const FormikLoginForm = withFormik({
         email: Yup.string().email('Invalid email!').required('Email required!'),
         password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
     }),
-    handleSubmit(values, {setStatus}){
-    axios.post('', values)
-    .then (res =>{
-        setStatus(res.data);
-        console.log(res)
-    })
-    .catch (err => console.log(err.response))
+    handleSubmit(values, {props, setStatus}){
+        props.authenticateUser(values, () => props.history.push('/admin'));
     }
 })(LoginForm);
 
-export default FormikLoginForm;
+const mapDispatchToProps = {
+    authenticateUser: authActionCreators.authenticateUser
+}
+
+export default connect(null, mapDispatchToProps)(FormikLoginForm);
