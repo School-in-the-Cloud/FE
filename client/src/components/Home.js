@@ -7,10 +7,9 @@ const Head = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* background-color: #b1bfd8;
-  background-image: linear-gradient(315deg, #b1bfd8 0%, #6782b4 74%); */
-  min-height: 100vh;
+  /* height: 90vh; */
   max-width: 100vw;
+  /* border: 1px solid red; */
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h1{
@@ -23,16 +22,23 @@ const Head = styled.section`
       width: 30%;
   }
   .button{
-      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: whitesmoke;
       color: black;
+      border: 1px solid grey;
       border-radius: 10px;
       width: 155px;
       height: 45px;
       box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
       margin: 30px;
+      padding-bottom: 2px;
       text-decoration: none;
+      text-shadow: none;
       &:hover{
           background-color: lightblue;
+          color: white;
       }
   }
 `

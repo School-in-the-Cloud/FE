@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { authActionCreators } from '../actions';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Headerwrap = styled.div`
@@ -9,8 +9,10 @@ const Headerwrap = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         margin: 10px;
         color: white;
+        height: 5vh;
         h1{
             text-shadow: 2px 2px 4px #000000;
             font-size: 3rem;
@@ -20,6 +22,9 @@ const Headerwrap = styled.div`
 `
 
 const Navwrap = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     nav{
         display: flex;
         width: 100%;
@@ -58,10 +63,10 @@ function Navbar() {
         <h1>School In The Cloud</h1>
         <Navwrap>
         <nav>
-            <NavLink exact to='/'>Home</NavLink>
-            <NavLink exact to='/admin'>Profile</NavLink> 
-            <NavLink exact to='/'>Volunteers</NavLink>
-            <NavLink onClick={logout} to='/'>Sign out</NavLink>
+            <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
+            <NavLink exact to='/admin'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
+            <NavLink exact to='/volunteers'>Volunteers</NavLink>
+            <Link onClick={logout} to='/'>Sign out</Link>
         </nav>
         </Navwrap>
     </header>

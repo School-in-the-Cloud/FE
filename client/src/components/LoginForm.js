@@ -7,9 +7,8 @@ import * as Yup from 'yup';
 import { authActionCreators } from '../actions';
 
 const Container = styled.div`
+    margin-top: 150px;
     display: flex;
-    width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
 `

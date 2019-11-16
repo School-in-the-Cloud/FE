@@ -1,59 +1,95 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TempSpacer = styled.div`
-    width: 10px;
-    height: 100px;
-    border: 1px solid red;
-`
-
-const Main = styled.section`
+const MainWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  max-height: 90vh;
   max-width: 100vw;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
       margin:55px;
   }
-  div{
+`
+
+
+const Main = styled.section`
+/* border: 1px solid red; */
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  .button{
       display: flex;
-      justify-content: space-between;
-      width: 30%;
-  }
-  button{
-      background-color: white;
+      justify-content: center;
+      align-items: center;
+      background-color: whitesmoke;
       color: black;
+      border: 1px solid grey;
       border-radius: 10px;
-      width: 155px;
+      min-width: 155px;
       height: 45px;
       box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
       margin: 30px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
       &:hover{
           background-color: lightblue;
+          color: white;
       }
   }
+`
+
+const ToDoListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    /* border: 1px solid yellow; */
+    width: 50%;
+    .button-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+    }
+    .lists{
+        /* border: 1px solid blue; */
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
 `
 
 function AdminDashboard() {
   return (
     <>
-    <TempSpacer>NavHere</TempSpacer>
+    <MainWrap>
+    <h2>Welcome -User Name-!</h2>
     <Main>
-        <h2>Welcome -User Name-!</h2>
         <img
           className="main-img"
           src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"
-          alt="Admin" width="450px"
+          alt="Admin" width="350px"
         />
-        <div>
-            <button>Create To Do List</button>
-            <button>Edit To Do List</button>
-        </div>
+        <ToDoListContainer>
+            <div className='button-container'>
+                <div className='button'>Create To Do List</div>
+                <div className='button'>Edit To Do List</div>
+
+            </div>
+            
+            <div className='lists'>
+                Lists here
+            </div>
+        </ToDoListContainer>
     </Main>
+    </MainWrap>
     </>
   );
 }
