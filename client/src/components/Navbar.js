@@ -51,7 +51,7 @@ function Navbar() {
         <Navwrap>
         <nav>
             <NavLink exact to='/'>Home</NavLink>
-            <NavLink exact to='/navbar'>Profile</NavLink>
+            <NavLink exact to='/'>Profile</NavLink>
             <NavLink exact to='/'>Volunteers</NavLink>
             <NavLink exact to='/'>Sign out</NavLink>
         </nav>

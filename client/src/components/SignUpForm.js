@@ -92,11 +92,17 @@ const SignUpForm = ({values, errors, touched, status})=> {
                     <Dropdown>
                         Role:
                         <Field as="select" name="role" className='select'>
-                        <option value="Volunteer">Volunteer</option>
-                        <option value="Student">Student</option>
-                        <option value="Admin">Admin</option>
+                            <option selected hidden value>-- select a role --</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Student">Student</option>
+                            <option value="Admin">Admin</option>
                         </Field>
                     </Dropdown>    
+                    {values.role === 'Volunteer' &&
+                    <>
+                        <Field type='text' name="country" placeholder='Country' className="formfield" />
+                        <Field type='text' name="availability" placeholder='Availability' className="formfield" />
+                    </>}
                     <Checkbox>
                         <label>
                         <p>Do you agree to the terms of service?
@@ -114,13 +120,15 @@ const SignUpForm = ({values, errors, touched, status})=> {
   }
 
 const FormikSignUpForm = withFormik({
-    mapPropsToValues({fname, lname, email, password, role, tos}){
+    mapPropsToValues({fname, lname, email, password, role, country, availability, tos}){
         return {
             fname: fname || '',
             lname: lname || '',
             email: email || '',
             password: password || '',
             role: role || '',
+            country: country || '',
+            availability: availability || '',
             tos: tos || false
         };
     },
