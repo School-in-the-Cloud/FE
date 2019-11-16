@@ -142,7 +142,7 @@ const FormikSignUpForm = withFormik({
         tos: Yup.bool().oneOf([true],('Please Agree To Terms of Service!'))
     }),
     handleSubmit(values, {props, setStatus}){
-        props.registerUser(values, () => props.history.push('/admin'));
+        props.registerUser(values, () => props.history.push('/dashboard'));
     }
 })(SignUpForm);
 

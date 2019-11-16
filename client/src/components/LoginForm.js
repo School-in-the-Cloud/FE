@@ -93,7 +93,7 @@ const LoginForm = ({values, errors, touched, status})=> {
         </Container>
         </>
     );
-  }
+}
 
 const FormikLoginForm = withFormik({
     mapPropsToValues({email, password}){
@@ -107,7 +107,7 @@ const FormikLoginForm = withFormik({
         password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
     }),
     handleSubmit(values, {props, setStatus}){
-        props.authenticateUser(values, () => props.history.push('/admin'));
+        props.authenticateUser(values, () => props.history.push('/dashboard'));
     }
 })(LoginForm);
 
