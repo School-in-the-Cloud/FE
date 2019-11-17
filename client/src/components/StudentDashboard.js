@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ToDoList from './ToDoList';
+import VolunteerCard from './VolunteerCard';
 
 const MainWrap = styled.div`
   display: flex;
@@ -91,9 +91,9 @@ const SearchBar = styled.div`
     width: 800px;
     padding: 10px;
     background-color: white;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 10px;
-    box-shadow: 2px 2px darkgray;
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
     color: black;
     text-shadow: none;
     form {
@@ -104,16 +104,24 @@ const SearchBar = styled.div`
     }    
     input{
       margin: 0 5px;
-      border-left: 1px solid black;
+      border: none;
+      border-bottom: 1px solid darkgray;
     }
     label{
       margin: 0 10px;
     }
+    select{
+        margin: 0 5px;
+    }
     button{
-      color: white;
-      border: 1px solid black;
-      border-radius: 5px;
-      background-color: darkgrey;
+        border: none;
+        box-shadow: 2px 2px darkgray;
+        border-radius: 5px;
+        background-color: slategray;
+        color: white;
+        &:hover {
+            background-color: lightgray;
+        }
     }
 `
 
@@ -171,14 +179,16 @@ function StudentDashboard() {
                 <h3>These are the volunteers:</h3>
             </div>
             <div className='lists'>
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
+                <VolunteerCard />
             </div>
         </ToDoListContainer>
         <img
