@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import VolunteerCard from './VolunteerCard';
 
@@ -129,6 +130,8 @@ const SearchBar = styled.div`
 
 function StudentDashboard() {
 
+    const { first_name, last_name } = useSelector(state => state.authentication.user);
+
     const handleChange = event => {
         console.log('user entering information')
       };
@@ -140,7 +143,7 @@ function StudentDashboard() {
   return (
     <>
     <MainWrap>
-    <h2>Welcome -User Name-!</h2>
+    <h2>Welcome {first_name} {last_name}!</h2>
     <SearchBar>
         <form onSubmit={event => handleSubmit(event)}>
           <label>

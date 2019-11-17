@@ -89,9 +89,8 @@ function AdminDashboard() {
   return (
     <>
     <MainWrap>
-    <h2>Welcome -User Name-!</h2>
+    <h2>Welcome {first_name} {last_name}!</h2>
     <Main>
-        <h2>Welcome {first_name} {last_name}!</h2>
         <img
           className="main-img"
           src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"

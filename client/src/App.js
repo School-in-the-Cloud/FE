@@ -14,12 +14,18 @@ import './App.css';
 function App() {
   const { user } = useSelector(state => state.authentication);
 
-  let dashboard = null;
+  let dashboard;
 
-  if (user.type === 'admin') {
-    dashboard = AdminDashboard;
-  } else { 
-    dashboard = LoginForm;
+  switch(user.type) {
+    case 'admin':
+      dashboard = AdminDashboard;
+      break;
+    case 'volunteer':
+      dashboard = VolunteerDashboard;
+      break;
+    case 'student':
+      dashboard = StudentDashboard;
+      break
   }
 
   return (
@@ -29,7 +35,6 @@ function App() {
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
       <PrivateRoute path='/dashboard' component={dashboard} />
-      {/* <Route path='/admin' component={AdminDashboard} /> testing pages */}
     </div>
   );
 }
