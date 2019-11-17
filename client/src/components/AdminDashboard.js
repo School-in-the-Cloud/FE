@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const TempSpacer = styled.div`
@@ -39,11 +40,13 @@ const Main = styled.section`
 `
 
 function AdminDashboard() {
+  const { first_name, last_name } = useSelector(state => state.authentication.user);
+
   return (
     <>
     <TempSpacer>NavHere</TempSpacer>
     <Main>
-        <h2>Welcome -User Name-!</h2>
+        <h2>Welcome {first_name} {last_name}!</h2>
         <img
           className="main-img"
           src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"

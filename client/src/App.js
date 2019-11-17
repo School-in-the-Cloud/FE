@@ -10,11 +10,11 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 function App() {
-  const { userType } = useSelector(state => state.authentication);
+  const { user } = useSelector(state => state.authentication);
 
   let dashboard = null;
 
-  if (userType === 'admin') {
+  if (user.type === 'admin') {
     dashboard = AdminDashboard;
   } else { 
     dashboard = LoginForm;

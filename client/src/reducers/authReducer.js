@@ -1,4 +1,4 @@
-import { getToken, getUserType } from '../utils';
+import { getToken, getUser } from '../utils';
 import { authActionTypes } from '../actions';
 
 const { REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAIL,
@@ -6,7 +6,7 @@ const { REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAIL,
 
 const initialState = {
     isAuthenticated: getToken(),
-    userType: getUserType(), 
+    user: getUser(), 
     isLoading: false,
     error: null
 }
@@ -24,7 +24,7 @@ export const authentication = (state=initialState, action) => {
         case REGISTRATION_SUCCESS:
             return {
                 ...state,
-                userType: action.payload,
+                user: action.payload,
                 isAuthenticated: true,
                 isLoading: false
             }
