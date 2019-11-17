@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authActionCreators } from '../actions';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Headerwrap = styled.div`
@@ -56,6 +56,8 @@ const Navwrap = styled.div`
 `
 
 function Navbar() {
+  const { isAuthenticated } = useSelector(state => state.authentication);
+  console.log('isauthenticated:', isAuthenticated);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -72,9 +74,9 @@ function Navbar() {
         </div>
         <Navwrap>
         <nav>
-            <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
-            <NavLink exact to='/dashboard'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
-            <Link onClick={logout} to='/'>Sign out</Link>
+            <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink> {/* Should Home link to dashboard? */}
+            { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
+            {/* <NavLink exact to='/dashboard'>Profile</NavLink> Profile link to ability to edit profile? */}
         </nav>
         </Navwrap>
     </header>
