@@ -73,8 +73,7 @@ function Navbar() {
         <Navwrap>
         <nav>
             <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
-            <NavLink exact to='/admin'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
-            <NavLink exact to='/student'>Volunteers</NavLink>
+            <NavLink exact to='/dashboard'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
             <Link onClick={logout} to='/'>Sign out</Link>
         </nav>
         </Navwrap>

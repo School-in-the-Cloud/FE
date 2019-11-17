@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 
@@ -83,10 +84,12 @@ const ToDoListContainer = styled.div`
 `
 
 function AdminDashboard() {
+  const { first_name, last_name } = useSelector(state => state.authentication.user);
+
   return (
     <>
     <MainWrap>
-    <h2>Welcome -User Name-!</h2>
+    <h2>Welcome {first_name} {last_name}!</h2>
     <Main>
         <img
           className="main-img"
