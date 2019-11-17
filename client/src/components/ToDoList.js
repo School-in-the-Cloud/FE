@@ -7,7 +7,7 @@ const List = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  min-height: 320px;
+  height: 340px;
   margin: 20px;
   text-shadow: none;
   color: black;
@@ -57,24 +57,24 @@ const List = styled.div`
   }
 `
 
-function ToDoList (){
+function ToDoList (props){
 
     return (
         <>
         <List>
-            <div className='title'>Title of List</div>
-            <div className='name'>-Volunteer Name-</div>
+            <div className='title'>{props.title}</div>
+            <div className='name'>-{props.name}-</div>
             <div className='items'>
-                <div>Item 1</div>
-                <div>Item 2</div>
-                <div>Item 3</div>
-                <div>Item 4</div>
-                <div>Item 5</div>
-                <div>Item 6</div>
-                <div>Item 7</div>
-                <div>Item 8</div>
-                <div>Item 9</div>
-                <div>Item 10</div>
+                <div>{props.item1}</div>
+                <div>{props.item2}</div>
+                <div>{props.item3}</div>
+                <div>{props.item4}</div>
+                <div>{props.item5}</div>
+                <div>{props.item6}</div>
+                <div>{props.item7}</div>
+                <div>{props.item8}</div>
+                <div>{props.item9}</div>
+                <div>{props.item10}</div>
             </div>
             <div className='edit-button'>Edit</div>
         </List>
