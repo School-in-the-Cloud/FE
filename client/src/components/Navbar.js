@@ -13,10 +13,15 @@ const Headerwrap = styled.div`
         margin: 10px;
         color: white;
         height: 5vh;
+        .logo{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 75px;
+        }
         h1{
             text-shadow: 2px 2px 4px #000000;
             font-size: 3rem;
-            margin-left: 75px;
+            margin-left: 30px;
         }
     }
 `
@@ -60,7 +65,10 @@ function Navbar() {
     <>
     <Headerwrap>
     <header>
+        <div className='logo'>
+        <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg" alt="Cloud" width="70px"/>
         <h1>School In The Cloud</h1>
+        </div>
         <Navwrap>
         <nav>
             <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}

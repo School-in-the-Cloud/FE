@@ -5,7 +5,8 @@ import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import AdminDashboard from './components/AdminDashboard';
-import VolunteerDashboard from './components/VolunteerDashboard'
+import VolunteerDashboard from './components/VolunteerDashboard';
+import StudentDashboard from './components/StudentDashboard';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
       <Route path='/navbar' component={Navbar} />
       <PrivateRoute path='/admin' component={AdminDashboard} />
       <Route path='/volunteer' component={VolunteerDashboard} />
+      <Route path='/student' component={StudentDashboard} />
     </div>
   );
 }

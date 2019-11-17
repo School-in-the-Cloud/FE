@@ -28,6 +28,7 @@ const ToDoListContainer = styled.div`
     flex-direction: column;
     width: 350px;
     width: 36%;
+    margin-left: 50px;
     .button-container{
         width: 100%;
         display: flex;
