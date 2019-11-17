@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import VolunteerCard from './VolunteerCard';
@@ -130,29 +130,39 @@ const SearchBar = styled.div`
 
 function StudentDashboard() {
 
-    const { first_name, last_name } = useSelector(state => state.authentication.user);
+  const [ volunteerQuery, setVolunteerQuery ] = useState({
+      name: '',
+      type: '',
+      dimension: ''
+  });
 
-    const handleChange = event => {
-        console.log('user entering information')
-      };
+  const { first_name, last_name } = useSelector(state => state.authentication.user);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log ('pressed search button');
-    }
+  const handleChange = event => {
+      setVolunteerQuery({
+          ...volunteerQuery,
+          [event.target.name]: event.target.value
+      });
+  };
+
+  const handleSubmit = event => {
+      event.preventDefault();
+      console.log ('submitting form values:', volunteerQuery);
+  }
+
   return (
     <>
     <MainWrap>
     <h2>Welcome {first_name} {last_name}!</h2>
     <SearchBar>
-        <form onSubmit={event => handleSubmit(event)}>
+        <form onSubmit={handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" onChange={event => handleChange(event)} />
+            <input type="text" name="name" onChange={handleChange} /> {/* Go over event callbacks */}
           </label>
           <label>
             Availbility:
-            <select name="type" onChange={event => handleChange(event)}>
+            <select name="type" onChange={handleChange}>
               <option value=''>Any</option>
               <option value='Planet'>Planet</option>
               <option value='Cluster'>Cluster</option>
@@ -165,7 +175,7 @@ function StudentDashboard() {
           </label>
           <label>
             Location:
-            <select name="dimension" onChange={event => handleChange(event)}>
+            <select name="dimension" onChange={handleChange}>
               <option value=''>All</option>
               <option value='137'>C-137</option>
               <option value='126'>5-126</option>
