@@ -6,6 +6,8 @@ import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import AdminDashboard from './components/AdminDashboard';
+import VolunteerDashboard from './components/VolunteerDashboard';
+import StudentDashboard from './components/StudentDashboard';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
@@ -26,7 +28,6 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
-      <Route path='/navbar' component={Navbar} /> {/* testing pages */}
       <PrivateRoute path='/dashboard' component={dashboard} />
       {/* <Route path='/admin' component={AdminDashboard} /> testing pages */}
     </div>

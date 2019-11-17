@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { authActionCreators } from '../actions';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Headerwrap = styled.div`
@@ -9,17 +9,27 @@ const Headerwrap = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         margin: 10px;
         color: white;
+        height: 5vh;
+        .logo{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 75px;
+        }
         h1{
             text-shadow: 2px 2px 4px #000000;
             font-size: 3rem;
-            margin-left: 75px;
+            margin-left: 30px;
         }
     }
 `
 
 const Navwrap = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     nav{
         display: flex;
         width: 100%;
@@ -31,6 +41,7 @@ const Navwrap = styled.div`
             text-decoration: none;
             &:hover{
                 color: lightblue;
+                cursor: pointer;
             }
         }
         a.active{
@@ -55,13 +66,15 @@ function Navbar() {
     <>
     <Headerwrap>
     <header>
+        <div className='logo'>
+        <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg" alt="Cloud" width="70px"/>
         <h1>School In The Cloud</h1>
+        </div>
         <Navwrap>
         <nav>
-            <NavLink exact to='/'>Home</NavLink>
-            <NavLink exact to='/dashboard'>Profile</NavLink> 
-            <NavLink exact to='/'>Volunteers</NavLink>
-            <NavLink onClick={logout} to='/'>Sign out</NavLink>
+            <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
+            <NavLink exact to='/dashboard'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
+            <Link onClick={logout} to='/'>Sign out</Link>
         </nav>
         </Navwrap>
     </header>
