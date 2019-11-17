@@ -7,9 +7,8 @@ import * as Yup from 'yup';
 import { authActionCreators } from '../actions';
 
 const Container = styled.div`
+    margin-top: 150px;
     display: flex;
-    width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
 `
@@ -33,7 +32,8 @@ const Login = styled.div`
         background-color: slategray;
         color: white;
         &:hover {
-        background-color: lightgray;
+            background-color: lightgray;
+            cursor: pointer;
     }
 }
 `
@@ -93,7 +93,7 @@ const LoginForm = ({values, errors, touched, status})=> {
         </Container>
         </>
     );
-  }
+}
 
 const FormikLoginForm = withFormik({
     mapPropsToValues({email, password}){
@@ -107,7 +107,7 @@ const FormikLoginForm = withFormik({
         password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
     }),
     handleSubmit(values, {props, setStatus}){
-        props.authenticateUser(values, () => props.history.push('/admin'));
+        props.authenticateUser(values, () => props.history.push('/dashboard'));
     }
 })(LoginForm);
 

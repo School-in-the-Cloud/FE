@@ -1,3 +1,3 @@
-export const hasToken = () => {
+export const getToken = () => {
     return !!sessionStorage.getItem('token');
 }
