@@ -1,0 +1,27 @@
+export const data = [
+    {
+        id: Date.now(),
+        title: '',
+        assignedto: '',
+        item1: '',
+        item2: '',
+        item3: '',
+        item4: '',
+        item5: '',
+        item6: '',
+        item7: '',
+        item8: '',
+        item9: '',
+        item10: '',
+        item1checked: false,
+        item2checked: false,
+        item3checked: false,
+        item4checked: false,
+        item5checked: false,
+        item6checked: false,
+        item7checked: false,
+        item8checked: false,
+        item9checked: false,
+        item10checked: false,
+    }
+]
