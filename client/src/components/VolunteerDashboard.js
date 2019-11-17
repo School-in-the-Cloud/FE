@@ -21,6 +21,9 @@ const Main = styled.section`
   height: 70vh;
   display: flex;
   justify-content: center;
+  img{
+    margin-left: 20px;
+  }
 `
 
 const ToDoListContainer = styled.div`
@@ -28,7 +31,7 @@ const ToDoListContainer = styled.div`
     flex-direction: column;
     width: 350px;
     width: 36%;
-    margin-left: 50px;
+    margin-right: 50px;
     .button-container{
         width: 100%;
         display: flex;
@@ -82,20 +85,15 @@ const ToDoListContainer = styled.div`
     }
 `
 
-function AdminDashboard() {
+function VolunteerDashboard() {
   return (
     <>
     <MainWrap>
     <h2>Welcome -User Name-!</h2>
     <Main>
-        <img
-          className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"
-          alt="Admin" width="350px"
-        />
         <ToDoListContainer>
             <div className='button-container'>
-                <div className='button'>Create To Do List</div>
+                <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
                 <ToDoList />
@@ -108,10 +106,15 @@ function AdminDashboard() {
                 <ToDoList />
             </div>
         </ToDoListContainer>
+        <img
+          className="main-img"
+          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/to_do_xvvc.svg"
+          alt="Admin" width="350px"
+        />
     </Main>
     </MainWrap>
     </>
   );
 }
 
-export default AdminDashboard
+export default VolunteerDashboard
