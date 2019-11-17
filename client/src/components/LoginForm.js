@@ -104,7 +104,7 @@ const FormikLoginForm = withFormik({
     },
     validationSchema: Yup.object().shape({
         email: Yup.string().email('Invalid email!').required('Email required!'),
-        password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
+        password: Yup.string().min(8, 'Minimum 8 characters').required('Invalid password!'),
     }),
     handleSubmit(values, {props, setStatus}){
         props.authenticateUser(values, () => props.history.push('/dashboard'));

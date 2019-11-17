@@ -158,7 +158,7 @@ function StudentDashboard() {
         <form onSubmit={handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" onChange={handleChange} /> {/* Go over event callbacks */}
+            <input type="text" name="name" onChange={handleChange} />
           </label>
           <label>
             Availbility:

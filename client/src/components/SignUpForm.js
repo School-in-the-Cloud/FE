@@ -138,7 +138,7 @@ const FormikSignUpForm = withFormik({
         first_name: Yup.string().required('First name required!'),
         last_name: Yup.string().required('Last name required!'),
         email: Yup.string().email('Invalid email!').required('Email required!'),
-        password: Yup.string().min(6, 'Minimum 6 characters').required('Invalid password!'),
+        password: Yup.string().min(8, 'Minimum 8 characters').required('Invalid password!'),
         tos: Yup.bool().oneOf([true],('Please Agree To Terms of Service!'))
     }),
     handleSubmit(values, {props, setStatus}){
