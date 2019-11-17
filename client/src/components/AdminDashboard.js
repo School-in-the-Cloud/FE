@@ -103,7 +103,7 @@ function AdminDashboard() {
             </div>
             <div className='lists'>
                 {data.map(item =>(
-                    <ToDoList key={item.id} title={item.title} name={item.assignedto}/>
+                    <ToDoList key={item.id} title={item.title} name={item.assignedto}  { ...item}/>
                 ))}
             </div>
         </ToDoListContainer>

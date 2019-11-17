@@ -1,6 +1,6 @@
 export const data = [
     {
-        id: Date.now(),
+        id: 1,
         title: 'Test List',
         assignedto: 'Testy McTesterson',
         item1: 'Item 1',
@@ -25,8 +25,8 @@ export const data = [
         item10checked: false,
     },
     {
-        id: Date.now(),
-        title: 'Test List',
+        id: 2,
+        title: 'Another List',
         assignedto: 'Testy McTesterson',
         item1: 'Item 1',
         item2: 'Item 2',
