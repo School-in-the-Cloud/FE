@@ -1,2 +1,3 @@
 export { axiosWithAuth } from './axiosWithAuth';
-export { hasToken } from './hasTokens';
+export { getToken } from './getToken';
+export { getUser } from './getUser';
