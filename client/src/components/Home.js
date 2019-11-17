@@ -39,6 +39,7 @@ const Head = styled.section`
       &:hover{
           background-color: lightblue;
           color: white;
+          cursor: pointer;
       }
   }
 `

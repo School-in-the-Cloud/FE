@@ -41,6 +41,7 @@ const Navwrap = styled.div`
             text-decoration: none;
             &:hover{
                 color: lightblue;
+                cursor: pointer;
             }
         }
         a.active{
@@ -73,7 +74,7 @@ function Navbar() {
         <nav>
             <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
             <NavLink exact to='/admin'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
-            <NavLink exact to='/volunteers'>Volunteers</NavLink>
+            <NavLink exact to='/student'>Volunteers</NavLink>
             <Link onClick={logout} to='/'>Sign out</Link>
         </nav>
         </Navwrap>

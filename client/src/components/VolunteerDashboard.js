@@ -58,6 +58,7 @@ const ToDoListContainer = styled.div`
       &:hover{
           background-color: lightgray;
           color: white;
+          cursor: pointer;
       }
   }
     .lists{

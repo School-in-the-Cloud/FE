@@ -32,7 +32,8 @@ const Login = styled.div`
         background-color: slategray;
         color: white;
         &:hover {
-        background-color: lightgray;
+            background-color: lightgray;
+            cursor: pointer;
     }
 }
 `
