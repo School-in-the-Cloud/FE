@@ -19,12 +19,11 @@ const NewListForm = props => {
 
     const handleChanges = e => {
         setList({...list, [e.target.name]: e.target.value});
-        // console.log (e.target.value);
     }
+    
     const submitForm = e => {
         e.preventDefault();
         props.addNewList(list);
-        // console.log (team)
         setList({
             title: '',
             name: '',
@@ -39,6 +38,7 @@ const NewListForm = props => {
             item9: '',
             item10: ''
         })
+        props.setCreate(false)
     }    
 
     return (
@@ -69,6 +69,7 @@ const NewListForm = props => {
                     <input id='item9' type='text' name='item9' onChange={handleChanges} value={list.item9} />
                     <label htmlFor='item'>Item:</label>
                     <input id='item10' type='text' name='item10' onChange={handleChanges} value={list.item10} />
+                    <button type='submit'>Save</button>
                 </form>
             </div>
         </>

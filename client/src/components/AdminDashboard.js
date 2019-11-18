@@ -191,6 +191,8 @@ function AdminDashboard() {
     }
   ]);
 
+  const [create, setCreate] = useState (false);
+
   const addNewList = list => {
       const newList = {
           id: Date.now(),
@@ -232,13 +234,15 @@ function AdminDashboard() {
         />
         <ToDoListContainer>
             <div className='button-container'>
-                <div className='button' >Create To Do List</div>
+                <div className='button' onClick={() => setCreate(true)} >Create To Do List</div>
             </div>
+            {create ? <NewListForm addNewList={addNewList} setCreate={setCreate}/> : 
             <div className='lists'>
                 {data.map(item =>(
                     <ToDoList key={item.id} list={item} editListFunction={editListFunction}/>
                 ))}
             </div>
+            }
         </ToDoListContainer>
     </Main>
     </MainWrap>
