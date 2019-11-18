@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
+import {data} from './data/testdata';
 
 const MainWrap = styled.div`
   display: flex;
@@ -101,14 +102,9 @@ function AdminDashboard() {
                 <div className='button'>Create To Do List</div>
             </div>
             <div className='lists'>
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
+                {data.map(item =>(
+                    <ToDoList key={item.id} title={item.title} name={item.assignedto}  { ...item}/>
+                ))}
             </div>
         </ToDoListContainer>
     </Main>
