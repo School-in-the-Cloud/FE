@@ -61,6 +61,27 @@ const ToDoListContainer = styled.div`
           cursor: pointer;
       }
   }
+  .cancel-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: lightgray;
+      color: white;
+      border: 1px solid grey;
+      border-radius: 10px;
+      min-width: 155px;
+      height: 45px;
+      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+      margin: 30px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
+      &:hover{
+          background-color: lightblue;
+          color: white;
+          cursor: pointer;
+      }
+  }
     .lists{
         display: flex;
         flex-wrap: wrap;
@@ -191,7 +212,7 @@ function AdminDashboard() {
     }
   ]);
 
-  const [create, setCreate] = useState (true);
+  const [create, setCreate] = useState (false);
 
   const addNewList = list => {
       const newList = {
@@ -234,7 +255,7 @@ function AdminDashboard() {
         />
         <ToDoListContainer>
             <div className='button-container'>
-                {create ? console.log(create) : 
+                {create ? <div className='cancel-button' onClick={() => setCreate(false)} >Cancel</div> : 
                 <div className='button' onClick={() => setCreate(true)} >Create To Do List</div>
                 }
             </div>
