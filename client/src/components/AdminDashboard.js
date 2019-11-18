@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 // import {data} from './data/testdata';
+import NewListForm from './NewListForm'
 
 const MainWrap = styled.div`
   display: flex;
@@ -139,6 +140,25 @@ function AdminDashboard() {
         item10checked: false
     }
   ]);
+
+  const addNewList = list => {
+      const newList = {
+          id: Date.now(),
+          title: list.title,
+          name: list.name,
+          item1: list.item1,
+          item2: list.item2,
+          item3: list.item3,
+          item4: list.item4,
+          item5: list.item5,
+          item6: list.item6,
+          item7: list.item7,
+          item8: list.item8,
+          item9: list.item9,
+          item10: list.item10
+      }
+      setData([...data, newList])
+  }
 
   const editListFunction = newList =>{
       let listCopy = [...data]
