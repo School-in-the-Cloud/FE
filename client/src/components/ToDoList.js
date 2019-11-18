@@ -127,8 +127,8 @@ function ToDoList (props){
                 </>
             ) : (
                 <>
-                <div className='title'>{editList.title}</div>
-                <div className='name'>-{editList.name}-</div>
+                <div className='title'>{list.title}</div>
+                <div className='name'>-{list.name}-</div>
                 <div className='items'>
                     <div>{list.item1}</div>
                     <div>{list.item2}</div>
