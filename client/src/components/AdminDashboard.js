@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
-import {data} from './data/testdata';
+// import {data} from './data/testdata';
 
 const MainWrap = styled.div`
   display: flex;
@@ -87,6 +87,69 @@ const ToDoListContainer = styled.div`
 function AdminDashboard() {
   const { first_name, last_name } = useSelector(state => state.authentication.user);
 
+  const [data, setData] = useState([
+    {
+        id: 1,
+        title: 'Test List',
+        name: 'Testy McTesterson',
+        item1: 'Item 1',
+        item2: 'Item 2',
+        item3: 'Item 3',
+        item4: 'Item 4',
+        item5: 'Item 5',
+        item6: 'Item 6',
+        item7: 'Item 7',
+        item8: 'Item 8',
+        item9: 'Item 9',
+        item10: 'Item 10',
+        item1checked: false,
+        item2checked: false,
+        item3checked: false,
+        item4checked: false,
+        item5checked: false,
+        item6checked: false,
+        item7checked: false,
+        item8checked: false,
+        item9checked: false,
+        item10checked: false,
+    },
+    {
+        id: 2,
+        title: 'Another List',
+        name: 'Testy McTesterson',
+        item1: 'Item 1',
+        item2: 'Item 2',
+        item3: 'Item 3',
+        item4: 'Item 4',
+        item5: 'Item 5',
+        item6: 'Item 6',
+        item7: 'Item 7',
+        item8: 'Item 8',
+        item9: 'Item 9',
+        item10: 'Item 10',
+        item1checked: false,
+        item2checked: false,
+        item3checked: false,
+        item4checked: false,
+        item5checked: false,
+        item6checked: false,
+        item7checked: false,
+        item8checked: false,
+        item9checked: false,
+        item10checked: false
+    }
+  ]);
+
+  const editListFunction = newList =>{
+      let listCopy = [...data]
+      for (let i =  0; i < listCopy.length; i++){
+        if (listCopy[i].id === newList.id){
+            listCopy.splice(i, 1, newList)
+        }
+      }
+      setData(listCopy);
+  }
+
   return (
     <>
     <MainWrap>
@@ -103,7 +166,7 @@ function AdminDashboard() {
             </div>
             <div className='lists'>
                 {data.map(item =>(
-                    <ToDoList key={item.id} title={item.title} name={item.assignedto}  { ...item}/>
+                    <ToDoList key={item.id} list={item} editListFunction={editListFunction}/>
                 ))}
             </div>
         </ToDoListContainer>
