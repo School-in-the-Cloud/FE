@@ -30,3 +30,7 @@ code {
   border-bottom: 1px solid grey;
   width: 270px;
 }
+
+.name-input{
+  margin-left: -10px;
+}
