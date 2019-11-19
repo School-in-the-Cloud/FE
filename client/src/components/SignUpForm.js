@@ -5,6 +5,7 @@ import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
 import Loading from './Loading'
 import { authActionCreators } from '../actions'
+import CountryList from './CountryList';
 
 const Container = styled.div`
     margin-top: 150px;
@@ -56,17 +57,6 @@ const Dropdown = styled.div`
     }
 `
 
-// const Checkbox = styled.div `
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 0.8rem;
-//     span{
-//         font-size: 0.7rem;
-//         font-style: italic;
-//         color: darkgray;
-//     }
-// `
 const SignUpForm = ({values, errors, touched, status})=> {
 
     const isLoading = useSelector(state => state.authentication.isLoading);
@@ -106,8 +96,16 @@ const SignUpForm = ({values, errors, touched, status})=> {
                     </Dropdown>    
                     {values.type === 'volunteer' &&
                     <>
-                        <Field type='text' name="country" placeholder='Country' className="formfield" />
-                        <Field type='text' name="availability" placeholder='Availability' className="formfield" />
+                        <Field as="select" type='text' name="country" placeholder='Country' className="formfield">
+                            <CountryList signup />
+                        </Field>
+                        <Field as="select" type='text' name="availability" placeholder='Availability' className="formfield">
+                            <option defaultValue hidden value>-- Select an Availability --</option>
+                            <option value='Morning'>Morning</option>
+                            <option value='Afternoon'>Afternoon</option>
+                            <option value='Evening'>Evening</option>
+                            <option value='Night'>Night</option>
+                        </Field>
                     </>}
 
                     <button type='submit' disabled={isLoading}>Sign Up!</button>
@@ -130,7 +128,6 @@ const FormikSignUpForm = withFormik({
             type: type || '',
             country: country || '',
             availability: availability || '',
-            // tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({

@@ -48,9 +48,6 @@ const LoginForm = ({values, errors, touched, status})=> {
 
     const isLoading = useSelector(state => state.authentication.isLoading);
     const errormessage = useSelector(state => state.authentication.error)
-    
-    console.log ('error message here',errormessage)
-
 
     return (
         <>

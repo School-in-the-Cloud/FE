@@ -16,6 +16,7 @@ const fetchTodos = () => dispatch => {
             console.log(res);
             dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data });
         })
+        .catch(err => dispatch({type: FETCH_TODOS_FAIL, payload: err.message }));
 }
 
 const createTodoList = (values, id) => dispatch => {

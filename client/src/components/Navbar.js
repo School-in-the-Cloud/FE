@@ -23,6 +23,10 @@ const Headerwrap = styled.div`
             font-size: 3rem;
             margin-left: 30px;
         }
+        a{
+            text-decoration: none;
+            color: white;
+        }
     }
 `
 
@@ -68,10 +72,12 @@ function Navbar() {
     <>
     <Headerwrap>
     <header>
+        <Link to='/'>
         <div className='logo'>
         <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg" alt="Cloud" width="70px"/>
         <h1>School In The Cloud</h1>
         </div>
+        </Link>
         <Navwrap>
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink> {/* Should Home link to dashboard? */}

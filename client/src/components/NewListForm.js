@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
+import { axiosWithAuth } from '../utils';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -62,17 +63,36 @@ const List = styled.div`
 
 const NewListForm = ({ setIsCreating }) => {
 
+    
     const admin_id = useSelector(state => state.authentication.user.id);
     const dispatch = useDispatch();
-
+    
     const [todoList, setTodoList] = useState({
         title: '',
         volunteer: '',
         todos: []
     });
-
+    
     const [ currentTodo, setCurrentTodo ] = useState('');
+    
+    const [ volunteers, setVolunteers ] = useState ([])
 
+    useEffect(() => {
+        // React 1 Axios Request here! --------------------------------------------------
+        axiosWithAuth()
+            .get('/volunteers')
+            .then(res=> {
+                setVolunteers(res.data.map(volunteer => (
+                    { 
+                        first_name: volunteer.first_name,
+                        last_name: volunteer.last_name,
+                        id: volunteer.id
+                    })
+                ));
+            })
+            .catch (err => console.log('error during volunteer fetch', err.message));
+        // -----------------------------------------------------------------------------
+    }, []);
 
     const handleChanges = event => {
         setTodoList({
@@ -112,9 +132,10 @@ const NewListForm = ({ setIsCreating }) => {
                         <input id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} /><br />
 
                     <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
-                        <option defaultValue hidden value>-- select a volunteer --</option>
-                        <option value='7'>Brad Zickafoose</option>
-                        <option value='5'>Erika Matsumoto</option>
+                        <option defaultValue hidden value>-- Select a Volunteer --</option>
+                        {volunteers.map(volunteer => (
+                            <option key={volunteer.id} value={volunteer.id}>{volunteer.first_name} {volunteer.last_name}</option>
+                        ))}
                     </select>
 
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
