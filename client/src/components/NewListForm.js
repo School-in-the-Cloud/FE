@@ -25,6 +25,12 @@ const List = styled.div`
   form{
       margin-top: 20px;
   }
+  input{
+  margin: 2px 3px;
+  width: 270px;
+  border: 0px;
+  border-bottom: 1px solid grey;
+  }
   .button-container {
       display: flex;
       justify-content: center;
@@ -50,16 +56,6 @@ const List = styled.div`
           cursor: pointer;
       }
   }
-  input{
-  margin: 10px 0;
-  border: 0px;
-  border-bottom: 1px solid grey;
-  width: 270px;
-  .name-input{
-      margin-left: -10px;
-      border: 1px solid red;
-  }
-}
 `
 
 const NewListForm = props => {
