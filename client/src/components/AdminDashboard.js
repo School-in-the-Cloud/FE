@@ -6,24 +6,24 @@ import ToDoList from './ToDoList';
 import NewListForm from './NewListForm'
 
 const MainWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-height: 90vh;
-  max-width: 100vw;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  h2{
-      margin:55px;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-height: 90vh;
+    max-width: 100vw;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    h2{
+        margin:55px;
+    }
 `
 
 const Main = styled.section`
-  width: 100%;
-  height: 70vh;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
 `
 
 const ToDoListContainer = styled.div`
@@ -41,46 +41,46 @@ const ToDoListContainer = styled.div`
         height: 60px;
     }
     .button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: lightblue;
-      color: white;
-      border: 1px solid grey;
-      border-radius: 10px;
-      min-width: 155px;
-      height: 45px;
-      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-      margin: 30px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightblue;
+        color: white;
+        border: 1px solid grey;
+        border-radius: 10px;
+        min-width: 155px;
+        height: 45px;
+        box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+        margin: 30px;
+        padding-bottom: 2px;
+        text-decoration: none;
+        text-shadow: none;
+        &:hover{
+            background-color: lightgray;
+            color: white;
+            cursor: pointer;
+        }
   }
   .cancel-button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: lightgray;
-      color: white;
-      border: 1px solid grey;
-      border-radius: 10px;
-      min-width: 155px;
-      height: 45px;
-      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-      margin: 30px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightblue;
-          color: white;
-          cursor: pointer;
-      }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightgray;
+        color: white;
+        border: 1px solid grey;
+        border-radius: 10px;
+        min-width: 155px;
+        height: 45px;
+        box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+        margin: 30px;
+        padding-bottom: 2px;
+        text-decoration: none;
+        text-shadow: none;
+        &:hover{
+            background-color: lightblue;
+            color: white;
+            cursor: pointer;
+        }
   }
     .lists{
         display: flex;
@@ -90,19 +90,20 @@ const ToDoListContainer = styled.div`
         height: 100%;
         overflow: auto;
         margin: 10px;
+        margin-top: 6px;
         margin-left: 2px;
     }
     .lists::-webkit-scrollbar {
-    width: 5px;
+        width: 5px;
     }
     .lists::-webkit-scrollbar-track {
     }
     .lists::-webkit-scrollbar-thumb {
-    background: lightgray;
-    height: 100px; 
+        background: lightgray;
+        height: 100px; 
     }
     .lists::-webkit-scrollbar-thumb:hover {
-    background: #888; 
+        background: #888; 
     }
 `
 
@@ -215,22 +216,22 @@ function AdminDashboard() {
   const [create, setCreate] = useState (false);
 
   const addNewList = list => {
-      const newList = {
-          id: Date.now(),
-          title: list.title,
-          name: list.name,
-          item1: list.item1,
-          item2: list.item2,
-          item3: list.item3,
-          item4: list.item4,
-          item5: list.item5,
-          item6: list.item6,
-          item7: list.item7,
-          item8: list.item8,
-          item9: list.item9,
-          item10: list.item10
-      }
-      setData([...data, newList])
+        const newList = {
+            id: Date.now(),
+            title: list.title,
+            name: list.name,
+            item1: list.item1,
+            item2: list.item2,
+            item3: list.item3,
+            item4: list.item4,
+            item5: list.item5,
+            item6: list.item6,
+            item7: list.item7,
+            item8: list.item8,
+            item9: list.item9,
+            item10: list.item10
+        }
+        setData([...data, newList])
   }
 
   const editListFunction = newList =>{

@@ -9,6 +9,7 @@ const List = styled.div`
   width: 250px;
   height: 340px;
   margin: 20px;
+  margin-top: 40px;
   text-shadow: none;
   color: black;
   background-color: white;
@@ -34,12 +35,37 @@ const List = styled.div`
       text-align: left;
       min-height: 200px;
   }
+  .button-container {
+      display: flex;
+      justify-content: center;
+  }
   .edit-button{
       display: flex;
       justify-content: center;
       align-items: center;
       background-color: whitesmoke;
       color: black;
+      border: 1px solid grey;
+      border-radius: 10px;
+      width: 55px;
+      height: 25px;
+      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+      margin: 15px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
+      &:hover{
+          background-color: lightgray;
+          color: white;
+          cursor: pointer;
+      }
+  }
+  .delete-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: darkred;
+      color: white;
       border: 1px solid grey;
       border-radius: 10px;
       width: 55px;
@@ -107,22 +133,26 @@ function ToDoList (props){
                         id='title'
                         type='text'
                         name='title'
+                        className='edit-input'
                         onChange={handleChanges}
                         defaultValue={editList.title}
                     />
                     <label htmlFor='name'>Name:</label>
-                    <input id='name' type='text' name='name' onChange={handleChanges} defaultValue={editList.name} />
-                    <input id='item1' type ='text' name='item1' onChange={handleChanges} defaultValue={editList.item1} />
-                    <input id='item2' type ='text' name='item2' onChange={handleChanges} defaultValue={editList.item2} />
-                    <input id='item3' type ='text' name='item3' onChange={handleChanges} defaultValue={editList.item3} />
-                    <input id='item4' type ='text' name='item4' onChange={handleChanges} defaultValue={editList.item4} />
-                    <input id='item5' type ='text' name='item5' onChange={handleChanges} defaultValue={editList.item5} />
-                    <input id='item6' type ='text' name='item6' onChange={handleChanges} defaultValue={editList.item6} />
-                    <input id='item7' type ='text' name='item7' onChange={handleChanges} defaultValue={editList.item7} />
-                    <input id='item8' type ='text' name='item8' onChange={handleChanges} defaultValue={editList.item8} />
-                    <input id='item9' type ='text' name='item9' onChange={handleChanges} defaultValue={editList.item9} />
-                    <input id='item10' type ='text' name='item10' onChange={handleChanges} defaultValue={editList.item10} />
-                    <button className='edit-button' type='submit'>Save</button>
+                    <input id='name' type='text' name='name'className='edit-input' onChange={handleChanges} defaultValue={editList.name} />
+                    <input id='item1' type ='text' name='item1' className='edit-input' onChange={handleChanges} defaultValue={editList.item1} />
+                    <input id='item2' type ='text' name='item2' className='edit-input' onChange={handleChanges} defaultValue={editList.item2} />
+                    <input id='item3' type ='text' name='item3' className='edit-input' onChange={handleChanges} defaultValue={editList.item3} />
+                    <input id='item4' type ='text' name='item4' className='edit-input' onChange={handleChanges} defaultValue={editList.item4} />
+                    <input id='item5' type ='text' name='item5' className='edit-input' onChange={handleChanges} defaultValue={editList.item5} />
+                    <input id='item6' type ='text' name='item6' className='edit-input' onChange={handleChanges} defaultValue={editList.item6} />
+                    <input id='item7' type ='text' name='item7' className='edit-input' onChange={handleChanges} defaultValue={editList.item7} />
+                    <input id='item8' type ='text' name='item8' className='edit-input' onChange={handleChanges} defaultValue={editList.item8} />
+                    <input id='item9' type ='text' name='item9' className='edit-input' onChange={handleChanges} defaultValue={editList.item9} />
+                    <input id='item10' type ='text' name='item10' className='edit-input' onChange={handleChanges} defaultValue={editList.item10} />
+                    <div className='button-container'>
+                        <button className='edit-button' type='submit'>Save</button>
+                        <button className='delete-button' type='submit'>Delete</button>
+                    </div>
                 </form>
                 </>
             ) : (
