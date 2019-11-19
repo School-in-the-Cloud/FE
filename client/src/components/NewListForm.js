@@ -108,7 +108,8 @@ const NewListForm = ({ setIsCreating }) => {
                     <label htmlFor='name' className='name-input'>Name:</label>
 
                     <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
-                        <option value='1'>Nattajohn Rojanasupya</option>
+                        <option defaultValue hidden value>-- select a volunteer --</option>
+                        <option value='7'>Brad Zickafoose</option>
                         <option value='4'>Erika Matsumoto</option>
                     </select>
 

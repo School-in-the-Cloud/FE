@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { volunteerActionCreators } from '../actions';
-=======
-import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
->>>>>>> development
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 
@@ -102,109 +97,6 @@ function VolunteerDashboard() {
     dispatch(volunteerActionCreators.fetchTodos(id));
   }, []);
 
-  const [data, setData] = useState([
-    {
-        id: 1,
-        title: 'Test List',
-        name: 'Testy McTesterson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    },
-    {
-        id: 2,
-        title: 'Another List',
-        name: 'Testy McTesterson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false
-    },
-    {
-        id: 3,
-        title: 'This List',
-        name: 'This Guy',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    },
-    {
-        id: 4,
-        title: 'Listy List',
-        name: 'Listy McListerson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    }
-  ]);
-
   return (
     <>
     <MainWrap>
@@ -215,13 +107,7 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
-<<<<<<< HEAD
               { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
-=======
-            {data.map(item =>(
-                        <ToDoList key={item.id} list={item}/>
-                    ))}
->>>>>>> development
             </div>
         </ToDoListContainer>
         <img
