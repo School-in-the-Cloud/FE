@@ -215,6 +215,8 @@ function AdminDashboard() {
 
   const [create, setCreate] = useState (false);
 
+  const [displayEditButton, setDisplayEditButton ] = useState (true);
+
   const addNewList = list => {
         const newList = {
             id: Date.now(),
@@ -263,7 +265,7 @@ function AdminDashboard() {
             {create ? <NewListForm addNewList={addNewList} setCreate={setCreate}/> : 
                 <div className='lists'>
                     {data.map(item =>(
-                        <ToDoList key={item.id} list={item} editListFunction={editListFunction}/>
+                        <ToDoList key={item.id} list={item} editListFunction={editListFunction} displayEditButton={displayEditButton}/>
                     ))}
                 </div>
             }

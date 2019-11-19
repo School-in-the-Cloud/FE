@@ -171,7 +171,7 @@ function ToDoList (props){
                     <div>{list.item9}</div>
                     <div>{list.item10}</div>
                 </div>
-                <div className='edit-button' onClick={handleEdit}>Edit</div>
+                { props.displayEditButton && <div className='edit-button' onClick={handleEdit}>Edit</div> }
                 </>
             )}
         </List>
