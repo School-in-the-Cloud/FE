@@ -68,9 +68,10 @@ const NewListForm = ({ setIsCreating }) => {
     const [todoList, setTodoList] = useState({
         title: '',
         volunteer: '',
-        currentTodo: '',
         todos: []
     });
+
+    const [ currentTodo, setCurrentTodo ] = useState('');
 
 
     const handleChanges = event => {
@@ -80,16 +81,20 @@ const NewListForm = ({ setIsCreating }) => {
         });
     }
 
+    const handleCurrentTodo = event => {
+        setCurrentTodo(event.target.value);
+    }
+
     const addTodo = event => {
         event.preventDefault();
         setTodoList({
             ...todoList,
-            currentTodo: '',
             todos: [
                 ...todoList.todos,
-                todoList.currentTodo
+                currentTodo
             ]
         });
+        setCurrentTodo('');
     };
 
     const handleSubmit = event => {
@@ -105,16 +110,15 @@ const NewListForm = ({ setIsCreating }) => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor='title'>Title:</label>
                         <input id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} /><br />
-                    <label htmlFor='name' className='name-input'>Name:</label>
 
                     <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
                         <option defaultValue hidden value>-- select a volunteer --</option>
                         <option value='7'>Brad Zickafoose</option>
-                        <option value='4'>Erika Matsumoto</option>
+                        <option value='5'>Erika Matsumoto</option>
                     </select>
 
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
-                    <input name='currentTodo' onChange={handleChanges} value={todoList.currentTodo} />
+                    <input name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />
                     <button onClick={addTodo}>+</button>
 
                     <div className='button-container'>

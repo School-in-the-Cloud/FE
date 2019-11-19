@@ -110,7 +110,7 @@ const SignUpForm = ({values, errors, touched, status})=> {
                         <Field type='text' name="availability" placeholder='Availability' className="formfield" />
                     </>}
 
-                    <button type='submit' disable={isLoading.toString()}>Sign Up!</button>
+                    <button type='submit' disabled={isLoading}>Sign Up!</button>
                     { errormessage && <div className='errormessage'>{errormessage}</div>}
                 </Form>
                 }

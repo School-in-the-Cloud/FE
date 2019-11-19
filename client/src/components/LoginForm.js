@@ -63,7 +63,7 @@ const LoginForm = ({values, errors, touched, status})=> {
                     {touched.email && errors.email && (<ErrorMsg>{errors.email}</ErrorMsg>)}
                     <Field type='password' name='password' placeholder='Password' className='formfield' />
                     {touched.password && errors.password && (<ErrorMsg>{errors.password}</ErrorMsg>)}
-                    <button type='submit' disable={isLoading.toString()}>Login!</button>
+                    <button type='submit' disabled={isLoading}  >Login!</button>
                     { errormessage && <div className='errormessage'>Error: Invalid email or password!</div>}
                 </Form>
                 }
