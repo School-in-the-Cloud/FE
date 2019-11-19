@@ -83,7 +83,7 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps }){
+function ToDoList ({ steps, type }){
 
 
     // const [editing, setEditing] = useState(false);

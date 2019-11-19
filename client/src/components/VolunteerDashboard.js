@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { volunteerActionCreators } from '../actions';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 
@@ -88,7 +89,13 @@ const ToDoListContainer = styled.div`
 
 function VolunteerDashboard() {
 
-  const { first_name, last_name } = useSelector(state => state.authentication.user);
+  const { first_name, last_name, type, id } = useSelector(state => state.authentication.user);
+  const todoLists = useSelector(state => state.volunteer.todoLists);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(volunteerActionCreators.fetchTodos(id));
+  }, []);
 
   return (
     <>
@@ -100,14 +107,7 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
-                {/* <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList />
-                <ToDoList /> */}
+              { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
             </div>
         </ToDoListContainer>
         <img

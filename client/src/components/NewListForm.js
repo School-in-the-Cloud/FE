@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { adminActionCreators } from '../actions';
 import styled from 'styled-components';
 
@@ -64,7 +63,6 @@ const List = styled.div`
 const NewListForm = ({ setIsCreating }) => {
 
     const admin_id = useSelector(state => state.authentication.user.id);
-    // const history = useHistory();
     const dispatch = useDispatch();
 
     const [todoList, setTodoList] = useState({
