@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
-
+import Loading from './Loading'
 import { authActionCreators } from '../actions'
 
 const Container = styled.div`
@@ -56,22 +56,25 @@ const Dropdown = styled.div`
     }
 `
 
-const Checkbox = styled.div `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8rem;
-    span{
-        font-size: 0.7rem;
-        font-style: italic;
-        color: darkgray;
-    }
-`
-const SignUpForm = ({values, errors, touched, status, isLoading})=> {
+// const Checkbox = styled.div `
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 0.8rem;
+//     span{
+//         font-size: 0.7rem;
+//         font-style: italic;
+//         color: darkgray;
+//     }
+// `
+const SignUpForm = ({values, errors, touched, status})=> {
+
+    const isLoading = useSelector(state => state.authentication.isLoading);
+    const errormessage = useSelector(state => state.authentication.error)
 
     function validateEmail(value) {
         let error;
-        if (value === 'GordonRobert@gmail.com') {
+        if (value === 'admin@admin.com') {
           error = 'Email already in use!';
         }
         return error;
@@ -81,6 +84,7 @@ const SignUpForm = ({values, errors, touched, status, isLoading})=> {
         <>
         <Container>
             <Login>
+                { isLoading && <Loading /> ||
                 <Form>
                     <p>Please enter the following information:</p>
                     <Field type='text' name='first_name' placeholder='First name' className='formfield' />
@@ -114,8 +118,9 @@ const SignUpForm = ({values, errors, touched, status, isLoading})=> {
                         </label>
                     </Checkbox> */}
                     <button type='submit' disable={isLoading}>Sign Up!</button>
-                    { isLoading && <div>LOADING!</div>}
+                    { errormessage && <div className='errormessage'>{errormessage}</div>}
                 </Form>
+                }
             </Login>
         </Container>
         </>
