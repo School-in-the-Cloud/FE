@@ -83,7 +83,7 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps, type }){
+function ToDoList ({ steps, type, name }){
 
 
     // const [editing, setEditing] = useState(false);
@@ -130,10 +130,10 @@ function ToDoList ({ steps, type }){
                 </>
             ) : ( */}
                 <>
-                    <div className='title'>Title</div>
+                    <div className='title'>{name}</div>
                     <div className='name'>Volunteer</div>
                     <div className='items'>
-                        {steps.map((step, index) => <p key={index}>{step}</p>)}
+                        {steps.map((step, index) => <p key={index}>{`${index+1}.)`} {step}</p>)}
                     </div>
                     {/* <div className='edit-button' onClick={handleEdit}>Edit</div> */}
                 </>

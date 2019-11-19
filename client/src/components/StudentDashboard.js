@@ -146,17 +146,23 @@ function StudentDashboard() {
       });
   };
 
-  const handleSubmit = event => {
-      event.preventDefault();
-      console.log ('submitting form values:', volunteerQuery);
-  }
-
   const [ searchResults, setSearchResults ] = useState ([])
 
-  const search = event => {
+  const handleSubmit = event => {
       event.preventDefault();
+
+      const queryString = {};
+      
+      if (volunteerQuery.country) {
+        queryString.country = volunteerQuery.country
+      } 
+      
+      if (volunteerQuery.availability) {
+        queryString.availability = volunteerQuery.availability
+      }
+
       axiosWithAuth()
-        .get(`/volunteers/filter?country=${volunteerQuery.country}&availability=${volunteerQuery.availability}`)
+        .get('/volunteers/filter', { params: queryString })
         .then (res => {
             console.log ('search results', res.data )
             setSearchResults( res.data )
@@ -193,7 +199,7 @@ function StudentDashboard() {
           <label>
             Availability:
             <select name="availability" onChange={handleChange}>
-              <option defaultValue hidden value>-- Select an Availability --</option>
+              <option value=''>Any</option>
               <option value='Morning'>Morning</option>
               <option value='Afternoon'>Afternoon</option>
               <option value='Evening'>Evening</option>

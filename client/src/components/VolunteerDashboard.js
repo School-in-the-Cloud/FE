@@ -26,6 +26,13 @@ const Main = styled.section`
   img{
     margin-left: 20px;
   }
+  .text-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+  }
 `
 
 const ToDoListContainer = styled.div`
@@ -110,11 +117,14 @@ function VolunteerDashboard() {
               { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
             </div>
         </ToDoListContainer>
+        <div className='text-image'>
         <img
           className="main-img"
           src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/to_do_xvvc.svg"
           alt="Admin" width="350px"
         />
+        <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.</p>
+        </div>
     </Main>
     </MainWrap>
     </>
