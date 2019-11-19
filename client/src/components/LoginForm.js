@@ -3,6 +3,7 @@ import { connect, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
+import Loading from './Loading';
 
 import { authActionCreators } from '../actions';
 
@@ -43,30 +44,6 @@ const ErrorMsg = styled.div`
     font-size: 0.8rem;
 `
 
-const Dropdown = styled.div`
-    display: flex;
-    justify-content: center;
-
-    margin: 10px 0px;
-    font-size: 0.9rem;
-    text-align: center;
-    .select{
-        margin: 0 10px;
-        width: 120px;
-    }
-`
-
-const Checkbox = styled.div `
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8rem;
-    span{
-        font-size: 0.7rem;
-        font-style: italic;
-        color: darkgray;
-    }
-`
 const LoginForm = ({values, errors, touched, status})=> {
 
     const isLoading = useSelector(state => state.authentication.isLoading);
@@ -79,6 +56,7 @@ const LoginForm = ({values, errors, touched, status})=> {
         <>
         <Container>
             <Login>
+                { isLoading && <Loading /> || 
                 <Form>
                     <p>Please enter the following information:</p>
                     <Field type='email' name='email' placeholder='Email' className='formfield' />
@@ -86,9 +64,9 @@ const LoginForm = ({values, errors, touched, status})=> {
                     <Field type='password' name='password' placeholder='Password' className='formfield' />
                     {touched.password && errors.password && (<ErrorMsg>{errors.password}</ErrorMsg>)}
                     <button type='submit' disable={isLoading.toString()}>Login!</button>
-                    { isLoading && <div>LOADING!</div>}
-                    { errormessage && <div>{errormessage}</div>}
+                    { errormessage && <div className='errormessage'>Error: Invalid email or password!</div>}
                 </Form>
+                }
             </Login>
         </Container>
         </>
