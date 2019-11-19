@@ -68,18 +68,15 @@ const Card = styled.div`
   }
 `
 
-function VolunteerCard (){
+function VolunteerCard (props){
 
     return (
         <>
         <Card>
-            <div><img src="http://www.facetheforce.today/random/400?r=1" alt='Profile'/></div>
-            <div className='title'>Volunteer Name</div>
-            <div className='name'>-Specialty-</div>
+            <div className='title'>{props.first_name} {props.last_name}</div>
             <div className='description'>
-                <div>Location</div>
-                <div>Availbility</div>
-                <div>Description of volunteer.</div>
+                <div>Country: {props.country}</div>
+                <div>Availability: {props.availability}</div>
             </div>
             <div className='contact-button'>Contact</div>
         </Card>

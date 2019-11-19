@@ -16,6 +16,7 @@ const fetchTodos = () => dispatch => {
             console.log(res);
             dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data });
         })
+        .catch(err => dispatch({type: FETCH_TODOS_FAIL, payload: err.message }));
 }
 
 const createTodoList = (values, id) => dispatch => {
@@ -34,6 +35,10 @@ const createTodoList = (values, id) => dispatch => {
         })
         .catch(err => dispatch({ type: CREATE_TODO_FAIL, payload: err.message }))
 }
+
+
+
+// ----------------------------
 
 export const adminActionTypes = {
     FETCH_TODOS_START,

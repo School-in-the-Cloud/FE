@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import VolunteerCard from './VolunteerCard';
+import { axiosWithAuth } from '../utils';
 
 const MainWrap = styled.div`
   display: flex;
@@ -131,9 +132,8 @@ const SearchBar = styled.div`
 function StudentDashboard() {
 
   const [ volunteerQuery, setVolunteerQuery ] = useState({
-      name: '',
-      type: '',
-      dimension: ''
+      country: '',
+      availability: ''
   });
 
   const { first_name, last_name } = useSelector(state => state.authentication.user);
@@ -150,6 +150,33 @@ function StudentDashboard() {
       console.log ('submitting form values:', volunteerQuery);
   }
 
+  const [ searchResults, setSearchResults ] = useState ([])
+
+  const search = event => {
+      event.preventDefault();
+      axiosWithAuth()
+        .get(`/volunteers/filter?country=${volunteerQuery.country}&availability=${volunteerQuery.availability}`)
+        .then (res => {
+            console.log ('search results', res.data )
+            setSearchResults( res.data )
+        })
+        .catch (err => {
+            console.log ('searching query', err.message);
+        })
+  }
+
+  useEffect(() => {
+      axiosWithAuth()
+        .get(`/volunteers`)
+        .then (res => {
+            console.log ('search results', res.data )
+            setSearchResults( res.data )
+        })
+        .catch (err => {
+            console.log ('fetching all volunteers', err.message);
+        })
+  }, []);
+
   return (
     <>
     <MainWrap>
@@ -161,28 +188,15 @@ function StudentDashboard() {
             <input type="text" name="name" onChange={handleChange} />
           </label>
           <label>
-            Availbility:
-            <select name="type" onChange={handleChange}>
-              <option value=''>Any</option>
-              <option value='Planet'>Planet</option>
-              <option value='Cluster'>Cluster</option>
-              <option value='Space'>Space Station</option>
-              <option value='Fantasy'>Fantasy</option>
-              <option value='Dream'>Dream</option>
-              <option value='Resort'>Resort</option>
-              <option value='Unknown'>Unknown</option>
+            Country:
+            <select name="country" onChange={handleChange}>
+              <option value>Any</option>
             </select>
           </label>
           <label>
-            Location:
-            <select name="dimension" onChange={handleChange}>
-              <option value=''>All</option>
-              <option value='137'>C-137</option>
-              <option value='126'>5-126</option>
-              <option value='Cronenberg'>Cronenberg</option>
-              <option value='Fantasy'>Fantasy</option>
-              <option value='Replacement'>Replacement</option>
-              <option value='Unknown'>Unknown</option>
+            Availability:
+            <select name="availability" onChange={handleChange}>
+              <option value>Any</option>
             </select>
           </label>
           <button>Search</button>
@@ -194,16 +208,9 @@ function StudentDashboard() {
                 <h3>These are the volunteers:</h3>
             </div>
             <div className='lists'>
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
+                {searchResults.map (item => (
+                    <VolunteerCard key={item.id} {...item} />
+                ))};
             </div>
         </ToDoListContainer>
         <img
