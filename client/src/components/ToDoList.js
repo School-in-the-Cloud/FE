@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const List = styled.div`
@@ -83,8 +84,11 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps, type, name }){
+function ToDoList ({ steps, name }){
 
+    const type = useSelector(state => state.authentication.userType);
+
+    console.log(type);
 
     // const [editing, setEditing] = useState(false);
 
@@ -109,35 +113,14 @@ function ToDoList ({ steps, type, name }){
 
     return (
         <List>
-            {/* {editing ? (
-                <>
-                <form onSubmit={submitEdit}>
-                    <label htmlFor='title'>Title:</label>
-                    <input
-                        id='title'
-                        type='text'
-                        name='title'
-                        className='edit-input'
-                        onChange={handleChanges}
-                        defaultValue={editList.title}
-                    />
-
-                    <div className='button-container'>
-                        <button className='edit-button' type='submit'>Save</button>
-                        <button className='delete-button' type='submit'>Delete</button>
-                    </div>
-                </form>
-                </>
-            ) : ( */}
-                <>
-                    <div className='title'>{name}</div>
-                    <div className='name'>Volunteer</div>
-                    <div className='items'>
-                        {steps.map((step, index) => <p key={index}>{`${index+1}.)`} {step}</p>)}
-                    </div>
-                    {/* <div className='edit-button' onClick={handleEdit}>Edit</div> */}
-                </>
-            {/* )} */}
+            <form>
+                <div className='title'>{name}</div>
+                <div className='name'>Volunteer</div>
+                <div className='items'>
+                    {steps.map((step, index) => <p key={index}>{`${index+1}.)`} {step.description}</p>)}
+                </div>
+                {type === 'admin' && <div className='edit-button'>Edit</div>}
+            </form>
         </List>
     )
 }

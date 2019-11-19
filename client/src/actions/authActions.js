@@ -23,8 +23,8 @@ const registerUser = (values, redirect) => dispatch => {
                 type: user.type
             }
             dispatch({type: REGISTRATION_SUCCESS, payload: data });
-            sessionStorage.setItem('user', JSON.stringify(data));
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userType', JSON.stringify(user.type));
             redirect();
         })
         .catch(err => dispatch({type: REGISTRATION_FAIL, payload: err.message}));
@@ -44,8 +44,8 @@ const authenticateUser = (values, redirect) => dispatch => {
                 type: user.type
             }
             dispatch({type: REGISTRATION_SUCCESS, payload: data });
-            sessionStorage.setItem('user', JSON.stringify(data));
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userType', JSON.stringify(user.type));
             redirect();
         })
         .catch(err => dispatch({type: LOGIN_FAIL, payload: err.message}));

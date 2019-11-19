@@ -109,7 +109,7 @@ const ToDoListContainer = styled.div`
 `
 
 function AdminDashboard() {
-  const { first_name, last_name, type } = useSelector(state => state.authentication.user);
+  const { first_name, last_name } = useSelector(state => state.authentication.user);
   const todoLists = useSelector(state => state.admin.todoLists);
   const [isCreating, setIsCreating] = useState(false);
   const dispatch = useDispatch()

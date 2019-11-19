@@ -12,21 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 function App() {
-  const { user } = useSelector(state => state.authentication);
-
-  let dashboard;
-
-  switch(user.type) {
-    case 'admin':
-      dashboard = AdminDashboard;
-      break;
-    case 'volunteer':
-      dashboard = VolunteerDashboard;
-      break;
-    case 'student':
-      dashboard = StudentDashboard;
-      break
-  }
+  const type = useSelector(state => state.authentication.userType);
 
   return (
     <div className="App">
@@ -34,7 +20,13 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
-      <PrivateRoute path='/dashboard' component={dashboard} />
+      <PrivateRoute path='/dashboard' component={
+        type === 'admin'
+        ? AdminDashboard
+        : type === 'volunteer'
+          ? VolunteerDashboard
+          : StudentDashboard
+        } />
     </div>
   );
 }
