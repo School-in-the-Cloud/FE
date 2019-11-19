@@ -1,12 +1,22 @@
 import { axiosWithAuth } from '../utils';
 
+const FETCH_TODOS_START = 'FETCH_TODOS_START';
+const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS';
+const FETCH_TODOS_FAIL = 'FETCH_TODOS_FAIL';
+
 const CREATE_TODO_START = 'CREATE_TODO_START';
 const CREATE_TODO_SUCCESS = 'CREATE_TODO_SUCCESS';
 const CREATE_TODO_FAIL = 'CREATE_TODO_FAIL';
 
-const FETCH_VOLUNTEERS_START = 'FETCH_VOLUNTEERS_START';
-const FETCH_VOLUNTEERS_SUCCESS = 'FETCH_VOLUNTEERS_SUCCESS';
-const FETCH_VOLUNTEERS_FAIL = 'FETCH_VOLUNTEERS_FAIL';
+const fetchTodos = () => dispatch => {
+    dispatch({ type: FETCH_TODOS_START });
+    axiosWithAuth()
+        .get('/todos')
+        .then(res => {
+            console.log(res);
+            dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data });
+        })
+}
 
 const createTodo = (values, id, redirect) => dispatch => {
     dispatch({ type: CREATE_TODO_START });
@@ -21,14 +31,15 @@ const createTodo = (values, id, redirect) => dispatch => {
 }
 
 export const adminActionTypes = {
+    FETCH_TODOS_START,
+    FETCH_TODOS_SUCCESS,
+    FETCH_TODOS_FAIL,
     CREATE_TODO_START,
     CREATE_TODO_SUCCESS,
     CREATE_TODO_FAIL,
-    FETCH_VOLUNTEERS_START,
-    FETCH_VOLUNTEERS_SUCCESS,
-    FETCH_VOLUNTEERS_FAIL,
 }
 
 export const adminActionCreators = {
+    fetchTodos,
     createTodo,
 }

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
+import { adminActionCreators } from '../actions'
 // import {data} from './data/testdata';
 import NewListForm from './NewListForm'
 
@@ -109,68 +110,39 @@ const ToDoListContainer = styled.div`
 
 function AdminDashboard() {
   const { first_name, last_name } = useSelector(state => state.authentication.user);
-  const todosLists = useSelector(state => state.admin.todoLists);
+  const todoLists = useSelector(state => state.admin.todoLists);
+  const [isCreating, setIsCreating] = useState(false);
+  const dispatch = useDispatch()
 
-  const [data, setData] = useState([]);
-
-  const [create, setCreate] = useState (false);
-
-  const addNewList = list => {
-        const newList = {
-            id: Date.now(),
-            title: list.title,
-            name: list.name,
-            item1: list.item1,
-            item2: list.item2,
-            item3: list.item3,
-            item4: list.item4,
-            item5: list.item5,
-            item6: list.item6,
-            item7: list.item7,
-            item8: list.item8,
-            item9: list.item9,
-            item10: list.item10
-        }
-        setData([...data, newList])
-  }
-
-  const editListFunction = newList =>{
-      let listCopy = [...data]
-      for (let i =  0; i < listCopy.length; i++){
-        if (listCopy[i].id === newList.id){
-            listCopy.splice(i, 1, newList)
-        }
-      }
-      setData(listCopy);
-  }
+  useEffect(() => {
+    dispatch(adminActionCreators.fetchTodos());
+  }, [])
 
   return (
-    <>
     <MainWrap>
-    <h2>Welcome {first_name} {last_name}!</h2>
-    <Main>
-        <img
-          className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"
-          alt="Admin" width="350px"
-        />
-        <ToDoListContainer>
-            <div className='button-container'>
-                {create ? <div className='cancel-button' onClick={() => setCreate(false)} >Cancel</div> : 
-                <div className='button' onClick={() => setCreate(true)} >Create To Do List</div>
-                }
-            </div>
-            {create ? <NewListForm addNewList={addNewList} setCreate={setCreate}/> : 
-                <div className='lists'>
-                    {data.map(item =>(
-                        <ToDoList key={item.id} list={item} editListFunction={editListFunction}/>
-                    ))}
+        <h2>Welcome {first_name} {last_name}!</h2>
+        <Main>
+            <img
+            className="main-img"
+            src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"
+            alt="Admin" width="350px"
+            />
+            <ToDoListContainer>
+                <div className='button-container'>
+                    {isCreating ? <div className='cancel-button' onClick={() => setIsCreating(false)} >Cancel</div> : 
+                    <div className='button' onClick={() => setIsCreating(true)} >Create To Do List</div>
+                    }
                 </div>
-            }
-        </ToDoListContainer>
-    </Main>
+                {isCreating ? <NewListForm setIsCreating={setIsCreating} /> : 
+                    <div className='lists'>
+                        {todoLists.map(todoList =>(
+                            <ToDoList key={todoList.id} {...todoList} />
+                        ))}
+                    </div>
+                }
+            </ToDoListContainer>
+        </Main>
     </MainWrap>
-    </>
   );
 }
 
