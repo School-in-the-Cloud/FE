@@ -17,6 +17,7 @@ const registerUser = (values, redirect) => dispatch => {
         .then(res => {
             const { user, token } = res.data;
             const data = {
+                id: user.id,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 type: user.type
@@ -37,6 +38,7 @@ const authenticateUser = (values, redirect) => dispatch => {
         .then(res => {
             const { user, token } = res.data;
             const data = {
+                id: user.id,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 type: user.type

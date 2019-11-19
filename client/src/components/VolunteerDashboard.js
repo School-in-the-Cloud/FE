@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { volunteerActionCreators } from '../actions';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 
@@ -88,110 +89,13 @@ const ToDoListContainer = styled.div`
 
 function VolunteerDashboard() {
 
-  const { first_name, last_name } = useSelector(state => state.authentication.user);
-
-  const [data, setData] = useState([
-    {
-        id: 1,
-        title: 'Test List',
-        name: 'Testy McTesterson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    },
-    {
-        id: 2,
-        title: 'Another List',
-        name: 'Testy McTesterson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false
-    },
-    {
-        id: 3,
-        title: 'This List',
-        name: 'This Guy',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    },
-    {
-        id: 4,
-        title: 'Listy List',
-        name: 'Listy McListerson',
-        item1: 'Item 1',
-        item2: 'Item 2',
-        item3: 'Item 3',
-        item4: 'Item 4',
-        item5: 'Item 5',
-        item6: 'Item 6',
-        item7: 'Item 7',
-        item8: 'Item 8',
-        item9: 'Item 9',
-        item10: 'Item 10',
-        item1checked: false,
-        item2checked: false,
-        item3checked: false,
-        item4checked: false,
-        item5checked: false,
-        item6checked: false,
-        item7checked: false,
-        item8checked: false,
-        item9checked: false,
-        item10checked: false,
-    }
-  ]);
+  const { first_name, last_name, type, id } = useSelector(state => state.authentication.user);
+  const todoLists = useSelector(state => state.volunteer.todoLists);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(volunteerActionCreators.fetchTodos(id));
+  }, []);
 
   return (
     <>
@@ -203,9 +107,7 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
-            {data.map(item =>(
-                        <ToDoList key={item.id} list={item}/>
-                    ))}
+              { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
             </div>
         </ToDoListContainer>
         <img

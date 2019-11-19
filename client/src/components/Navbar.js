@@ -76,7 +76,6 @@ function Navbar() {
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink> {/* Should Home link to dashboard? */}
             { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
-            {/* <NavLink exact to='/dashboard'>Profile</NavLink> Profile link to ability to edit profile? */}
         </nav>
         </Navwrap>
     </header>

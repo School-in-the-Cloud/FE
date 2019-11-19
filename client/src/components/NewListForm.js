@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { adminActionCreators } from '../actions';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -58,83 +60,73 @@ const List = styled.div`
   }
 `
 
-const NewListForm = props => {
+const NewListForm = ({ setIsCreating }) => {
 
-    const [list, setList] = useState({
+    const admin_id = useSelector(state => state.authentication.user.id);
+    const dispatch = useDispatch();
+
+    const [todoList, setTodoList] = useState({
         title: '',
-        name: '',
-        item1: '',
-        item2: '',
-        item3: '',
-        item4: '',
-        item5: '',
-        item6: '',
-        item7: '',
-        item8: '',
-        item9: '',
-        item10: ''
-    })
+        volunteer: '',
+        todos: []
+    });
 
-    const handleChanges = e => {
-        setList({...list, [e.target.name]: e.target.value});
+    const [ currentTodo, setCurrentTodo ] = useState('');
+
+
+    const handleChanges = event => {
+        setTodoList({
+            ...todoList,
+            [event.target.name]: event.target.value
+        });
     }
 
-    const submitForm = e => {
-        e.preventDefault();
-        props.addNewList(list);
-        setList({
-            title: '',
-            name: '',
-            item1: '',
-            item2: '',
-            item3: '',
-            item4: '',
-            item5: '',
-            item6: '',
-            item7: '',
-            item8: '',
-            item9: '',
-            item10: ''
-        })
-        props.setCreate(false)
+    const handleCurrentTodo = event => {
+        setCurrentTodo(event.target.value);
+    }
+
+    const addTodo = event => {
+        event.preventDefault();
+        setTodoList({
+            ...todoList,
+            todos: [
+                ...todoList.todos,
+                currentTodo
+            ]
+        });
+        setCurrentTodo('');
+    };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        dispatch(adminActionCreators.createTodoList(todoList, admin_id ));
+        dispatch(adminActionCreators.fetchTodos());
+        setIsCreating(false);
     }    
 
     return (
-        <>
         <Wrapper>
             <List>
-                <form onSubmit={submitForm}>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor='title'>Title:</label>
-                    <input id='title' type='text' name='title' onChange={handleChanges} value={list.title} /><br />
-                    <label htmlFor='name' className='name-input'>Name:</label>
-                    <input id='name' type='text' name='name' onChange={handleChanges} value={list.name} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item1' type='text' name='item1' onChange={handleChanges} value={list.item1} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item2' type='text' name='item2' onChange={handleChanges} value={list.item2} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item3' type='text' name='item3' onChange={handleChanges} value={list.item3} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item4' type='text' name='item4' onChange={handleChanges} value={list.item4} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item5' type='text' name='item5' onChange={handleChanges} value={list.item5} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item6' type='text' name='item6' onChange={handleChanges} value={list.item6} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item7' type='text' name='item7' onChange={handleChanges} value={list.item7} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item8' type='text' name='item8' onChange={handleChanges} value={list.item8} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item9' type='text' name='item9' onChange={handleChanges} value={list.item9} /><br />
-                    <label htmlFor='item'>Item:</label>
-                    <input id='item10' type='text' name='item10' onChange={handleChanges} value={list.item10} /><br />
+                        <input id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} /><br />
+
+                    <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
+                        <option defaultValue hidden value>-- select a volunteer --</option>
+                        <option value='7'>Brad Zickafoose</option>
+                        <option value='5'>Erika Matsumoto</option>
+                    </select>
+
+                    { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
+                    <input name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />
+                    <button onClick={addTodo}>+</button>
+
                     <div className='button-container'>
-                    <button className='edit-button' type='submit'>Save</button>
+                        <button className='edit-button' type='submit'>Save</button>
                     </div>
                 </form>
             </List>
         </Wrapper>
-        </>
     )
 }
 
