@@ -100,14 +100,14 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
+                {/* <ToDoList />
                 <ToDoList />
                 <ToDoList />
                 <ToDoList />
                 <ToDoList />
                 <ToDoList />
                 <ToDoList />
-                <ToDoList />
-                <ToDoList />
+                <ToDoList /> */}
             </div>
         </ToDoListContainer>
         <img

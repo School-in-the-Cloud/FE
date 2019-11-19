@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import TodoItem from './TodoItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { adminActionCreators } from '../actions';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -61,12 +63,17 @@ const List = styled.div`
 
 const NewListForm = ({ setIsCreating }) => {
 
+    const admin_id = useSelector(state => state.authentication.user.id);
+    // const history = useHistory();
+    const dispatch = useDispatch();
+
     const [todoList, setTodoList] = useState({
         title: '',
         volunteer: '',
         currentTodo: '',
         todos: []
     });
+
 
     const handleChanges = event => {
         setTodoList({
@@ -89,6 +96,8 @@ const NewListForm = ({ setIsCreating }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        dispatch(adminActionCreators.createTodoList(todoList, admin_id ));
+        dispatch(adminActionCreators.fetchTodos());
         setIsCreating(false);
     }    
 
@@ -102,7 +111,7 @@ const NewListForm = ({ setIsCreating }) => {
 
                     <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
                         <option value='1'>Nattajohn Rojanasupya</option>
-                        <option value='2'>Erika Matsumoto</option>
+                        <option value='4'>Erika Matsumoto</option>
                     </select>
 
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }

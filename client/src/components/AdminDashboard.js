@@ -136,7 +136,7 @@ function AdminDashboard() {
                 {isCreating ? <NewListForm setIsCreating={setIsCreating} /> : 
                     <div className='lists'>
                         {todoLists.map(todoList =>(
-                            <ToDoList key={todoList.id} {...todoList} />
+                            <ToDoList key={todoList.todo_id} steps={todoList.steps} />
                         ))}
                     </div>
                 }

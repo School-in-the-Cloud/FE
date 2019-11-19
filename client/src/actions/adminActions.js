@@ -18,14 +18,19 @@ const fetchTodos = () => dispatch => {
         })
 }
 
-const createTodo = (values, id, redirect) => dispatch => {
+const createTodoList = (values, id) => dispatch => {
     dispatch({ type: CREATE_TODO_START });
 
+    const payload = {
+        volunteer_id: values.volunteer,
+        name: values.title,
+        items: values.todos
+    }
+
     axiosWithAuth()
-        .post(`/admins/${id}/todos`, values)
+        .post(`/admins/${id}/todos`, payload)
         .then(() => {
             dispatch({ type: CREATE_TODO_SUCCESS })
-            redirect();
         })
         .catch(err => dispatch({ type: CREATE_TODO_FAIL, payload: err.message }))
 }
@@ -41,5 +46,5 @@ export const adminActionTypes = {
 
 export const adminActionCreators = {
     fetchTodos,
-    createTodo,
+    createTodoList,
 }

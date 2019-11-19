@@ -83,38 +83,63 @@ const List = styled.div`
   }
 `
 
-function ToDoList (props){
+function ToDoList ({ steps }){
 
-    const list = props.list;
 
-    const [editing, setEditing] = useState(false);
+    // const [editing, setEditing] = useState(false);
 
-    const [editList, setEditList] = useState({});
+    // const [editList, setEditList] = useState({});
 
-    const handleChanges = e => {
-        setEditList ({...list, [e.target.name]: e.target.value})
-    }
+    // const handleChanges = e => {
+    //     setEditList ({...list, [e.target.name]: e.target.value})
+    // }
 
-    const handleEdit = e =>{
-        e.preventDefault();
-        setEditing(true)
-    }
+    // const handleEdit = e =>{
+    //     e.preventDefault();
+    //     setEditing(true)
+    // }
 
-    const submitEdit = e =>{
-        e.preventDefault();
-        props.editListFunction(editList)
-        setEditList(editList)
-        console.log('submit here', editList)
-        setEditing(false)
-    }
+    // const submitEdit = e =>{
+    //     e.preventDefault();
+    //     props.editListFunction(editList)
+    //     setEditList(editList)
+    //     console.log('submit here', editList)
+    //     setEditing(false)
+    // }
 
     return (
-        <>
         <List>
-        </List>
-        </>
-    )
+            {/* {editing ? (
+                <>
+                <form onSubmit={submitEdit}>
+                    <label htmlFor='title'>Title:</label>
+                    <input
+                        id='title'
+                        type='text'
+                        name='title'
+                        className='edit-input'
+                        onChange={handleChanges}
+                        defaultValue={editList.title}
+                    />
 
+                    <div className='button-container'>
+                        <button className='edit-button' type='submit'>Save</button>
+                        <button className='delete-button' type='submit'>Delete</button>
+                    </div>
+                </form>
+                </>
+            ) : ( */}
+                <>
+                    <div className='title'>Title</div>
+                    <div className='name'>Volunteer</div>
+                    <div className='items'>
+                        {steps.map((step, index) => <p key={index}>{step}</p>)}
+                    </div>
+                    {/* <div className='edit-button' onClick={handleEdit}>Edit</div> */}
+                </>
+            {/* )} */}
+        </List>
+    )
 }
 
 export default ToDoList
