@@ -5,6 +5,7 @@ import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
 import Loading from './Loading'
 import { authActionCreators } from '../actions'
+import CountryList from './CountryList';
 
 const Container = styled.div`
     margin-top: 150px;
@@ -106,8 +107,16 @@ const SignUpForm = ({values, errors, touched, status})=> {
                     </Dropdown>    
                     {values.type === 'volunteer' &&
                     <>
-                        <Field type='text' name="country" placeholder='Country' className="formfield" />
-                        <Field type='text' name="availability" placeholder='Availability' className="formfield" />
+                        <Field as="select" type='text' name="country" placeholder='Country' className="formfield">
+                            <CountryList signup />
+                        </Field>
+                        <Field as="select" type='text' name="availability" placeholder='Availability' className="formfield">
+                            <option defaultValue hidden value>-- Select an Availability --</option>
+                            <option value='Morning'>Morning</option>
+                            <option value='Afternoon'>Afternoon</option>
+                            <option value='Evening'>Evening</option>
+                            <option value='Night'>Night</option>
+                        </Field>
                     </>}
 
                     <button type='submit' disabled={isLoading}>Sign Up!</button>

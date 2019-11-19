@@ -77,6 +77,7 @@ function VolunteerCard (props){
             <div className='description'>
                 <div>Country: {props.country}</div>
                 <div>Availability: {props.availability}</div>
+                <div>Email: {props.email}</div>
             </div>
             <div className='contact-button'>Contact</div>
         </Card>

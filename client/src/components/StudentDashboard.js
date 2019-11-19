@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import VolunteerCard from './VolunteerCard';
 import { axiosWithAuth } from '../utils';
+import CountryList from './CountryList';
 
 const MainWrap = styled.div`
   display: flex;
@@ -91,7 +92,7 @@ const SearchBar = styled.div`
     display: flex;
     justify-content: center;
     margin: 10px auto;
-    width: 800px;
+    width: 650px;
     padding: 10px;
     background-color: white;
     /* border: 1px solid black; */
@@ -184,19 +185,19 @@ function StudentDashboard() {
     <SearchBar>
         <form onSubmit={handleSubmit}>
           <label>
-            Name:
-            <input type="text" name="name" onChange={handleChange} />
-          </label>
-          <label>
             Country:
             <select name="country" onChange={handleChange}>
-              <option value>Any</option>
+              <CountryList />
             </select>
           </label>
           <label>
             Availability:
             <select name="availability" onChange={handleChange}>
-              <option value>Any</option>
+              <option defaultValue hidden value>-- Select an Availability --</option>
+              <option value='Morning'>Morning</option>
+              <option value='Afternoon'>Afternoon</option>
+              <option value='Evening'>Evening</option>
+              <option value='Night'>Night</option>
             </select>
           </label>
           <button>Search</button>
@@ -210,7 +211,7 @@ function StudentDashboard() {
             <div className='lists'>
                 {searchResults.map (item => (
                     <VolunteerCard key={item.id} {...item} />
-                ))};
+                ))}
             </div>
         </ToDoListContainer>
         <img
