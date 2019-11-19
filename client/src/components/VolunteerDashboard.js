@@ -120,10 +120,10 @@ function VolunteerDashboard() {
         <div className='text-image'>
         <img
           className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/to_do_xvvc.svg"
-          alt="Admin" width="350px"
+          src="/img/Volunteer-image.svg"
+          alt="Volunteer" width="350px"
         />
-        <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.</p>
+        <p>Thank you for being a volunteer, when knowledge is not shared it is lost.</p>
         </div>
     </Main>
     </MainWrap>

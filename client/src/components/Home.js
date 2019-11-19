@@ -67,7 +67,7 @@ function Home() {
         <h2>School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.</h2>
         <img
           className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg"
+          src="/img/Main-image.svg"
           alt="Cloud" width="450px"
         />
         <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.<br/>

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 import { adminActionCreators } from '../actions'
-// import {data} from './data/testdata';
 import NewListForm from './NewListForm'
 
 const MainWrap = styled.div`
@@ -18,6 +17,13 @@ const MainWrap = styled.div`
     h2{
         margin:55px;
     }
+    .text-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+  }
 `
 
 const Main = styled.section`
@@ -114,19 +120,22 @@ function AdminDashboard() {
   const [isCreating, setIsCreating] = useState(false);
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(adminActionCreators.fetchTodos());
-  }, [])
+//   useEffect(() => {
+//     dispatch(adminActionCreators.fetchTodos());
+//   }, [])
 
   return (
     <MainWrap>
         <h2>Welcome {first_name} {last_name}!</h2>
         <Main>
+            <div className='text-image'>
             <img
             className="main-img"
-            src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/maintenance_cn7j.svg"
+            src="/img/Admin-image.svg"
             alt="Admin" width="350px"
             />
+            <p>Admins, give your volunteers guidance on the best way to train students. Create, update, delete, and assign all tasks here. The power is yours!</p>
+            </div>
             <ToDoListContainer>
                 <div className='button-container'>
                     {isCreating ? <div className='cancel-button' onClick={() => setIsCreating(false)} >Cancel</div> : 

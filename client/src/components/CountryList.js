@@ -3,7 +3,6 @@ import React from 'react';
 const CountryList = props => {
     return (
         <>
-                            
             {props.signup ? <option defaultValue hidden value>-- Select a Country --</option> : <option value=''>Any</option>}
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
