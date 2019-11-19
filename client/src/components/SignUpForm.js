@@ -67,7 +67,7 @@ const Checkbox = styled.div `
         color: darkgray;
     }
 `
-const SignUpForm = ({values, errors, touched, status})=> {
+const SignUpForm = ({values, errors, touched, status, isLoading})=> {
 
     function validateEmail(value) {
         let error;
@@ -113,7 +113,8 @@ const SignUpForm = ({values, errors, touched, status})=> {
                         <span>View our terms of service here</span>
                         </label>
                     </Checkbox> */}
-                    <button type='submit'>Sign Up!</button>
+                    <button type='submit' disable={isLoading}>Sign Up!</button>
+                    { isLoading && <div>LOADING!</div>}
                 </Form>
             </Login>
         </Container>
@@ -142,7 +143,7 @@ const FormikSignUpForm = withFormik({
         tos: Yup.bool().oneOf([true],('Please Agree To Terms of Service!'))
     }),
     handleSubmit(values, {props, setStatus}){
-        props.registerUser(values, () => props.history.push('/dashboard'));
+        props.registerUser(values, () => props.history.push('/dashboard'), setStatus);
     }
 })(SignUpForm);
 
