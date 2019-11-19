@@ -57,17 +57,6 @@ const Dropdown = styled.div`
     }
 `
 
-// const Checkbox = styled.div `
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     font-size: 0.8rem;
-//     span{
-//         font-size: 0.7rem;
-//         font-style: italic;
-//         color: darkgray;
-//     }
-// `
 const SignUpForm = ({values, errors, touched, status})=> {
 
     const isLoading = useSelector(state => state.authentication.isLoading);
@@ -139,7 +128,6 @@ const FormikSignUpForm = withFormik({
             type: type || '',
             country: country || '',
             availability: availability || '',
-            // tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({
