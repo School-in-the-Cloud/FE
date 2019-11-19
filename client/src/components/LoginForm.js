@@ -56,7 +56,7 @@ const LoginForm = ({values, errors, touched, status})=> {
         <>
         <Container>
             <Login>
-                { isLoading && <Loading /> || 
+                { isLoading ? <Loading /> : 
                 <Form>
                     <p>Please enter the following information:</p>
                     <Field type='email' name='email' placeholder='Email' className='formfield' />

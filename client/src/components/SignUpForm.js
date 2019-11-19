@@ -84,7 +84,7 @@ const SignUpForm = ({values, errors, touched, status})=> {
         <>
         <Container>
             <Login>
-                { isLoading && <Loading /> ||
+                { isLoading ? <Loading /> :
                 <Form>
                     <p>Please enter the following information:</p>
                     <Field type='text' name='first_name' placeholder='First name' className='formfield' />
@@ -117,7 +117,7 @@ const SignUpForm = ({values, errors, touched, status})=> {
                         <span>View our terms of service here</span>
                         </label>
                     </Checkbox> */}
-                    <button type='submit' disable={isLoading}>Sign Up!</button>
+                    <button type='submit' disable={isLoading.toString()}>Sign Up!</button>
                     { errormessage && <div className='errormessage'>{errormessage}</div>}
                 </Form>
                 }
