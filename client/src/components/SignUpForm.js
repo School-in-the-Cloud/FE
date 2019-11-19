@@ -105,14 +105,6 @@ const SignUpForm = ({values, errors, touched, status})=> {
                         <Field type='text' name="country" placeholder='Country' className="formfield" />
                         <Field type='text' name="availability" placeholder='Availability' className="formfield" />
                     </>}
-                    {/* <Checkbox>
-                        <label>
-                        <p>Do you agree to the terms of service?
-                        <Field type="checkbox" name="tos" checked={values.tos} /></p>
-                        {touched.tos && errors.tos && (<ErrorMsg>{errors.tos}</ErrorMsg>)}
-                        <span>View our terms of service here</span>
-                        </label>
-                    </Checkbox> */}
                     <button type='submit'>Sign Up!</button>
                 </Form>
             </Login>
