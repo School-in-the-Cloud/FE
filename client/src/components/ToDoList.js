@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { adminActionCreators } from '../actions';
 import styled from 'styled-components';
 
 const List = styled.div`
@@ -7,8 +9,9 @@ const List = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  min-height: 320px;
+  height: 340px;
   margin: 20px;
+  margin-top: 40px;
   text-shadow: none;
   color: black;
   background-color: white;
@@ -34,6 +37,10 @@ const List = styled.div`
       text-align: left;
       min-height: 200px;
   }
+  .button-container {
+      display: flex;
+      justify-content: center;
+  }
   .edit-button{
       display: flex;
       justify-content: center;
@@ -55,32 +62,90 @@ const List = styled.div`
           cursor: pointer;
       }
   }
+  .delete-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: darkred;
+      color: white;
+      border: 1px solid grey;
+      border-radius: 10px;
+      width: 55px;
+      height: 25px;
+      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+      margin: 15px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
+      &:hover{
+          background-color: lightgray;
+          color: white;
+          cursor: pointer;
+      }
+  }
 `
 
-function ToDoList (){
+function ToDoList ({ steps, name, todo_id }){
+    
+    const type = useSelector(state => state.authentication.user.type);
+    const admin_id = useSelector(state => state.authentication.user.id);
+    const dispatch = useDispatch();
+    const [ isEditing, setIsEditing ] = useState(false);
+    const [ listTitle, setListTitle ] = useState(name);
+    const [ todos, setTodos ] = useState(() => {
+        const state = {};
+        steps.forEach(step => (
+            state[JSON.stringify(step.id)] = {
+                id: step.id,
+                description: step.description
+            }
+        ))
+        return state;
+    });
+
+    const startEditing = event => {
+        event.preventDefault();
+        setIsEditing(true);
+    }
+
+    const updateTodoList = async event => {
+        event.preventDefault();
+        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todo_id, admin_id));
+        setIsEditing(false);
+    }
+
+    const handleTitleChanges = event => {
+        setListTitle(event.target.value);
+    }
+
+    const handleChanges = event => {
+        setTodos({
+            ...todos,
+            [event.target.name]: {
+                id: Number(event.target.name),
+                description: event.target.value
+            }
+        })
+    }
 
     return (
-        <>
         <List>
-            <div className='title'>Title of List</div>
-            <div className='name'>-Volunteer Name-</div>
-            <div className='items'>
-                <div>Item 1</div>
-                <div>Item 2</div>
-                <div>Item 3</div>
-                <div>Item 4</div>
-                <div>Item 5</div>
-                <div>Item 6</div>
-                <div>Item 7</div>
-                <div>Item 8</div>
-                <div>Item 9</div>
-                <div>Item 10</div>
-            </div>
-            <div className='edit-button'>Edit</div>
+            <form onSubmit={isEditing ? updateTodoList : startEditing}>
+                { isEditing ? <input className='title' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
+                <div className='name'>Volunteer</div>
+                <div className='items'>
+                    {steps.map((step, index) => (
+                        isEditing
+                            ? <input key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
+                            : <p key={index}>{`${index+1}.)`} {step.description}</p>
+                        )
+                    )}
+                </div>
+                {type === 'admin' && <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                }
+            </form>
         </List>
-        </>
     )
-
 }
 
 export default ToDoList

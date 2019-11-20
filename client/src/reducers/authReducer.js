@@ -6,7 +6,7 @@ const { REGISTRATION_REQUEST, REGISTRATION_SUCCESS, REGISTRATION_FAIL,
 
 const initialState = {
     isAuthenticated: getToken(),
-    user: getUser(), 
+    user: getUser(),
     isLoading: false,
     error: null
 }

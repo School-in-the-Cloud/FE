@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authActionCreators } from '../actions';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Headerwrap = styled.div`
@@ -22,6 +22,10 @@ const Headerwrap = styled.div`
             text-shadow: 2px 2px 4px #000000;
             font-size: 3rem;
             margin-left: 30px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
         }
     }
 `
@@ -56,6 +60,7 @@ const Navwrap = styled.div`
 `
 
 function Navbar() {
+  const { isAuthenticated } = useSelector(state => state.authentication);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -66,15 +71,16 @@ function Navbar() {
     <>
     <Headerwrap>
     <header>
+        <Link to='/'>
         <div className='logo'>
-        <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg" alt="Cloud" width="70px"/>
+        <img src="/img/Main-image.svg" alt="Cloud" width="70px"/>
         <h1>School In The Cloud</h1>
         </div>
+        </Link>
         <Navwrap>
         <nav>
-            <NavLink exact to='/'>Home</NavLink> {/* Should Home link to dashboard? */}
-            <NavLink exact to='/dashboard'>Profile</NavLink> {/* Profile link to ability to edit profile? */}
-            <Link onClick={logout} to='/'>Sign out</Link>
+            <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
+            { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
         </nav>
         </Navwrap>
     </header>

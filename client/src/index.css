@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -13,6 +15,10 @@ body {
   max-width: 100vw;
 }
 
+h1 {
+  font-family: 'Special Elite', cursive;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -23,4 +29,18 @@ code {
   border: 0px;
   border-bottom: 1px solid grey;
   width: 270px;
+}
+
+.edit-input{
+  margin: 2px 3px;
+  border: 0px;
+  border-bottom: 1px solid grey;
+}
+
+.name-input{
+  margin-left: -10px;
+}
+
+.errormessage{
+  color: red;
 }

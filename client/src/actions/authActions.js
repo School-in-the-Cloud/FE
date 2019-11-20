@@ -17,13 +17,14 @@ const registerUser = (values, redirect) => dispatch => {
         .then(res => {
             const { user, token } = res.data;
             const data = {
+                id: user.id,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 type: user.type
             }
-            dispatch({type: REGISTRATION_SUCCESS, payload: data });
-            sessionStorage.setItem('user', JSON.stringify(data));
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('user', JSON.stringify(user));
+            dispatch({type: REGISTRATION_SUCCESS, payload: data });
             redirect();
         })
         .catch(err => dispatch({type: REGISTRATION_FAIL, payload: err.message}));
@@ -37,13 +38,14 @@ const authenticateUser = (values, redirect) => dispatch => {
         .then(res => {
             const { user, token } = res.data;
             const data = {
+                id: user.id,
                 first_name: user.first_name,
                 last_name: user.last_name,
                 type: user.type
             }
-            dispatch({type: REGISTRATION_SUCCESS, payload: data });
-            sessionStorage.setItem('user', JSON.stringify(data));
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('user', JSON.stringify(user));
+            dispatch({type: LOGIN_SUCCESS, payload: data });
             redirect();
         })
         .catch(err => dispatch({type: LOGIN_FAIL, payload: err.message}));

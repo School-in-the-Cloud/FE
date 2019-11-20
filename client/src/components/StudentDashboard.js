@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import VolunteerCard from './VolunteerCard';
+import { axiosWithAuth } from '../utils';
+import CountryList from './CountryList';
 
 const MainWrap = styled.div`
   display: flex;
@@ -24,6 +26,13 @@ const Main = styled.section`
   justify-content: center;
   img{
     margin-left: 20px;
+  }
+  .text-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
   }
 `
 
@@ -90,7 +99,8 @@ const SearchBar = styled.div`
     display: flex;
     justify-content: center;
     margin: 10px auto;
-    width: 800px;
+    margin-top: -50px;
+    width: 650px;
     padding: 10px;
     background-color: white;
     /* border: 1px solid black; */
@@ -130,49 +140,81 @@ const SearchBar = styled.div`
 
 function StudentDashboard() {
 
-    const { first_name, last_name } = useSelector(state => state.authentication.user);
+  const [ volunteerQuery, setVolunteerQuery ] = useState({
+      country: '',
+      availability: ''
+  });
 
-    const handleChange = event => {
-        console.log('user entering information')
-      };
+  const { first_name, last_name } = useSelector(state => state.authentication.user);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log ('pressed search button');
-    }
+  const handleChange = event => {
+      setVolunteerQuery({
+          ...volunteerQuery,
+          [event.target.name]: event.target.value
+      });
+  };
+
+  const [ searchResults, setSearchResults ] = useState ([])
+
+  const handleSubmit = event => {
+      event.preventDefault();
+      // REACT I AXIOS REQUEST ------------------------------
+
+      const queryString = {};
+      
+      if (volunteerQuery.country) {
+        queryString.country = volunteerQuery.country
+      } 
+      
+      if (volunteerQuery.availability) {
+        queryString.availability = volunteerQuery.availability
+      }
+
+      axiosWithAuth()
+        .get('/volunteers/filter', { params: queryString })
+        .then (res => {
+            console.log ('search results', res.data )
+            setSearchResults( res.data )
+        })
+        .catch (err => {
+            console.log ('searching query', err.message);
+        })
+
+      // ---------------------------------------------------
+  }
+
+  useEffect(() => {
+      axiosWithAuth()
+        .get(`/volunteers`)
+        .then (res => {
+            console.log ('search results', res.data )
+            setSearchResults( res.data )
+        })
+        .catch (err => {
+            console.log ('fetching all volunteers', err.message);
+        })
+  }, []);
+
   return (
     <>
     <MainWrap>
     <h2>Welcome {first_name} {last_name}!</h2>
     <SearchBar>
-        <form onSubmit={event => handleSubmit(event)}>
+        <form onSubmit={handleSubmit}>
           <label>
-            Name:
-            <input type="text" name="name" onChange={event => handleChange(event)} />
-          </label>
-          <label>
-            Availbility:
-            <select name="type" onChange={event => handleChange(event)}>
-              <option value=''>Any</option>
-              <option value='Planet'>Planet</option>
-              <option value='Cluster'>Cluster</option>
-              <option value='Space'>Space Station</option>
-              <option value='Fantasy'>Fantasy</option>
-              <option value='Dream'>Dream</option>
-              <option value='Resort'>Resort</option>
-              <option value='Unknown'>Unknown</option>
+            Country:
+            <select name="country" onChange={handleChange}>
+              <CountryList />
             </select>
           </label>
           <label>
-            Location:
-            <select name="dimension" onChange={event => handleChange(event)}>
-              <option value=''>All</option>
-              <option value='137'>C-137</option>
-              <option value='126'>5-126</option>
-              <option value='Cronenberg'>Cronenberg</option>
-              <option value='Fantasy'>Fantasy</option>
-              <option value='Replacement'>Replacement</option>
-              <option value='Unknown'>Unknown</option>
+            Availability:
+            <select name="availability" onChange={handleChange}>
+              <option value=''>Any</option>
+              <option value='Morning'>Morning</option>
+              <option value='Afternoon'>Afternoon</option>
+              <option value='Evening'>Evening</option>
+              <option value='Night'>Night</option>
             </select>
           </label>
           <button>Search</button>
@@ -181,26 +223,22 @@ function StudentDashboard() {
     <Main>
         <ToDoListContainer>
             <div className='button-container'>
-                <h3>These are the volunteers:</h3>
+                <h3>These are your volunteers:</h3>
             </div>
             <div className='lists'>
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
-                <VolunteerCard />
+                {searchResults.map (item => (
+                    <VolunteerCard key={item.id} {...item} />
+                ))}
             </div>
         </ToDoListContainer>
+        <div className='text-image'>
         <img
           className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/weather_app_i5sm.svg"
-          alt="Cloud" width="350px"
+          src="/img/Student-image.svg"
+          alt="Student" width="350px"
         />
+        <p>When knowledge is not shared, it is lost.</p>
+        </div>
     </Main>
     </MainWrap>
     </>

@@ -13,10 +13,25 @@ const Head = styled.section`
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h1{
-      margin:55px;
-      font-size:4rem;
+      margin-top:105px;
+      margin-bottom: -25px;
+      font-size:3rem;
   }
-  div{
+  h2{
+      width:700px;
+  }
+  p{
+      width: 600px;
+  }
+  .join{
+      /* font-weight: bold; */
+      color: lightblue;
+      text-decoration: none;
+      &:hover{
+          color: whitesmoke;
+      }
+  }
+  .button-container{
       display: flex;
       justify-content: space-between;
       width: 30%;
@@ -48,13 +63,16 @@ function Home() {
   return (
     <>
     <Head>
-        <h1>Welcome to School In The Cloud!</h1>
+        <h1>Welcome!</h1>
+        <h2>School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.</h2>
         <img
           className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/i_can_fly_7egl.svg"
+          src="/img/Main-image.svg"
           alt="Cloud" width="450px"
         />
-        <div>
+        <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.<br/>
+        <Link to='/login' className='join'>Join us today and help share the knowledge!</Link></p>
+        <div className='button-container'>
             <Link to='/login' className='button'>Login</Link>
             <Link to='/signup' className='button'>Sign Up</Link>
         </div>
