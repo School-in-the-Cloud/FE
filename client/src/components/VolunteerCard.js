@@ -86,7 +86,8 @@ function VolunteerCard (props){
     return (
         <>
         <Card>
-            <div className='title'>{props.first_name} {props.last_name}</div>
+            <img src='../../img/profile/missingprofile.jpg' alt='profile' />
+            <div className='title'>{props.first_name}<br/>{props.last_name}</div>
             <div className='description'>
                 <div><span>Country:</span> {props.country}</div>
                 <div><span>Availability:</span> {props.availability}</div>
