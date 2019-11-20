@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const MainWrap = styled.div`
   display: flex;
@@ -122,6 +125,7 @@ function About() {
             </div>
             <div className='button-container'>
             {/* <a href={`mailto:`}><div className='contact-button'>Git Hub</div></a> */}
+            <FontAwesomeIcon icon={faGithub} />
             <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
             </div>
         </Card>
