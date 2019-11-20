@@ -124,7 +124,7 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
+function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
     
     const type = useSelector(state => state.authentication.user.type);
     const admin_id = useSelector(state => state.authentication.user.id);
@@ -148,9 +148,17 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
         setIsEditing(true);
     }
 
-    const updateTodoList = async event => {
+    console.log(listTitle);
+
+    const updateTodoList = event => {
         event.preventDefault();
-        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todo_id, admin_id));
+        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todos_id, admin_id));
+        setIsEditing(false);
+    }
+
+    const deleteTodoList = event => {
+        event.preventDefault();
+        dispatch(adminActionCreators.deleteTodoList(todos_id));
         setIsEditing(false);
     }
 
@@ -172,7 +180,7 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
         <List style={ (type === 'admin') ? {maxHeight: '450px'} : {maxHeight: '380px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
                 { isEditing ? <input className='item-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>{type === 'admin' ? `Need Volunteer Name!` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
+                <div className='name'>{type === 'admin' ? `Assigned: ${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
                 <div className={type === 'admin' ? 'admin-items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
@@ -181,7 +189,11 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
                         )
                     )}
                 </div>
-                {type === 'admin' && <div className='button-container'><button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button></div>
+                {type === 'admin' && 
+                    <div className='button-container'>
+                        <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                        {isEditing && <button className='edit-button' onClick={deleteTodoList}>Delete</button> }
+                    </div>
                 }
             </form>
         </List>
