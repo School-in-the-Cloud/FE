@@ -12,6 +12,10 @@ const UPDATE_TODO_START = 'UPDATE_TODO_START'
 const UPDATE_TODO_SUCCESS = 'UPDATE_TODO_SUCCESS'
 const UPDATE_TODO_FAIL = 'UPDATE_TODO_FAIL'
 
+const DELETE_TODO_START = 'DELETE_TODO_START';
+const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
+const DELETE_TODO_FAIL = 'DELETE_TODO_FAIL';
+
 const fetchTodos = () => dispatch => {
     dispatch({ type: FETCH_TODOS_START });
     axiosWithAuth()
@@ -41,11 +45,11 @@ const createTodoList = (values, id) => dispatch => {
         .catch(err => dispatch({ type: CREATE_TODO_FAIL, payload: err.message }))
 }
 
-const updateTodoList = (values,name, todo_id , admin_id) => dispatch => {
+const updateTodoList = (values,name, todos_id , admin_id) => dispatch => {
     dispatch({ type: UPDATE_TODO_START });
 
     const payload = {
-        todo_id,
+        todos_id,
         name,
         steps: Object.values(values)
     }
@@ -60,6 +64,18 @@ const updateTodoList = (values,name, todo_id , admin_id) => dispatch => {
         .catch(err => dispatch({ type: UPDATE_TODO_FAIL, payload: err.message }));
 }
 
+const deleteTodoList = (todos_id) => dispatch => {
+    dispatch({ type: DELETE_TODO_START });
+
+    axiosWithAuth()
+        .delete(`/todos/${todos_id}`)
+        .then(() => {
+            dispatch({ type: DELETE_TODO_SUCCESS });
+            dispatch(fetchTodos());
+        })
+        .catch(err => dispatch({ type: DELETE_TODO_FAIL, payload: err.message }))
+}
+
 export const adminActionTypes = {
     FETCH_TODOS_START,
     FETCH_TODOS_SUCCESS,
@@ -69,11 +85,15 @@ export const adminActionTypes = {
     CREATE_TODO_FAIL,
     UPDATE_TODO_START,
     UPDATE_TODO_SUCCESS,
-    UPDATE_TODO_FAIL
+    UPDATE_TODO_FAIL,
+    DELETE_TODO_START,
+    DELETE_TODO_SUCCESS,
+    DELETE_TODO_FAIL
 }
 
 export const adminActionCreators = {
     fetchTodos,
     createTodoList,
-    updateTodoList
+    updateTodoList,
+    deleteTodoList
 }

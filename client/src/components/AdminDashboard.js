@@ -116,15 +116,14 @@ const ToDoListContainer = styled.div`
 
 function AdminDashboard() {
   const { first_name, last_name } = useSelector(state => state.authentication.user);
-  const todoLists = useSelector(state => state.admin.todoLists);
+  const admin_id = useSelector(state => state.authentication.user.id);
+  const todoLists = useSelector(state => state.admin.todoLists).filter(todoList => todoList.admin_id === admin_id);
   const dispatch = useDispatch();
   const [ isCreating, setIsCreating ] = useState(false);
 
   useEffect(() => {
     dispatch(adminActionCreators.fetchTodos());
   }, []);
-
-  console.log();
 
   return (
     <MainWrap>
@@ -146,7 +145,7 @@ function AdminDashboard() {
                 </div>
                 {isCreating ? <NewListForm setIsCreating={setIsCreating} /> : 
                     <div className='lists'>
-                        {todoLists.map(todoList => <ToDoList key={todoList.todo_id} {...todoList} />)}
+                        {todoLists.map(todoList => <ToDoList key={todoList.todos_id} {...todoList} />)}
                     </div>
                 }
             </ToDoListContainer>

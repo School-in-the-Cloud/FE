@@ -2,7 +2,8 @@ import { adminActionTypes } from '../actions';
 
 const { CREATE_TODO_START, CREATE_TODO_SUCCESS, CREATE_TODO_FAIL,
         FETCH_TODOS_START, FETCH_TODOS_SUCCESS, FETCH_TODOS_FAIL,
-        UPDATE_TODO_START, UPDATE_TODO_SUCCESS, UPDATE_TODO_FAIL 
+        UPDATE_TODO_START, UPDATE_TODO_SUCCESS, UPDATE_TODO_FAIL,
+        DELETE_TODO_START, DELETE_TODO_SUCCESS, DELETE_TODO_FAIL
     } = adminActionTypes;
 
 const initialState = {
@@ -65,6 +66,26 @@ export const admin = (state=initialState, action) => {
             }
         
         case UPDATE_TODO_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        
+        case DELETE_TODO_START:
+            return {
+                ...state,
+                isLoading: true,
+            }
+        
+        case DELETE_TODO_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: false
+            }
+        
+        case DELETE_TODO_FAIL:
             return {
                 ...state,
                 isLoading: false,
