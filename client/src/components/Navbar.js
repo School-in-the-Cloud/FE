@@ -10,7 +10,7 @@ const Headerwrap = styled.div`
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 10px;
+        margin: 15px;
         color: white;
         height: 5vh;
         .logo{
@@ -80,6 +80,7 @@ function Navbar() {
         <Navwrap>
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
+            <NavLink exact to='/about'>About</NavLink>
             { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
         </nav>
         </Navwrap>
