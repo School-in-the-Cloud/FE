@@ -7,6 +7,12 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p{
+        margin-bottom: -10px;
+    }
+
 `
 
 const List = styled.div`
@@ -15,16 +21,12 @@ const List = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 350px;
-  /* height: 340px; */
   margin: 20px;
   text-shadow: none;
   color: black;
   background-color: white;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
   transition: transform 0.3 ease;
-  /* &:hover{
-      transform: scale(1.2);
-  } */
   form{
       margin-top: 20px;
   }
@@ -37,6 +39,43 @@ const List = styled.div`
   .button-container {
       display: flex;
       justify-content: center;
+  }
+  .title{
+      width: 300px;
+  }
+  .dropdown{
+      margin-top: 20px;
+      width: 300px;
+  }
+  .add-input{
+      margin-top: 20px;
+  }
+  .todo-container{
+      display: flex;
+      align-items: center;
+      input{
+          width: 278px
+      }
+      .plus-button{
+        margin-top:10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+        color: black;
+        border: 1px solid grey;
+        border-radius: 5px;
+        padding-bottom: 2px;
+        width: 20px;
+        height: 20px;
+        text-decoration: none;
+        text-shadow: none;
+        &:hover{
+            background-color: lightgray;
+            color: white;
+            cursor: pointer;
+        }
+      }
   }
   .edit-button{
       display: flex;
@@ -125,22 +164,22 @@ const NewListForm = ({ setIsCreating }) => {
 
     return (
         <Wrapper>
+            <p>Create a new list:</p>
             <List>
+                
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor='title'>Title:</label>
-                        <input id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} /><br />
-
-                    <select id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
+                    <input className='title' id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} placeholder='Title of list' /><br />
+                    <select className='dropdown' id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
                         <option defaultValue hidden value>-- Select a Volunteer --</option>
                         {volunteers.map(volunteer => (
                             <option key={volunteer.id} value={volunteer.id}>{volunteer.first_name} {volunteer.last_name}</option>
                         ))}
                     </select>
-
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
-                    <input name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />
-                    <button onClick={addTodo}>+</button>
-
+                    <div className='todo-container'>
+                        <input className='add-input' name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />
+                        <div className='plus-button' onClick={addTodo}>+</div>
+                        </div>
                     <div className='button-container'>
                         <button className='edit-button' type='submit'>Save</button>
                     </div>
