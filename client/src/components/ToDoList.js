@@ -36,6 +36,9 @@ const List = styled.div`
       width: 80%;
       text-align: left;
       min-height: 200px;
+      p{
+          margin: 0 0 5px 0;
+      }
   }
   .button-container {
       display: flex;
@@ -83,9 +86,15 @@ const List = styled.div`
           cursor: pointer;
       }
   }
+  .item-input{
+      margin: 10px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid grey;
+  }
 `
 
-function ToDoList ({ steps, name, todo_id }){
+function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
     
     const type = useSelector(state => state.authentication.user.type);
     const admin_id = useSelector(state => state.authentication.user.id);
@@ -131,17 +140,17 @@ function ToDoList ({ steps, name, todo_id }){
     return (
         <List>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                { isEditing ? <input className='title' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>Volunteer</div>
+                { isEditing ? <input value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{title}</div> }
+                <div className='name'>{first_name} {last_name}</div>
                 <div className='items'>
                     {steps.map((step, index) => (
                         isEditing
-                            ? <input key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
+                            ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
                             : <p key={index}>{`${index+1}.)`} {step.description}</p>
                         )
                     )}
                 </div>
-                {type === 'admin' && <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                {type === 'admin' && <button type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
                 }
             </form>
         </List>
