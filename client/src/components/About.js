@@ -12,6 +12,7 @@ const MainWrap = styled.div`
   text-shadow: 2px 2px 4px #000000;
   h2{
       margin-top:100px;
+      font-size: 2.5rem;
   }
 `
 
