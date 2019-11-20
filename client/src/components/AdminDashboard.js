@@ -115,7 +115,9 @@ function AdminDashboard() {
 
   useEffect(() => {
     dispatch(adminActionCreators.fetchTodos());
-  }, [dispatch]);
+  }, []);
+
+  console.log();
 
   return (
     <MainWrap>

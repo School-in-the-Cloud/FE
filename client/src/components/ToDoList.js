@@ -107,7 +107,7 @@ function ToDoList ({ steps, name, todo_id }){
         setIsEditing(true);
     }
 
-    const updateTodoList = event => {
+    const updateTodoList = async event => {
         event.preventDefault();
         dispatch(adminActionCreators.updateTodoList(todos, name, todo_id, admin_id));
         setIsEditing(false);

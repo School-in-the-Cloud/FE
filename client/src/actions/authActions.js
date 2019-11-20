@@ -23,7 +23,7 @@ const registerUser = (values, redirect) => dispatch => {
                 type: user.type
             }
             sessionStorage.setItem('token', token);
-            sessionStorage.setItem('userType', JSON.stringify(user.type));
+            sessionStorage.setItem('user', JSON.stringify(user));
             dispatch({type: REGISTRATION_SUCCESS, payload: data });
             redirect();
         })
@@ -44,7 +44,7 @@ const authenticateUser = (values, redirect) => dispatch => {
                 type: user.type
             }
             sessionStorage.setItem('token', token);
-            sessionStorage.setItem('userType', JSON.stringify(user.type));
+            sessionStorage.setItem('user', JSON.stringify(user));
             dispatch({type: LOGIN_SUCCESS, payload: data });
             redirect();
         })

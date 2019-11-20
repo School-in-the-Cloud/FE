@@ -12,32 +12,12 @@ const UPDATE_TODO_START = 'UPDATE_TODO_START'
 const UPDATE_TODO_SUCCESS = 'UPDATE_TODO_SUCCESS'
 const UPDATE_TODO_FAIL = 'UPDATE_TODO_FAIL'
 
-/*{
-    admin/id/todos
-        "todos_id": 19,
-        "name": "TESTING PUT on todo 19",
-        "steps": [
-            {
-                "id": 7,
-                "description": "Modified twice step 1 of test"
-            },
-            {
-                "id": 8,
-                "description": "Modified twice step 2 of test"
-            },
-            {
-                "id": 9,
-                "description": "Modified twice step 3 of test"
-            }
-        ]
-}*/
-
 const fetchTodos = () => dispatch => {
     dispatch({ type: FETCH_TODOS_START });
     axiosWithAuth()
         .get('/todos')
         .then(res => {
-            console.log(res);
+            console.log(FETCH_TODOS_SUCCESS, res);
             dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data });
         })
         .catch(err => dispatch({type: FETCH_TODOS_FAIL, payload: err.message }));
@@ -55,8 +35,8 @@ const createTodoList = (values, id) => dispatch => {
     axiosWithAuth()
         .post(`/admins/${id}/todos`, payload)
         .then(() => {
-            dispatch({ type: CREATE_TODO_SUCCESS })
-            fetchTodos();
+            dispatch({ type: CREATE_TODO_SUCCESS });
+            dispatch(fetchTodos());
         })
         .catch(err => dispatch({ type: CREATE_TODO_FAIL, payload: err.message }))
 }
@@ -74,7 +54,8 @@ const updateTodoList = (values,name, todo_id , admin_id) => dispatch => {
         .put(`/admins/${admin_id}/todos`, payload)
         .then(() => {
             dispatch({ type: UPDATE_TODO_SUCCESS });
-            fetchTodos();
+            dispatch(fetchTodos());
+
         })
         .catch(err => dispatch({ type: UPDATE_TODO_FAIL, payload: err.message }));
 }

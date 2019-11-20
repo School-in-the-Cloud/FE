@@ -30,6 +30,8 @@ function App() {
       break;
   }
 
+  console.log()
+
   return (
     <div className="App">
       <Navbar />
