@@ -9,7 +9,6 @@ const List = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  height: 340px;
   margin: 20px;
   margin-top: 40px;
   text-shadow: none;
@@ -19,6 +18,9 @@ const List = styled.div`
   transition: transform 0.3 ease;
   &:hover{
       transform: scale(1.2);
+  }
+  .fix-mystylingdiv{
+      height: 340px;
   }
   .title{
     font-weight: bold;
@@ -32,66 +34,104 @@ const List = styled.div`
       margin-bottom: 5px;
       font-weight: bold;
   }
+  .admin-items{
+        width: 200px;
+        text-align: left;
+        height: 260px;
+        margin: 25px 0 auto;
+        overflow: hidden;
+        p{
+            margin: 0 0 5px 0;
+        }
+  }
   .items{
-      width: 80%;
+      width: 200px;
       text-align: left;
-      min-height: 200px;
+      height: 260px;
+      margin: 25px 0 auto;
+      overflow: hidden;
+      p{
+          margin: 0 0 5px 0;
+      }
+      .item{
+          margin-left: 10px;
+          &:hover{
+              color: darkgrey;
+              cursor: pointer;
+          }
+      }
+      .item-completed {
+          color: darkgrey;
+          text-decoration: line-through;
+      }
   }
   .button-container {
       display: flex;
       justify-content: center;
+      .edit-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 55px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 2px;
+            text-decoration: none;
+            text-shadow: none;
+            &:hover{
+                background-color: lightgray;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .delete-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkred;
+            color: white;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 55px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            padding-bottom: 2px;
+            text-decoration: none;
+            text-shadow: none;
+            &:hover{
+                background-color: lightgray;
+                color: white;
+                cursor: pointer;
+            }
+        }
   }
-  .edit-button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: whitesmoke;
-      color: black;
-      border: 1px solid grey;
-      border-radius: 10px;
-      width: 55px;
-      height: 25px;
-      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
-      margin: 15px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
+  .title-input{
+      margin: 10px;
+      width: 100%
   }
-  .delete-button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: darkred;
-      color: white;
-      border: 1px solid grey;
-      border-radius: 10px;
-      width: 55px;
-      height: 25px;
-      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
-      margin: 15px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
+  .item-input{
+      margin: 10px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid grey;
   }
 `
 
-function ToDoList ({ steps, name, todo_id }){
+function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
     
     const type = useSelector(state => state.authentication.user.type);
     const admin_id = useSelector(state => state.authentication.user.id);
     const dispatch = useDispatch();
     const [ isEditing, setIsEditing ] = useState(false);
     const [ listTitle, setListTitle ] = useState(name);
+    const [ isCompleted, setIsCompleted] = useState(false)
     const [ todos, setTodos ] = useState(() => {
         const state = {};
         steps.forEach(step => (
@@ -129,19 +169,19 @@ function ToDoList ({ steps, name, todo_id }){
     }
 
     return (
-        <List>
+        <List style={ (type === 'admin') ? {maxHeight: '450px'} : {maxHeight: '380px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                { isEditing ? <input className='title' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>Volunteer</div>
-                <div className='items'>
+                { isEditing ? <input className='item-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
+                <div className='name'>{type === 'admin' ? `Need Volunteer Name!` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
+                <div className={type === 'admin' ? 'admin-items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
-                            ? <input key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
-                            : <p key={index}>{`${index+1}.)`} {step.description}</p>
+                            ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
+                            : <p key={index} onClick={() => setIsCompleted(!isCompleted) } className={ isCompleted ? 'item-completed' : 'item'}>{`${index+1}.)`} {step.description}</p>
                         )
                     )}
                 </div>
-                {type === 'admin' && <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                {type === 'admin' && <div className='button-container'><button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button></div>
                 }
             </form>
         </List>
