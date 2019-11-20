@@ -11,133 +11,22 @@ const MainWrap = styled.div`
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
-      margin:55px;
+      margin-top:100px;
   }
 `
 
 const Main = styled.section`
   width: 100%;
-  height: 70vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
-  img{
-    margin-left: 20px;
-  }
-  .right-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 350px;
-  }
-  .edit-profile-button {
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lightblue;
-    color: white;
-    border: 1px solid grey;
-    border-radius: 10px;
-    min-width: 155px;
-    height: 45px;
-    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-    padding-bottom: 2px;
-    text-decoration: none;
-    text-shadow: none;
-    &:hover{
-        background-color: lightgray;
-        color: white;
-        cursor: pointer;
-    }
-  }
-  .cancel-button {
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    color: white;
-    border: 1px solid grey;
-    border-radius: 10px;
-    min-width: 155px;
-    height: 45px;
-    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-    padding-bottom: 2px;
-    text-decoration: none;
-    text-shadow: none;
-    &:hover{
-        background-color: lightblue;
-        color: white;
-        cursor: pointer;
-    }
-  }
-`
-
-const ToDoListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 350px;
-    width: 36%;
-    margin-right: 50px;
-    .button-container{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        height: 60px;
-    }
-    .button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: lightblue;
-      color: white;
-      border: 1px solid grey;
-      border-radius: 10px;
-      min-width: 155px;
-      height: 45px;
-      box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-      margin: 30px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
-  }
-    .lists{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        margin: 10px;
-        margin-left: 2px;
-    }
-    .lists::-webkit-scrollbar {
-    width: 5px;
-    }
-    .lists::-webkit-scrollbar-track {
-    }
-    .lists::-webkit-scrollbar-thumb {
-    background: lightgray;
-    height: 100px; 
-    }
-    .lists::-webkit-scrollbar-thumb:hover {
-    background: #888; 
-    }
+  align-items: center;
 `
 
 const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid black; */
   border-radius: 5px;
   width: 250px;
   height: 300px;
@@ -156,7 +45,6 @@ const Card = styled.div`
   img{
       width: 200px;
       margin-top: -75px;
-      margin-right: 20px;
       border-radius: 5px;
       box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
   }
@@ -221,11 +109,38 @@ function About() {
     <h2>Meet The School In The Cloud Team</h2>
     <Main>
         <Card>
-            <img src='https://ca.slack-edge.com/T4JUEB3ME-UN66JA72N-44abe8ad8258-512' alt='profile' />
-            <div className='title'>Title</div>
-            <div className='name'>Name</div>
+            <img src='../../img/profile/robert.jpg' alt='profile' />
+            <div className='title'>React I / UX</div>
+            <div className='name'>Robert Gordon</div>
             <div className='description'>
-                Say something nice here.
+                Say something nice here about me.
+            </div>
+            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+        </Card>
+        <Card>
+            <img src='../../img/profile/nate.jpg' alt='profile' />
+            <div className='title'>React II</div>
+            <div className='name'>Nate Rojanasupya</div>
+            <div className='description'>
+                Say something nice here about me.
+            </div>
+            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+        </Card>
+        <Card>
+            <img src='../../img/profile/patrick.jpg' alt='profile' />
+            <div className='title'>Backend</div>
+            <div className='name'>Patrick Stevenson</div>
+            <div className='description'>
+                Say something nice here about me.
+            </div>
+            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+        </Card>
+        <Card>
+            <img src='../../img/profile/jojo.jpg' alt='profile' />
+            <div className='title'>Project Lead</div>
+            <div className='name'>Jojo Zhang</div>
+            <div className='description'>
+                Say something nice here about me.
             </div>
             <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
         </Card>
