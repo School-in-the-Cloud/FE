@@ -55,26 +55,26 @@ const Main = styled.section`
         cursor: pointer;
     }
   }
-  .cancel-button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: lightgray;
+  .cancel-button {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    min-width: 155px;
+    height: 45px;
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+    padding-bottom: 2px;
+    text-decoration: none;
+    text-shadow: none;
+    &:hover{
+        background-color: lightblue;
         color: white;
-        border: 1px solid grey;
-        border-radius: 10px;
-        min-width: 155px;
-        height: 45px;
-        box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-        margin: 30px;
-        padding-bottom: 2px;
-        text-decoration: none;
-        text-shadow: none;
-        &:hover{
-            background-color: lightblue;
-            color: white;
-            cursor: pointer;
-        }
+        cursor: pointer;
+    }
   }
 `
 
@@ -163,7 +163,7 @@ function VolunteerDashboard() {
             </div>
         </ToDoListContainer>
         <div className='right-container'>
-            {isEditingProfile ? <div className='edit-profile-button' onClick={() => setIsEditingProfile(false)} >Cancel</div> : 
+            {isEditingProfile ? <div className='cancel-button' onClick={() => setIsEditingProfile(false)} >Cancel</div> : 
             <div className='edit-profile-button' onClick={() => setIsEditingProfile(true)} >Edit Profile</div>
             }
             {isEditingProfile ? <EditProfile /> :
