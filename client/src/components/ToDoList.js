@@ -91,6 +91,7 @@ function ToDoList ({ steps, name, todo_id }){
     const admin_id = useSelector(state => state.authentication.user.id);
     const dispatch = useDispatch();
     const [ isEditing, setIsEditing ] = useState(false);
+    const [ listTitle, setListTitle ] = useState(name);
     const [ todos, setTodos ] = useState(() => {
         const state = {};
         steps.forEach(step => (
@@ -109,8 +110,12 @@ function ToDoList ({ steps, name, todo_id }){
 
     const updateTodoList = async event => {
         event.preventDefault();
-        dispatch(adminActionCreators.updateTodoList(todos, name, todo_id, admin_id));
+        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todo_id, admin_id));
         setIsEditing(false);
+    }
+
+    const handleTitleChanges = event => {
+        setListTitle(event.target.value);
     }
 
     const handleChanges = event => {
@@ -126,7 +131,7 @@ function ToDoList ({ steps, name, todo_id }){
     return (
         <List>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                <div className='title'>{name}</div>
+                { isEditing ? <input className='title' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
                 <div className='name'>Volunteer</div>
                 <div className='items'>
                     {steps.map((step, index) => (
