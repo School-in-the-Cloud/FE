@@ -27,6 +27,13 @@ const Main = styled.section`
   img{
     margin-left: 20px;
   }
+  .text-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+  }
 `
 
 const ToDoListContainer = styled.div`
@@ -92,6 +99,7 @@ const SearchBar = styled.div`
     display: flex;
     justify-content: center;
     margin: 10px auto;
+    margin-top: -50px;
     width: 650px;
     padding: 10px;
     background-color: white;
@@ -212,7 +220,7 @@ function StudentDashboard() {
     <Main>
         <ToDoListContainer>
             <div className='button-container'>
-                <h3>These are the volunteers:</h3>
+                <h3>These are your volunteers:</h3>
             </div>
             <div className='lists'>
                 {searchResults.map (item => (
@@ -220,11 +228,14 @@ function StudentDashboard() {
                 ))}
             </div>
         </ToDoListContainer>
+        <div className='text-image'>
         <img
           className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/weather_app_i5sm.svg"
-          alt="Cloud" width="350px"
+          src="/img/Student-image.svg"
+          alt="Student" width="350px"
         />
+        <p>When knowledge is not shared, it is lost.</p>
+        </div>
     </Main>
     </MainWrap>
     </>

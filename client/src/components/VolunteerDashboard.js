@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { volunteerActionCreators } from '../actions';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
+import EditProfile from './EditProfile';
 
 const MainWrap = styled.div`
   display: flex;
@@ -26,12 +27,54 @@ const Main = styled.section`
   img{
     margin-left: 20px;
   }
-  .text-image{
+  .right-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 350px;
+  }
+  .edit-profile-button {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    min-width: 155px;
+    height: 45px;
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+    padding-bottom: 2px;
+    text-decoration: none;
+    text-shadow: none;
+    &:hover{
+        background-color: lightgray;
+        color: white;
+        cursor: pointer;
+    }
+  }
+  .cancel-button {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    min-width: 155px;
+    height: 45px;
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+    padding-bottom: 2px;
+    text-decoration: none;
+    text-shadow: none;
+    &:hover{
+        background-color: lightblue;
+        color: white;
+        cursor: pointer;
+    }
   }
 `
 
@@ -99,7 +142,9 @@ function VolunteerDashboard() {
   const { first_name, last_name, type, id } = useSelector(state => state.authentication.user);
   const todoLists = useSelector(state => state.volunteer.todoLists);
   const dispatch = useDispatch();
-  
+
+  const [ isEditingProfile, setIsEditingProfile ] = useState(false);
+
   useEffect(() => {
     dispatch(volunteerActionCreators.fetchTodos(id));
   }, []);
@@ -117,13 +162,19 @@ function VolunteerDashboard() {
               { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
             </div>
         </ToDoListContainer>
-        <div className='text-image'>
-        <img
-          className="main-img"
-          src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/to_do_xvvc.svg"
-          alt="Admin" width="350px"
-        />
-        <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.</p>
+        <div className='right-container'>
+            {isEditingProfile ? <div className='cancel-button' onClick={() => setIsEditingProfile(false)} >Cancel</div> : 
+            <div className='edit-profile-button' onClick={() => setIsEditingProfile(true)} >Edit Profile</div>
+            }
+            {isEditingProfile ? <EditProfile /> :
+          <div className='text-image'>
+          <img
+            className="main-img"
+            src="/img/Volunteer-image.svg"
+            alt="Volunteer" width="350px"
+          />
+          <p>Thank you for being a volunteer, when knowledge is not shared it is lost.</p>
+          </div>}
         </div>
     </Main>
     </MainWrap>
