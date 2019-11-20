@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -81,7 +82,17 @@ const Card = styled.div`
   }
   .button-container{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        width: 60%;
+        margin-top: 30px;
+        a{
+            font-size: 1.5rem;
+            color: #c6d5dd;
+            filter: drop-shadow(2px 2px 2px grey);
+            &:hover{
+                color: lightblue;
+            }
+        }
     }
   .contact-button{
       display: flex;
@@ -124,9 +135,9 @@ function About() {
                 Say something nice here about me.
             </div>
             <div className='button-container'>
-            {/* <a href={`mailto:`}><div className='contact-button'>Git Hub</div></a> */}
-            <FontAwesomeIcon icon={faGithub} />
-            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
         </Card>
         <Card>
@@ -136,7 +147,11 @@ function About() {
             <div className='description'>
                 Say something nice here about me.
             </div>
-            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+            <div className='button-container'>
+                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href=''><FontAwesomeIcon icon={faCode} /></a>
+            </div>
         </Card>
         <Card>
             <img src='../../img/profile/patrick.jpg' alt='profile' />
@@ -145,7 +160,11 @@ function About() {
             <div className='description'>
                 Say something nice here about me.
             </div>
-            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+            <div className='button-container'>
+                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href=''><FontAwesomeIcon icon={faCode} /></a>
+            </div>
         </Card>
         <Card>
             <img src='../../img/profile/jojo.jpg' alt='profile' />
@@ -154,17 +173,25 @@ function About() {
             <div className='description'>
                 Say something nice here about me.
             </div>
-            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+            <div className='button-container'>
+                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href=''><FontAwesomeIcon icon={faCode} /></a>
+            </div>
         </Card>
-        <Card>
+        {/* <Card>
             <img src='../../img/profile/hudson.jpg' alt='profile' />
             <div className='title'>Marketing</div>
             <div className='name'>Hudson Chamberlain</div>
             <div className='description'>
                 Say something nice here about me.
             </div>
-            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
-        </Card>
+            <div className='button-container'>
+                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href=''><FontAwesomeIcon icon={faCode} /></a>
+            </div>
+        </Card> */}
     </Main>
     </MainWrap>
     </>
