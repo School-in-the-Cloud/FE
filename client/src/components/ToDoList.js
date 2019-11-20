@@ -146,8 +146,8 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
     return (
         <List>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                { isEditing ? <input value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{title}</div> }
-                <div className='name'>{first_name} {last_name}</div>
+                { isEditing ? <input value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
+                <div className='name'>{type === 'admin' ? `Need Volunteer Name!` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
                 <div className='items'>
                     {steps.map((step, index) => (
                         isEditing
