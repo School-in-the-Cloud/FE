@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
-import { adminActionCreators } from '../actions'
-// import {data} from './data/testdata';
 import NewListForm from './NewListForm'
+import { adminActionCreators } from '../actions';
 
 const MainWrap = styled.div`
     display: flex;
@@ -111,12 +110,12 @@ const ToDoListContainer = styled.div`
 function AdminDashboard() {
   const { first_name, last_name } = useSelector(state => state.authentication.user);
   const todoLists = useSelector(state => state.admin.todoLists);
-  const [isCreating, setIsCreating] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [ isCreating, setIsCreating ] = useState(false);
 
   useEffect(() => {
     dispatch(adminActionCreators.fetchTodos());
-  }, [])
+  }, [dispatch]);
 
   return (
     <MainWrap>

@@ -1,5 +1,6 @@
-import React, {useState} from "react";
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { adminActionCreators } from '../actions';
 import styled from 'styled-components';
 
 const List = styled.div`
@@ -84,42 +85,59 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps, name }){
+function ToDoList ({ steps, name, todo_id }){
+    
+    const type = useSelector(state => state.authentication.user.type);
+    const admin_id = useSelector(state => state.authentication.user.id);
+    const dispatch = useDispatch();
+    const [ isEditing, setIsEditing ] = useState(false);
+    const [ todos, setTodos ] = useState(() => {
+        const state = {};
+        steps.forEach(step => (
+            state[JSON.stringify(step.id)] = {
+                id: step.id,
+                description: step.description
+            }
+        ))
+        return state;
+    });
 
-    const type = useSelector(state => state.authentication.userType);
+    const startEditing = event => {
+        event.preventDefault();
+        setIsEditing(true);
+    }
 
-    console.log(type);
+    const updateTodoList = event => {
+        event.preventDefault();
+        dispatch(adminActionCreators.updateTodoList(todos, name, todo_id, admin_id));
+        setIsEditing(false);
+    }
 
-    // const [editing, setEditing] = useState(false);
-
-    // const [editList, setEditList] = useState({});
-
-    // const handleChanges = e => {
-    //     setEditList ({...list, [e.target.name]: e.target.value})
-    // }
-
-    // const handleEdit = e =>{
-    //     e.preventDefault();
-    //     setEditing(true)
-    // }
-
-    // const submitEdit = e =>{
-    //     e.preventDefault();
-    //     props.editListFunction(editList)
-    //     setEditList(editList)
-    //     console.log('submit here', editList)
-    //     setEditing(false)
-    // }
+    const handleChanges = event => {
+        setTodos({
+            ...todos,
+            [event.target.name]: {
+                id: Number(event.target.name),
+                description: event.target.value
+            }
+        })
+    }
 
     return (
         <List>
-            <form>
+            <form onSubmit={isEditing ? updateTodoList : startEditing}>
                 <div className='title'>{name}</div>
                 <div className='name'>Volunteer</div>
                 <div className='items'>
-                    {steps.map((step, index) => <p key={index}>{`${index+1}.)`} {step.description}</p>)}
+                    {steps.map((step, index) => (
+                        isEditing
+                            ? <input key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
+                            : <p key={index}>{`${index+1}.)`} {step.description}</p>
+                        )
+                    )}
                 </div>
-                {type === 'admin' && <div className='edit-button'>Edit</div>}
+                {type === 'admin' && <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                }
             </form>
         </List>
     )
