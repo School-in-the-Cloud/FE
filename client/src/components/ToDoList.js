@@ -193,7 +193,8 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
                     <div className='button-container'>
                         <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
                         {isEditing && <button className='edit-button' onClick={deleteTodoList}>Delete</button> }
-                    </div>}
+                    </div>
+                }
             </form>
         </List>
     )
