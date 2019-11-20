@@ -29,8 +29,12 @@ const List = styled.div`
     margin: 12px;
     border-bottom: 1px solid black;
   }
+  .assigned-to{
+      margin-top:-15px;
+      font-size: 0.9rem;
+  }
   .name{
-      margin-top: -10px;
+      margin-top: -3px;
       margin-bottom: 5px;
       font-weight: bold;
   }
@@ -180,7 +184,8 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
         <List style={ (type === 'admin') ? {maxHeight: '450px'} : {maxHeight: '380px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
                 { isEditing ? <input className='item-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>{type === 'admin' ? `Assigned: ${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
+                {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
+                <div className='name'>{type === 'admin' ? `${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div>
                 <div className={type === 'admin' ? 'admin-items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
