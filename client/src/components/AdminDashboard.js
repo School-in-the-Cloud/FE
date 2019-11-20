@@ -120,9 +120,9 @@ function AdminDashboard() {
   const [isCreating, setIsCreating] = useState(false);
   const dispatch = useDispatch()
 
-//   useEffect(() => {
-//     dispatch(adminActionCreators.fetchTodos());
-//   }, [])
+  useEffect(() => {
+    dispatch(adminActionCreators.fetchTodos());
+  }, [])
 
   return (
     <MainWrap>

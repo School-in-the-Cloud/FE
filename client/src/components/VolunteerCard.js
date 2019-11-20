@@ -43,7 +43,6 @@ const Card = styled.div`
   .description{
       width: 80%;
       text-align: left;
-      /* min-height: 200px; */
       div{
           margin: 5px 0;
       }
