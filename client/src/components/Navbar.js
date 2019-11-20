@@ -10,7 +10,7 @@ const Headerwrap = styled.div`
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 10px;
+        margin: 15px;
         color: white;
         height: 5vh;
         .logo{

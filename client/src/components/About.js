@@ -29,7 +29,7 @@ const Card = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  height: 300px;
+  height: 320px;
   margin: 20px;
   padding-top: 50px;
   margin-top: 30px;
@@ -75,6 +75,10 @@ const Card = styled.div`
               font-size: 0.8rem;
           }
   }
+  .button-container{
+        display: flex;
+        justify-content: space-evenly;
+    }
   .contact-button{
       display: flex;
       justify-content: center;
@@ -106,7 +110,7 @@ function About() {
   return (
     <>
     <MainWrap>
-    <h2>Meet The School In The Cloud Team</h2>
+    <h2>Meet The School In The Cloud Build Team!</h2>
     <Main>
         <Card>
             <img src='../../img/profile/robert.jpg' alt='profile' />
@@ -115,7 +119,10 @@ function About() {
             <div className='description'>
                 Say something nice here about me.
             </div>
+            <div className='button-container'>
+            {/* <a href={`mailto:`}><div className='contact-button'>Git Hub</div></a> */}
             <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+            </div>
         </Card>
         <Card>
             <img src='../../img/profile/nate.jpg' alt='profile' />
@@ -139,6 +146,15 @@ function About() {
             <img src='../../img/profile/jojo.jpg' alt='profile' />
             <div className='title'>Project Lead</div>
             <div className='name'>Jojo Zhang</div>
+            <div className='description'>
+                Say something nice here about me.
+            </div>
+            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+        </Card>
+        <Card>
+            <img src='../../img/profile/hudson.jpg' alt='profile' />
+            <div className='title'>Marketing</div>
+            <div className='name'>Hudson Chamberlain</div>
             <div className='description'>
                 Say something nice here about me.
             </div>
