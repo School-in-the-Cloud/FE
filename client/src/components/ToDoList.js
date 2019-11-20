@@ -9,7 +9,8 @@ const List = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  height: 340px;
+  /* height: 340px; */
+  max-height: 400px;
   margin: 20px;
   margin-top: 40px;
   text-shadow: none;
@@ -38,6 +39,10 @@ const List = styled.div`
       min-height: 200px;
       p{
           margin: 0 0 5px 0;
+      }
+      .item-completed {
+          color: darkgrey;
+          text-decoration: line-through;
       }
   }
   .button-container {
@@ -101,6 +106,7 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
     const dispatch = useDispatch();
     const [ isEditing, setIsEditing ] = useState(false);
     const [ listTitle, setListTitle ] = useState(name);
+    const [ isCompleted, setIsCompleted] = useState(false)
     const [ todos, setTodos ] = useState(() => {
         const state = {};
         steps.forEach(step => (
@@ -146,7 +152,7 @@ function ToDoList ({ steps, name, todo_id, first_name, last_name, title }){
                     {steps.map((step, index) => (
                         isEditing
                             ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
-                            : <p key={index}>{`${index+1}.)`} {step.description}</p>
+                            : <p key={index} onClick={() => setIsCompleted(!isCompleted) } className={ isCompleted ? 'item-completed' : 'item'}>{`${index+1}.)`} {step.description}</p>
                         )
                     )}
                 </div>
