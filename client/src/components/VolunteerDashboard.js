@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { volunteerActionCreators } from '../actions';
 import styled from 'styled-components';
@@ -147,7 +147,7 @@ function VolunteerDashboard() {
 
   useEffect(() => {
     dispatch(volunteerActionCreators.fetchTodos(id));
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <>

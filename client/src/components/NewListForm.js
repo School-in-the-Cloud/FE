@@ -158,8 +158,7 @@ const NewListForm = ({ setIsCreating }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(adminActionCreators.createTodoList(todoList, admin_id ));
-        dispatch(adminActionCreators.fetchTodos());
+        dispatch(adminActionCreators.createTodoList(todoList, admin_id));
         setIsCreating(false);
     }    
 

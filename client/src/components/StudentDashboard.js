@@ -158,6 +158,7 @@ function StudentDashboard() {
 
   const handleSubmit = event => {
       event.preventDefault();
+      // REACT I AXIOS REQUEST ------------------------------
 
       const queryString = {};
       
@@ -178,6 +179,8 @@ function StudentDashboard() {
         .catch (err => {
             console.log ('searching query', err.message);
         })
+
+      // ---------------------------------------------------
   }
 
   useEffect(() => {

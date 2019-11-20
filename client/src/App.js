@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux'
 import { Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -12,21 +12,25 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 function App() {
-  const { user } = useSelector(state => state.authentication);
+  const type = useSelector(state => state.authentication.user.type);
 
   let dashboard;
 
-  switch(user.type) {
+  switch(type) {
     case 'admin':
-      dashboard = AdminDashboard;
+      dashboard = AdminDashboard; 
       break;
+
     case 'volunteer':
       dashboard = VolunteerDashboard;
       break;
+
     case 'student':
       dashboard = StudentDashboard;
-      break
+      break;
   }
+
+  console.log()
 
   return (
     <div className="App">
@@ -34,7 +38,7 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignUpForm} />
-      <PrivateRoute path='/dashboard' component={dashboard} />
+      {dashboard ? <PrivateRoute path='/dashboard' component={dashboard} /> : null}
     </div>
   );
 }

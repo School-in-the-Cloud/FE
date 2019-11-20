@@ -61,7 +61,6 @@ const Navwrap = styled.div`
 
 function Navbar() {
   const { isAuthenticated } = useSelector(state => state.authentication);
-  console.log('isauthenticated:', isAuthenticated);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -80,7 +79,7 @@ function Navbar() {
         </Link>
         <Navwrap>
         <nav>
-            <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink> {/* Should Home link to dashboard? */}
+            <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
             { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
         </nav>
         </Navwrap>
