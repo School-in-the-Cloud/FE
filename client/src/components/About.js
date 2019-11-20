@@ -133,25 +133,102 @@ const ToDoListContainer = styled.div`
     }
 `
 
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  width: 250px;
+  height: 300px;
+  margin: 20px;
+  padding-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  text-shadow: none;
+  color: black;
+  background-color: white;
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
+  transition: all 0.6;
+  &:hover{
+    transform: scale(1.2);
+  }
+  img{
+      width: 200px;
+      margin-top: -75px;
+      margin-right: 20px;
+      border-radius: 5px;
+      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+  }
+  .title{
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: darkgray;
+    margin: 12px;
+    border-bottom: 1px solid black;
+  }
+  .name{
+      margin-top: -10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
+  .description{
+      width: 80%;
+      text-align: left;
+      div{
+          margin: 5px 0;
+      }
+      span{
+          font-weight: bold;
+      }
+      .email{
+              font-weight: normal;
+              font-style: italic;
+              font-size: 0.8rem;
+          }
+  }
+  .contact-button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: whitesmoke;
+      color: black;
+      border: 1px solid grey;
+      border-radius: 10px;
+      width: 75px;
+      height: 25px;
+      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+      margin: 15px;
+      padding-bottom: 2px;
+      text-decoration: none;
+      text-shadow: none;
+      &:hover{
+          background-color: lightgray;
+          color: white;
+          cursor: pointer;
+      }
+  }
+  a{
+      text-decoration: none;
+  }
+`
+
 function About() {
 
   return (
     <>
     <MainWrap>
-    <h2>Welcome</h2>
+    <h2>Meet The School In The Cloud Team</h2>
     <Main>
-        
-        <div className='right-container'>
-            
-          <div className='text-image'>
-          <img
-            className="main-img"
-            src="/img/Volunteer-image.svg"
-            alt="Volunteer" width="350px"
-          />
-          <p>Thank you for being a volunteer, when knowledge is not shared it is lost.</p>
-          </div>}
-        </div>
+        <Card>
+            <img src='https://ca.slack-edge.com/T4JUEB3ME-UN66JA72N-44abe8ad8258-512' alt='profile' />
+            <div className='title'>Title</div>
+            <div className='name'>Name</div>
+            <div className='description'>
+                Say something nice here.
+            </div>
+            <a href={`mailto:`}><div className='contact-button'>Contact</div></a>
+        </Card>
     </Main>
     </MainWrap>
     </>
