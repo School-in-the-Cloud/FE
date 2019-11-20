@@ -80,6 +80,7 @@ function Navbar() {
         <Navwrap>
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
+            <NavLink exact to='/about'>About</NavLink>
             { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
         </nav>
         </Navwrap>
