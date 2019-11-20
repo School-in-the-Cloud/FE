@@ -10,6 +10,7 @@ import VolunteerDashboard from './components/VolunteerDashboard';
 import StudentDashboard from './components/StudentDashboard';
 import PrivateRoute from './components/PrivateRoute';
 import About from './components/About';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       <Route path='/about' component={About} />
       <Route path='/signup' component={SignUpForm} />
       {dashboard ? <PrivateRoute path='/dashboard' component={dashboard} /> : null}
+      <Footer />
     </div>
   );
 }
