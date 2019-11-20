@@ -44,6 +44,17 @@ const Card = styled.div`
       width: 80%;
       text-align: left;
       /* min-height: 200px; */
+      div{
+          margin: 5px 0;
+      }
+      span{
+          font-weight: bold;
+      }
+      .email{
+              font-weight: normal;
+              font-style: italic;
+              font-size: 0.8rem;
+          }
   }
   .contact-button{
       display: flex;
@@ -66,6 +77,9 @@ const Card = styled.div`
           cursor: pointer;
       }
   }
+  a{
+      text-decoration: none;
+  }
 `
 
 function VolunteerCard (props){
@@ -75,11 +89,11 @@ function VolunteerCard (props){
         <Card>
             <div className='title'>{props.first_name} {props.last_name}</div>
             <div className='description'>
-                <div>Country: {props.country}</div>
-                <div>Availability: {props.availability}</div>
-                <div>Email: {props.email}</div>
+                <div><span>Country:</span> {props.country}</div>
+                <div><span>Availability:</span> {props.availability}</div>
+                <div><span>Email:</span> <span className='email'>{props.email}</span></div>
             </div>
-            <div className='contact-button'>Contact</div>
+            <a href={`mailto:${props.email}`}><div className='contact-button'>Contact</div></a>
         </Card>
         </>
     )
