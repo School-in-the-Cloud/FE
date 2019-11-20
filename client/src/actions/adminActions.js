@@ -88,12 +88,12 @@ export const adminActionTypes = {
     UPDATE_TODO_FAIL,
     DELETE_TODO_START,
     DELETE_TODO_SUCCESS,
-    DELETE_TODO_FAIL
+    DELETE_TODO_FAIL,
 }
 
 export const adminActionCreators = {
     fetchTodos,
     createTodoList,
     updateTodoList,
-    deleteTodoList
+    deleteTodoList,
 }

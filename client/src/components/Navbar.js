@@ -64,18 +64,18 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const logout = () => {
-    dispatch(authActionCreators.logoutUser());
+    dispatch({ type: 'LOGOUT' });
   }
 
   return (
     <>
     <Headerwrap>
     <header>
-        <Link to='/'>
-        <div className='logo'>
-        <img src="/img/Main-image.svg" alt="Cloud" width="70px"/>
-        <h1>School In The Cloud</h1>
-        </div>
+        <Link to={isAuthenticated ? '/dashboard' : '/'}>
+            <div className='logo'>
+                <img src="/img/Main-image.svg" alt="Cloud" width="70px"/>
+                <h1>School In The Cloud</h1>
+            </div>
         </Link>
         <Navwrap>
         <nav>
