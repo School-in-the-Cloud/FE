@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
+
+const pulseAnim = keyframes`${pulse}`
 
 const Head = styled.section`
   display: flex;
@@ -20,32 +23,41 @@ const Head = styled.section`
         align-items: center;
         justify-content: center;
         .text{
-            width:40%;
+            width:500px;
             text-align: left;
             margin-right: 55px;
             h1{
+                animation: 1s ${pulseAnim};
                 font-size: 2.9rem;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
             }    
         }
         .image{
-            /* width: 50%; */
+            width: 50%;
             /* border: 1px solid red; */
-        }
-    }
-    .join{
-        /* font-weight: bold; */
-        color: lightblue;
-        text-decoration: none;
-        &:hover{
-            color: whitesmoke;
+            animation: 1s ${pulseAnim};
+            animation-delay: 100ms;
+            img{
+                max-width: 750px;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
         }
     }
     .button-container{
             display: flex;
             justify-content: flex-start;
-            width: 60%;
+            width: 65%;
+            margin-top: -65px;
           }
           .button{
+            animation: 1s ${pulseAnim};
+            animation-delay: 200ms;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -80,7 +92,7 @@ function Home() {
 
             </div>
             <div className='image'>
-                <img className="main-img" src="/img/Main-image.svg" alt="Cloud" width="650px"/>
+                <img className="main-img" src="/img/Main-image.svg" alt="Cloud"/>
             </div>
         </div>
         <div className='button-container'>
