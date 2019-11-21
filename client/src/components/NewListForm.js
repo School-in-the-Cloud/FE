@@ -104,6 +104,9 @@ const List = styled.div`
           cursor: pointer;
       }
   }
+  .noerrormessage{
+      display: none;
+  }
 `
 
 const NewListForm = ({ setIsCreating }) => {
@@ -120,7 +123,9 @@ const NewListForm = ({ setIsCreating }) => {
     
     const [ currentTodo, setCurrentTodo ] = useState('');
     
-    const [ volunteers, setVolunteers ] = useState ([])
+    const [ volunteers, setVolunteers ] = useState ([]);
+
+    const [ volunteerRequired, setVolunteerRequired ] = useState (false);
 
     useEffect(() => {
         // React 1 Axios Request here! --------------------------------------------------
@@ -164,6 +169,9 @@ const NewListForm = ({ setIsCreating }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        if(!todoList.volunteer){
+            return setVolunteerRequired(true);
+        }
         dispatch(adminActionCreators.createTodoList(todoList, admin_id));
         setIsCreating(false);
     }    
@@ -177,10 +185,12 @@ const NewListForm = ({ setIsCreating }) => {
                     <input className='title' id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} placeholder='Title of list' /><br />
                     <select className='dropdown' id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
                         <option defaultValue hidden value>-- Select a Volunteer --</option>
+                        
                         {volunteers.map(volunteer => (
                             <option key={volunteer.id} value={volunteer.id}>{volunteer.first_name} {volunteer.last_name}</option>
                         ))}
                     </select>
+                        {volunteerRequired && <div className={!todoList.volunteer ? 'errormessage' : 'noerrormessage'}>Volunteer Required!</div> }
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
                     <div className='todo-container'>
                         <input className='add-input' name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />

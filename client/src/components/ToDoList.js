@@ -91,7 +91,7 @@ const List = styled.div`
   .button-container {
       position: absolute;
       bottom: 0 auto;
-      margin-left: -16px;
+      margin-left: -11px;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -107,8 +107,8 @@ const List = styled.div`
             height: 25px;
             box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
             margin: 15px;
-            /* margin-bottom: 20px;
-            padding-bottom: 2px; */
+            /* margin-bottom: 40px; */
+            /* padding-bottom: 2px; */
             text-decoration: none;
             text-shadow: none;
             transition: all 300ms ease-in-out;
@@ -137,6 +137,29 @@ const List = styled.div`
             transition: all 300ms ease-in-out;
             &:hover{
                 background-color: red;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .complete-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 75px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            /* margin-bottom: 20px;
+            padding-bottom: 2px; */
+            text-decoration: none;
+            text-shadow: none;
+            transition: all 300ms ease-in-out;
+            &:hover{
+                background-color: lightgray;
                 color: white;
                 cursor: pointer;
             }
@@ -219,7 +242,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, ad
                 { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
                 {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
                 <div className={type === 'admin' ? 'assigned-name' : 'name' }>{type === 'admin' ? `${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div>
-                <div className={type === 'admin' ? 'admin-items' : 'items'}>
+                <div className={type === 'admin' ? 'items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
                             ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
@@ -236,7 +259,9 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, ad
                     </div>
                 :
                     <div className='button-container'>
-                        <button className='edit-button' type='button' onClick={toggleCompleted}>Complete</button>
+                        {!isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Complete</button> : null }
+                        {isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Redo</button> : null }
+                        
                     </div>
                 }
 
