@@ -12,6 +12,8 @@ const Head = styled.section`
     flex-direction: column;
     height: 86vh;
     width: 99vw;
+    min-width: 760px;
+    /* border: 1px solid red; */
     color: white;
     text-shadow: 2px 2px 4px #000000;
     overflow: auto;
@@ -20,6 +22,7 @@ const Head = styled.section`
         width: 90%;
         margin-left: 20px;
         min-height: 86vh;
+        min-width: 760px;
         display: flex;
         align-items: center;
         justify-content: center;
