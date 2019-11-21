@@ -14,6 +14,7 @@ const FooterWrap = styled.div`
     a{
         text-decoration:none;
         color: rgba(235, 235, 255, 0.58);
+        transition: all 300ms ease-in-out;
         &:hover{
             color: white;
         }
