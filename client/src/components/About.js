@@ -18,7 +18,7 @@ const MainWrap = styled.div`
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
-      animation: 5s ${pulseAnim};
+      animation: 7s ${pulseAnim};
       margin-top:100px;
       font-size: 2.5rem;
   }
@@ -44,6 +44,10 @@ const Main = styled.div`
     #four{
             animation: 3s ${cardAnim};
             animation-delay: 900ms;
+    }
+    #five{
+            animation: 3s ${cardAnim};
+            animation-delay: 1200ms;
     }
     .card{
         position: relative;
@@ -203,19 +207,19 @@ function About() {
                 <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
         </div>
-        {/* <Card>
+        <div className='card' id='five'>
             <img src='../../img/profile/hudson.jpg' alt='profile' />
             <div className='title'>Marketing</div>
             <div className='name'>Hudson Chamberlain</div>
             <div className='description'>
-                Say something nice here about me.
+                Created marketing and landing page.
             </div>
             <div className='button-container'>
                 <a href=''><FontAwesomeIcon icon={faGithub} /></a>
                 <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
                 <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
-        </Card> */}
+        </div>
     </Main>
     </MainWrap>
     </>
