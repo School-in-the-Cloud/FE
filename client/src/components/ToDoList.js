@@ -141,6 +141,29 @@ const List = styled.div`
                 cursor: pointer;
             }
         }
+        .complete-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 75px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            /* margin-bottom: 20px;
+            padding-bottom: 2px; */
+            text-decoration: none;
+            text-shadow: none;
+            transition: all 300ms ease-in-out;
+            &:hover{
+                background-color: lightgray;
+                color: white;
+                cursor: pointer;
+            }
+        }
   }
   .title-input{
       margin: 12px 0;
@@ -236,7 +259,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, ad
                     </div>
                 :
                     <div className='button-container'>
-                        <button className='edit-button' type='button' onClick={toggleCompleted}>Complete</button>
+                        <button className='complete-button' type='button' onClick={toggleCompleted}>Complete</button>
                     </div>
                 }
 

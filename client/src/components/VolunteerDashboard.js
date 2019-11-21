@@ -16,7 +16,6 @@ const MainWrap = styled.div`
   max-height: 90vh;
   max-width: 100vw;
   min-width: 760px;
-  border: 1px solid red;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
