@@ -13,6 +13,7 @@ const Headerwrap = styled.div`
         margin: 15px;
         color: white;
         height: 5vh;
+        min-width: 750px;
         .logo{
             display: flex;
             justify-content: space-between;
@@ -33,7 +34,7 @@ const Headerwrap = styled.div`
 const Navwrap = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     nav{
         display: flex;
         width: 100%;
