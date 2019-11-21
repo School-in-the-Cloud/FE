@@ -107,8 +107,8 @@ const List = styled.div`
             height: 25px;
             box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
             margin: 15px;
-            /* margin-bottom: 20px;
-            padding-bottom: 2px; */
+            /* margin-bottom: 40px; */
+            /* padding-bottom: 2px; */
             text-decoration: none;
             text-shadow: none;
             transition: all 300ms ease-in-out;
