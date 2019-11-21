@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
 import styled, { keyframes} from 'styled-components';
-import { flipInY, zoomIn } from 'react-animations';
+import { flipInY } from 'react-animations';
 
 const flipAnim = keyframes `${flipInY}`
-const zoomAnim = keyframes `${zoomIn}`
 
 const List = styled.div`
   animation: 1s ${flipAnim};
