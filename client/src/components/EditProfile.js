@@ -84,6 +84,7 @@ const Card = styled.div`
 const EditProfile = (props) =>{
 
     const { first_name, last_name, email, availability, country } = useSelector(state => state.authentication.user);
+    console.log( first_name, last_name, email, availability, country );
 
     return (
         <>
