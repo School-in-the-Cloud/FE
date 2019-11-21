@@ -13,6 +13,7 @@ body {
   background-size: cover;
   max-height: 100vh;
   max-width: 100vw;
+  font-size: 100%;
 }
 
 h1 {

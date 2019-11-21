@@ -20,7 +20,7 @@ const Headerwrap = styled.div`
         }
         h1{
             text-shadow: 2px 2px 4px #000000;
-            font-size: 3rem;
+            font-size: 3vw;
             margin-left: 30px;
         }
         a{
