@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { adminActionCreators } from '../actions';
+import { adminActionCreators, volunteerActionCreators } from '../actions';
 import styled, { keyframes} from 'styled-components';
 import { flipInY } from 'react-animations';
 
@@ -156,14 +156,14 @@ const List = styled.div`
   }
 `
 
-function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
+function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, admin_id, is_completed }){
     
     const type = useSelector(state => state.authentication.user.type);
-    const admin_id = useSelector(state => state.authentication.user.id);
+    const user_id = useSelector(state => state.authentication.user.id);
     const dispatch = useDispatch();
     const [ isEditing, setIsEditing ] = useState(false);
     const [ listTitle, setListTitle ] = useState(name);
-    const [ isCompleted, setIsCompleted] = useState(false)
+    const [ isCompleted, setIsCompleted] = useState(is_completed)
     const [ todos, setTodos ] = useState(() => {
         const state = {};
         steps.forEach(step => (
@@ -184,7 +184,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
 
     const updateTodoList = event => {
         event.preventDefault();
-        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todos_id, admin_id));
+        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todos_id, user_id));
         setIsEditing(false);
     }
 
@@ -198,6 +198,11 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
         setListTitle(event.target.value);
     }
 
+    const toggleCompleted = event => {
+        event.preventDefault();
+        dispatch(volunteerActionCreators.toggleTodo(admin_id, user_id, todos_id, is_completed, setIsCompleted))
+    }
+
     const handleChanges = event => {
         setTodos({
             ...todos,
@@ -209,7 +214,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
     }
 
     return (
-        <List style={ (type === 'admin') ? {height: '415px'} : {height: '355px'}}>
+        <List style={{height: '415px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
                 { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
                 {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
@@ -218,17 +223,23 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
                     {steps.map((step, index) => (
                         isEditing
                             ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
-                            : <p key={index} onClick={() => setIsCompleted(!isCompleted) } className={ isCompleted ? 'item-completed' : 'item'}>{`${index+1}.)`} {step.description}</p>
+                            : <p key={index}  className={ isCompleted ? 'item-completed' : 'item'}>{`${index+1}.)`} {step.description}</p>
                         )
                     )}
                 </div>
-                {type === 'admin' && 
+                {
+                type === 'admin' ? 
                     <div className='button-container'>
                         {!isEditing ? <button className='edit-button' type='submit'>Edit</button> : null }
                         {isEditing ? <button className='edit-button' type='submit'>Save</button> : null }
                         {isEditing && <button className='delete-button' onClick={deleteTodoList}>Delete</button> }
                     </div>
+                :
+                    <div className='button-container'>
+                        <button className='edit-button' type='button' onClick={toggleCompleted}>Complete</button>
+                    </div>
                 }
+
             </form>
         </List>
     )
