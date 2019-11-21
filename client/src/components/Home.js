@@ -12,18 +12,22 @@ const Head = styled.section`
     flex-direction: column;
     height: 86vh;
     width: 99vw;
+    min-width: 760px;
+    /* border: 1px solid red; */
     color: white;
     text-shadow: 2px 2px 4px #000000;
     overflow: auto;
+    overflow-x: hidden;
     section{
         /* border: 1px solid red; */
-        width: 90%;
+        width: 100%;
         margin-left: 20px;
         min-height: 86vh;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        overflow-x: hidden;
     }
     #second{
         background-color: white;
@@ -45,12 +49,13 @@ const Head = styled.section`
         align-items: center;
         justify-content: center;
         .text{
-            width:500px;
+            width:50%;
             text-align: left;
             margin-right: 55px;
+            margin-left: 100px;
             h1{
                 animation: 1s ${pulseAnim};
-                font-size: 2.9rem;
+                font-size: 2.9vw;
                 transition: all 300ms ease-in-out;
                 &:hover{
                     transform: scale(1.05);
@@ -62,7 +67,9 @@ const Head = styled.section`
             /* border: 1px solid red; */
             animation: 1s ${pulseAnim};
             animation-delay: 100ms;
+            margin-right: 55px;
             img{
+                width: 50vw;
                 max-width: 750px;
                 transition: all 300ms ease-in-out;
                 &:hover{
@@ -82,12 +89,16 @@ const Head = styled.section`
         color: #6c63ff;
         text-shadow: none;
         .image{
-            width: 20%;
+            width: 25%;
             img{
+                width: 25vw;
                 max-width: 250px;
             }
             #volunteer-image{
-                max-width: 350px;
+                width: 35vw;
+                min-width: 100px;
+                padding-top: 30px;
+                padding-right: 50px;
             }
         }
         .text{
@@ -101,7 +112,7 @@ const Head = styled.section`
             h2{
                 animation: 1s ${pulseAnim};
                 font-family: 'Special Elite', cursive;
-                font-size: 1.8rem;
+                font-size: 1.8vw;
             }    
         }
     }

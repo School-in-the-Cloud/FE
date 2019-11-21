@@ -12,6 +12,7 @@ const Headerwrap = styled.div`
         align-items: center;
         margin: 15px;
         color: white;
+        width: 99vw;
         height: 5vh;
         .logo{
             display: flex;
@@ -20,7 +21,7 @@ const Headerwrap = styled.div`
         }
         h1{
             text-shadow: 2px 2px 4px #000000;
-            font-size: 3rem;
+            font-size: 3vw;
             margin-left: 30px;
         }
         a{
@@ -33,7 +34,7 @@ const Headerwrap = styled.div`
 const Navwrap = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     nav{
         display: flex;
         width: 100%;
