@@ -40,7 +40,7 @@ const Navwrap = styled.div`
         flex-direction: row;
         justify-content: space-around;
         a{  
-            margin: 0 50px;
+            margin: 0 30px;
             color: white;
             text-decoration: none;
             transition: all 300ms ease-in-out;
@@ -50,11 +50,11 @@ const Navwrap = styled.div`
             }
         }
         a.active{
-            color: darkblue;
+            color: #c6d4e1;
             font-weight: bold;
             transition: all 300ms ease-in-out;
             &:hover{
-                color: lightblue;
+                color: #e4ebf1;
                 font-weight: bold;
             }
         }
@@ -83,7 +83,8 @@ function Navbar() {
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
             <NavLink exact to='/about'>About</NavLink>
-            { isAuthenticated ? <Link onClick={logout} to='/'>Sign out</Link> : <Link to='/login'>Login</Link>}
+            { isAuthenticated ? <Link onClick={logout} to='/'>Sign out</Link> : <NavLink to='/login'>Login</NavLink>}
+            { !isAuthenticated && <NavLink to='/signup'>Sign Up</NavLink>}
         </nav>
         </Navwrap>
     </header>
