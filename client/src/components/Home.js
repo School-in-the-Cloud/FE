@@ -13,20 +13,21 @@ const Head = styled.section`
     height: 86vh;
     width: 99vw;
     min-width: 760px;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     overflow: auto;
+    overflow-x: hidden;
     section{
         /* border: 1px solid red; */
         width: 90%;
         margin-left: 20px;
         min-height: 86vh;
-        min-width: 760px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        overflow-x: hidden;
     }
     #second{
         background-color: white;
@@ -53,7 +54,7 @@ const Head = styled.section`
             margin-right: 55px;
             h1{
                 animation: 1s ${pulseAnim};
-                font-size: 2.9rem;
+                font-size: 2.9vw;
                 transition: all 300ms ease-in-out;
                 &:hover{
                     transform: scale(1.05);
@@ -66,6 +67,7 @@ const Head = styled.section`
             animation: 1s ${pulseAnim};
             animation-delay: 100ms;
             img{
+                width: 50vw;
                 max-width: 750px;
                 transition: all 300ms ease-in-out;
                 &:hover{
@@ -87,9 +89,11 @@ const Head = styled.section`
         .image{
             width: 20%;
             img{
+                width: 25vw;
                 max-width: 250px;
             }
             #volunteer-image{
+                width: 35vw;
                 max-width: 350px;
             }
         }
@@ -104,7 +108,7 @@ const Head = styled.section`
             h2{
                 animation: 1s ${pulseAnim};
                 font-family: 'Special Elite', cursive;
-                font-size: 1.8rem;
+                font-size: 1.8vw;
             }    
         }
     }
