@@ -242,7 +242,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, ad
                 { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
                 {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
                 <div className={type === 'admin' ? 'assigned-name' : 'name' }>{type === 'admin' ? `${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div>
-                <div className={type === 'admin' ? 'admin-items' : 'items'}>
+                <div className={type === 'admin' ? 'items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
                             ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
