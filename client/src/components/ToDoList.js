@@ -209,7 +209,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
     }
 
     return (
-        <List style={ (type === 'admin') ? {maxHeight: '415px'} : {maxHeight: '355px'}}>
+        <List style={ (type === 'admin') ? {height: '415px'} : {height: '355px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
                 { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
                 {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
