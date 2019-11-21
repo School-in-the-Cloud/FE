@@ -6,19 +6,41 @@ import {pulse} from 'react-animations';
 const pulseAnim = keyframes`${pulse}`
 
 const Head = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  /* height: 90vh; */
-  max-width: 100vw;
-  /* border: 1px solid red; */
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  .main {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    height: 86vh;
+    width: 99vw;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    overflow: auto;
+    section{
         /* border: 1px solid red; */
-        margin-top: 150px;
-        width: 100%;
+        width: 90%;
+        margin-left: 20px;
+        min-height: 86vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #second{
+        background-color: white;
+    }
+    h1, h2{     
+        transition: all 300ms ease-in-out;
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+    img{
+        transition: all 300ms ease-in-out;
+        &:hover{
+            transform: scale(1.05);
+        }
+    } 
+    .main {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -48,6 +70,52 @@ const Head = styled.section`
                 }
             }
         }
+    }
+    .content{
+        position: relative;
+        margin: 10px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: #6c63ff;
+        text-shadow: none;
+        .image{
+            width: 20%;
+            img{
+                max-width: 250px;
+            }
+            #volunteer-image{
+                max-width: 350px;
+            }
+        }
+        .text{
+            display: flex;
+            align-items: flex-end;
+            width:60%;
+            text-align: left;
+            margin-left: 55px;
+            margin-top: 105px;
+            /* border: 1px solid red; */
+            h2{
+                animation: 1s ${pulseAnim};
+                font-family: 'Special Elite', cursive;
+                font-size: 1.8rem;
+            }    
+        }
+    }
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+    }
+    &::-webkit-scrollbar-thumb {
+        background: lightgray;
+        height: 100px; 
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #888; 
     }
     .button-container{
             display: flex;
@@ -86,18 +154,46 @@ function Home() {
   return (
     <>
     <Head>
-        <div className='main'>
-            <div className='text'>
-                <h1>A community that trains senior volunteers to teach students in a group or individual setting.</h1>
+        <section>
+            <div className='main'>
+                <div className='text'>
+                    <h1>A community that trains senior volunteers to teach students in a group or individual setting.</h1>
 
+                </div>
+                <div className='image'>
+                    <img src="/img/Main-image.svg" alt="Friends"/>
+                </div>
             </div>
+            <div className='button-container'>
+                <Link to='/signup' className='button'>Sign Up</Link>
+            </div>
+        </section>
+        <section id='second'>
+            <div className='content'>
+                <div className='image'>
+                    <img src="/img/Student-image.svg" alt="Friends"/>
+                </div>
+                <div className='text'>
+                    <h2>We help kids in communities with high student to teacher ratios.<br/>Students can learn from our experienced voluteers.</h2>
+                </div>
+            </div>
+            <div className='content'>
+                <div className='text'>
+                    <h2>We provide retired professional a sense of purpose.<br/>Our voluteers can pick up tasks and teach students with their wealth of knowledge</h2>
+                </div>
+                <div className='image'>
+                    <img id='volunteer-image' src="/img/Volunteer-image.svg" alt="Friends"/>
+                </div>
+            </div>
+            <div className='content'>
             <div className='image'>
-                <img className="main-img" src="/img/Main-image.svg" alt="Cloud"/>
+                    <img src="/img/Admin-image.svg" alt="Friends"/>
+                </div>
+                <div className='text'>
+                    <h2>Our skilled site admins bridge the gap by connecting volunteers with students</h2>
+                </div>
             </div>
-        </div>
-        <div className='button-container'>
-            <Link to='/signup' className='button'>Sign Up</Link>
-        </div>
+        </section>
     </Head>
     </>
   );
