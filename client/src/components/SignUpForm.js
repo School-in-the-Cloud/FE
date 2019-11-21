@@ -36,6 +36,7 @@ const Login = styled.div`
         border-radius: 5px;
         background-color: slategray;
         color: white;
+        transition: all 300ms ease-in-out;
         &:hover {
             background-color: lightgray;
             cursor: pointer;
