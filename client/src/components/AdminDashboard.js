@@ -48,8 +48,8 @@ const Main = styled.section`
 const ToDoListContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
-    width: 36%;
+    min-width: 350px;
+    max-width: 630px;
     margin-left: 50px;
     .button-container{
         width: 100%;
