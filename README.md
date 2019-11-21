@@ -1,69 +1,201 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# School In The Cloud
 
-## Available Scripts
+**Deployed website:** https://school-in-the-cloud-fe.netlify.com/
 
-In the project directory, you can run:
+## Description
+School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.  This helps kids in communities with high student to teacher ratios. It also provides retired volunteers a sense of purpose and meaning in their day to day life when they find themselves with more free time.  The platform also connects volunteers with the students. The aim is to help close the achievement gap by connecting students with available, qualified volunteer mentors. 
 
-### `npm start`
+## Getting Started
+To begin using the App, follow the link and Sign Up for a new account with a username and password.  Fill in the required information, and select your user type.  Volunteers will have to add their location and available time. User will be prompted to enter email and password again after the inital Sign Up to login to their dashboard.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To login to the App, click the link to sign up, and create a new account.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To view the dashboard, login with the correct user credentials.
 
-### `npm test`
+To create a new to do list, login as admin, on the admin dashboard, click "create list", fill in the required information and assign the list to a volunteer, then click save.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To view the to do lists, login with the correct user credentials.
 
-### `npm run build`
+To edit a to do list, login as admin, find the list you'd like to edit, click the edit button, fill in the required information, then click save.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To delete a to list, login as admin, find the list you'd like to delete, click the edit button, then click the delete button.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Prerequisites
+All of the below dependencies can be installed using: yarn install or npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start development by creating a react app using: yarn start or npm start
 
-### `npm run eject`
+## Dependencies
+This project was created using yarn and designed for react client side. Other dependencies include:
+```
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-brands-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "formik": "^2.0.4",
+    "react": "^16.12.0",
+    "react-animations": "^1.0.0",
+    "react-dom": "^16.12.0",
+    "react-loader-spinner": "^3.1.5",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.4.1",
+    "yup": "^0.27.0"
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# API
+base URL: https://school-in-the-cloud.herokuapp.com/api
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Authentication
+### Registration:
+POST "/auth/register"
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Request Body:
+```
+{
+  "password": string (8 char min - required),
+  "email": string (must include '@' and '.' - required),
+  "first_name": string (required),
+  "last_name": string (required),
+  "type": string ('admin', 'volunteer', or 'student' - required),
+  "availability": string (required for volunteer),
+  "country": string (required for volunteer)
+  "
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Response Body:
+```
+{
+  "user": {
+    "id": integer (primary key for 'users' table),
+    "password": string (hashed),
+    "type": string,
+    "first_name": string,
+    "last_name": string,
+    "email": string,
+  },
+  "roleInfo":
+    {
+      "id": integer (primary key for role table - 'admins', 'volunteers', 'students'),
+      "availability": string (volunteers only),
+      "country": string (volunteers only),
+      "user_id": integer (same as "id" in "user" object above)
+    },
+  "token": string (will be required for protected routes)
+}
+```
 
-## Learn More
+### Login
+POST "/auth/login"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Request Body:
+```
+{
+  "password": string,
+  "email": string
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Response Body:
+```
+{
+  "user": {
+    "id": integer (primary key for 'users' table),
+    "password": string (hashed),
+    "type": string,
+    "first_name": string,
+    "last_name": string,
+    "email": string,
+  },
+  "token": string
+}
+```
 
-### Code Splitting
+## Admins
+ 
+ ### Create To-Do:
+ POST to ``` https://school-in-the-cloud.herokuapp.com/api/admins/:id/todos```
+ where id is the admin's user id.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+ Request Body:
+ ```
+{
+    "volunteer_id": number,
+    "name": string,
+    "items": array of strings
+}
+ ```
 
-### Analyzing the Bundle Size
+ Response Body:
+ #### Note: I will change this to return the new todo.
+ {
+   "todo_id": number
+ }
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Update To-Do
+PUT to ```https://school-in-the-cloud.herokuapp.com/api/admins/:id/todos```
 
-### Making a Progressive Web App
+Request Body:
+```
+{
+        "todo_id": integer,
+        "name": new name, string,
+        "steps": [
+            {
+                "id": step id, integer (same as todo_id above),
+                "todos_id": same as todo_id above,
+                "description": new description for step, string
+            },
+            {
+                "id": step_id,
+                "todos_id": integer (same as todo_id above),
+                "description": new description for step, string
+            },
+        ]
+}
+```
+ 
+## Volunteers
+### Get Assigned To-Dos:
+GET to ```https://school-in-the-cloud.herokuapp.com/api/volunteers/:id/todos```
+where id is volunteer's user id.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Response Body:
+```
+[
+  {
+    "todo_id": number,
+    "admin_id": number,
+    "volunteer_id": number,
+    "steps": array of strings
+  },
+  ...
+]
+```
 
-### Advanced Configuration
+## Support
+There is currently no active support for this app.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Authors and acknowledgment
 
-### Deployment
+**UI Engineer:** Robert Gordon (https://github.com/RobertDGordon)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+**Front End Engineers:** Robert Gordon (https://github.com/RobertDGordon) Nate Rojanasupya (https://github.com/nattroj)
 
-### `npm run build` fails to minify
+**Backend Engineer:** Patrick Stevenson (https://github.com/patjonstevenson/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Project Lead:** Jojo Zhang (https://github.com/nomadkitty)
 
+**Full Repo:** https://github.com/School-in-the-Cloud/
+
+## Project status
+This project was completed for a Lambda School build week November 2019. There may be updates to the application periodically
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details
