@@ -3,9 +3,10 @@ import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled, {keyframes} from 'styled-components';
-import { tada } from 'react-animations';
+import { flip, pulse } from 'react-animations';
 
-const cardAnim = keyframes `${tada}`
+const pulseAnim = keyframes `${pulse}`
+const cardAnim = keyframes `${flip}`
 
 const MainWrap = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ const MainWrap = styled.div`
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
+      animation: 5s ${pulseAnim};
       margin-top:100px;
       font-size: 2.5rem;
   }
@@ -33,23 +35,24 @@ const Main = styled.div`
     }
     #two{
             animation: 3s ${cardAnim};
-            animation-delay: 200ms;
+            animation-delay: 300ms;
     }
     #three{
             animation: 3s ${cardAnim};
-            animation-delay: 400ms;
+            animation-delay: 600ms;
     }
     #four{
             animation: 3s ${cardAnim};
-            animation-delay: 600ms;
+            animation-delay: 900ms;
     }
     .card{
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         border-radius: 5px;
         width: 250px;
-        height: 320px;
+        height: 340px;
         margin: 20px;
         padding-top: 50px;
         margin-top: 30px;
@@ -83,6 +86,7 @@ const Main = styled.div`
         .description{
             width: 80%;
             text-align: left;
+            /* font-size: 0.8rem; */
             div{
                 margin: 5px 0;
             }
@@ -92,10 +96,12 @@ const Main = styled.div`
             .email{
                     font-weight: normal;
                     font-style: italic;
-                    font-size: 0.8rem;
+                    font-size: 0.9rem;
                 }
         }
         .button-container{
+                position: absolute;
+                bottom: 10px;
                 display: flex;
                 justify-content: space-between;
                 width: 60%;
@@ -150,12 +156,12 @@ function About() {
             <div className='title'>React I / UX</div>
             <div className='name'>Robert Gordon</div>
             <div className='description'>
-                Say something nice here about me.
+                Designed complete website, collaborated with React II dev and backend.
             </div>
             <div className='button-container'>
-                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
-                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
-                <a href=''><FontAwesomeIcon icon={faCode} /></a>
+                <a href='https://github.com/RobertDGordon'><FontAwesomeIcon icon={faGithub} /></a>
+                <a href='https://www.linkedin.com/in/robert-d-gordon/'><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href='https://rob-gordon.com'><FontAwesomeIcon icon={faCode} /></a>
             </div>
         </div>
         <div className='card' id='two'>
@@ -163,11 +169,11 @@ function About() {
             <div className='title'>React II</div>
             <div className='name'>Nate Rojanasupya</div>
             <div className='description'>
-                Say something nice here about me.
+              Up and coming full stack developer. Admittedly willing to work for food and milk tea with boba.
             </div>
             <div className='button-container'>
-                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
-                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href='https://github.com/nattroj'><FontAwesomeIcon icon={faGithub} /></a>
+                <a href='https://www.linkedin.com/in/nattajohn-rojanasupya-547156194/'><FontAwesomeIcon icon={faLinkedinIn} /></a>
                 <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
         </div>
@@ -176,10 +182,10 @@ function About() {
             <div className='title'>Backend</div>
             <div className='name'>Patrick Stevenson</div>
             <div className='description'>
-                Say something nice here about me.
+                Met MVP with endpoints.
             </div>
             <div className='button-container'>
-                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
+                <a href='https://github.com/patjonstevenson/'><FontAwesomeIcon icon={faGithub} /></a>
                 <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
                 <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
@@ -189,11 +195,11 @@ function About() {
             <div className='title'>Project Lead</div>
             <div className='name'>Jojo Zhang</div>
             <div className='description'>
-                Say something nice here about me.
+                Organized team meetings, and managed product completion.
             </div>
             <div className='button-container'>
-                <a href=''><FontAwesomeIcon icon={faGithub} /></a>
-                <a href=''><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href='https://github.com/nomadkitty'><FontAwesomeIcon icon={faGithub} /></a>
+                <a href='https://www.linkedin.com/in/jojo-zhang'><FontAwesomeIcon icon={faLinkedinIn} /></a>
                 <a href=''><FontAwesomeIcon icon={faCode} /></a>
             </div>
         </div>
