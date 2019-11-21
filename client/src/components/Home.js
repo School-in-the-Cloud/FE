@@ -182,12 +182,12 @@ function Home() {
                     <h2>We provide retired professional a sense of purpose.<br/>Our voluteers can pick up tasks and teach students with their wealth of knowledge</h2>
                 </div>
                 <div className='image'>
-                    <img id='volunteer-image' src="/img/Volunteer-image.svg" alt="Friends"/>
+                    <img id='volunteer-image' src="/img/Volunteer-image.svg" alt="Volunteer"/>
                 </div>
             </div>
             <div className='content'>
             <div className='image'>
-                    <img src="/img/Admin-image.svg" alt="Friends"/>
+                    <img src="/img/Admin-image.svg" alt="Admin"/>
                 </div>
                 <div className='text'>
                     <h2>Our skilled site admins bridge the gap by connecting volunteers with students</h2>
