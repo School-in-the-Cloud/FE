@@ -14,7 +14,8 @@ const MainWrap = styled.div`
   align-items: center;
   flex-direction: column;
   max-height: 90vh;
-  max-width: 100vw;
+  min-width: 650px;
+  margin: 0 auto;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
@@ -26,8 +27,10 @@ const MainWrap = styled.div`
 
 const Main = styled.div`
   width: 100%;
+  min-width: 350px;
   height: 60vh;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
     #one{

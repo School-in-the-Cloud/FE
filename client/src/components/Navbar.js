@@ -12,8 +12,8 @@ const Headerwrap = styled.div`
         align-items: center;
         margin: 15px;
         color: white;
+        width: 99vw;
         height: 5vh;
-        min-width: 750px;
         .logo{
             display: flex;
             justify-content: space-between;
