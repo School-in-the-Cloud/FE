@@ -6,19 +6,19 @@
 School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.  This helps kids in communities with high student to teacher ratios. It also provides retired volunteers a sense of purpose and meaning in their day to day life when they find themselves with more free time.  The platform also connects volunteers with the students. The aim is to help close the achievement gap by connecting students with available, qualified volunteer mentors. 
 
 ## Getting Started
-To begin using the App as a client end user, follow the link and Sign Up for a new account with a username and password. User will be prompted to enter username and password again after the inital Sign Up to login to their dashboard.
+To begin using the App, follow the link and Sign Up for a new account with a username and password.  Fill in the required information, and select your user type.  Volunteers will have to add their location and available time. User will be prompted to enter email and password again after the inital Sign Up to login to their dashboard.
 
 To login to the App, click the link to sign up, and create a new account.
 
-To view the dashboard, login with correct correct user credentials.
+To view the dashboard, login with the correct user credentials.
 
-To create a new to do list
+To create a new to do list, login as admin, on the admin dashboard, click "create list", fill in the required information and assign the list to a volunteer, then click save.
 
-To view the to do lists
+To view the to do lists, login with the correct user credentials.
 
-To edit a to do list
+To edit a to do list, login as admin, find the list you'd like to edit, click the edit button, fill in the required information, then click save.
 
-To delete a to list
+To delete a to list, login as admin, find the list you'd like to delete, click the edit button, then click the delete button.
 
 ## Prerequisites
 All of the below dependencies can be installed using: yarn install or npm install
