@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
+import { tada } from 'react-animations';
+import styled, {keyframes} from 'styled-components';
 
-import styled from 'styled-components';
+const tadaAnim = keyframes`${tada}`
 
 const Card = styled.div`
+  animation: 2s ${tadaAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,10 +88,11 @@ const EditProfile = (props) =>{
     return (
         <>
         <Card>
+            <img src='../../img/profile/missingprofile.jpg' alt='profile' />
             <div className='title'>{first_name} {last_name}</div>
             <div className='description'>
-                <div><span>Country:</span> {country}</div>
-                <div><span>Availability:</span> {availability}</div>
+                <div><span>Country:</span> Murica {country}</div>
+                <div><span>Availability:</span> Freedom {availability}</div>
                 <div><span>Email:</span> <span className='email'>{email}</span></div>
             </div>
             <a href={`mailto:${email}`}><div className='contact-button'>Save</div></a>
