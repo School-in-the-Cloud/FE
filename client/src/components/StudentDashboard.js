@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import VolunteerCard from './VolunteerCard';
 import { axiosWithAuth } from '../utils';
 import CountryList from './CountryList';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
   display: flex;
@@ -25,7 +28,13 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   img{
+    animation: 1s ${pulseAnim};
+    animation-delay: 100ms;
     margin-left: 20px;
+  }
+  p{
+    animation: 1s ${pulseAnim};
+    animation-delay: 200ms;
   }
   .text-image{
     display: flex;
@@ -131,6 +140,7 @@ const SearchBar = styled.div`
         border-radius: 5px;
         background-color: slategray;
         color: white;
+        transition: all 300ms ease-in-out;
         &:hover {
             background-color: lightgray;
             cursor: pointer;
