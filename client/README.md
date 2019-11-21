@@ -57,7 +57,7 @@ The "users" table looks like this:
 "password": "123456",
 ```
 
-The "Add New Campaign" table look like this:
+The "Add New List" table look like this:
 
 ```
 "admin": "admin",
@@ -73,28 +73,26 @@ https://schoolinthecloud.herokuapp.com/api/auth/register
 
 https://schoolinthecloud.herokuapp.com/api/auth/login
 
-**GET - Returns all campaigns *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
+**GET - Returns all todo lists *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
 
-**POST - Adds a new campaign *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
+**POST - Adds a new todo list *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
 
-**PUT - Edits a campaign with the selected id *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
+**PUT - Edits a todo list list with the selected id *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
 
-**DELETE - Deletes a campaign with the selected id *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
+**DELETE - Deletes a todo list with the selected id *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
 
 ## Support
-There is currently no active support for this app
+There is currently no active support for this app.
 
 ## Authors and acknowledgment
 
-**UI Engineer:** Robert Gordon (https://github.com/)
+**UI Engineer:** Robert Gordon (https://github.com/RobertDGordon)
 
-**Front End Engineers:**
+**Front End Engineers:** Robert Gordon (https://github.com/RobertDGordon) Nate Rojanasupya (https://github.com/nattroj)
 
-**Front End Framework Engineer:**
+**Backend Engineer:** Patrick Stevenson (https://github.com/patjonstevenson/)
 
-**Backend Engineer:**
-
-**Project Lead:**
+**Project Lead:** Jojo Zhang (https://github.com/nomadkitty)
 
 **Full Repo:** https://github.com/School-in-the-Cloud/
 
