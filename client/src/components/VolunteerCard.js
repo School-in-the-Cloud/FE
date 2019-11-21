@@ -8,10 +8,10 @@ const Card = styled.div`
   /* border: 1px solid black; */
   border-radius: 5px;
   width: 250px;
-  /* height: 220px; */
+  max-height: 375px;
   margin: 20px;
   padding-top: 50px;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 40px;
   text-shadow: none;
   color: black;
@@ -86,7 +86,8 @@ function VolunteerCard (props){
     return (
         <>
         <Card>
-            <div className='title'>{props.first_name} {props.last_name}</div>
+            <img src='../../img/profile/missingprofile.jpg' alt='profile' />
+            <div className='title'>{props.first_name}<br/>{props.last_name}</div>
             <div className='description'>
                 <div><span>Country:</span> {props.country}</div>
                 <div><span>Availability:</span> {props.availability}</div>

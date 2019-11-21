@@ -29,27 +29,38 @@ const List = styled.div`
     margin: 12px;
     border-bottom: 1px solid black;
   }
+  .assigned-to{
+      margin-top:-15px;
+      font-size: 0.9rem;
+  }
+  .assigned-name{
+      margin-top: -3px;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
   .name{
       margin-top: -10px;
       margin-bottom: 5px;
       font-weight: bold;
   }
   .admin-items{
-        width: 200px;
         text-align: left;
+        width: 220px;
         height: 260px;
-        margin: 25px 0 auto;
+        margin: 10px 0 auto;
+        /* border: 1px solid red; */
         overflow: hidden;
         p{
             margin: 0 0 5px 0;
         }
   }
   .items{
-      width: 200px;
       text-align: left;
+      width: 230px;
       height: 260px;
-      margin: 25px 0 auto;
+      margin: 10px 0 auto;
       overflow: hidden;
+      /* border: 1px solid blue; */
       p{
           margin: 0 0 5px 0;
       }
@@ -61,8 +72,13 @@ const List = styled.div`
           }
       }
       .item-completed {
+          margin-left: 10px;
           color: darkgrey;
           text-decoration: line-through;
+          &:hover{
+              color:black;
+              cursor: pointer;
+          }
       }
   }
   .button-container {
@@ -102,6 +118,7 @@ const List = styled.div`
             height: 25px;
             box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
             margin: 15px;
+            margin-bottom: 20px;
             padding-bottom: 2px;
             text-decoration: none;
             text-shadow: none;
@@ -113,11 +130,13 @@ const List = styled.div`
         }
   }
   .title-input{
-      margin: 10px;
+      margin: 12px 0;
+      border: none;
+      border-bottom: 1px solid grey;
       width: 100%
   }
   .item-input{
-      margin: 10px;
+      margin-bottom: 4px;
       width: 100%;
       border: none;
       border-bottom: 1px solid grey;
@@ -177,10 +196,11 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
     }
 
     return (
-        <List style={ (type === 'admin') ? {maxHeight: '450px'} : {maxHeight: '380px'}}>
+        <List style={ (type === 'admin') ? {maxHeight: '415px'} : {maxHeight: '355px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                { isEditing ? <input className='item-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>{type === 'admin' ? `Assigned: ${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div> {/* Need to get Volunteer name based on todo list */}
+                { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
+                {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
+                <div className={type === 'admin' ? 'assigned-name' : 'name' }>{type === 'admin' ? `${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div>
                 <div className={type === 'admin' ? 'admin-items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
@@ -192,7 +212,7 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
                 {type === 'admin' && 
                     <div className='button-container'>
                         <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
-                        {isEditing && <button className='edit-button' onClick={deleteTodoList}>Delete</button> }
+                        {isEditing && <button className='delete-button' onClick={deleteTodoList}>Delete</button> }
                     </div>
                 }
             </form>
