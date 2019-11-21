@@ -15,6 +15,8 @@ const MainWrap = styled.div`
   flex-direction: column;
   max-height: 90vh;
   max-width: 100vw;
+  min-width: 760px;
+  border: 1px solid red;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
@@ -91,9 +93,10 @@ const Main = styled.section`
 const ToDoListContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
-    width: 36%;
+    min-width: 350px;
+    max-width: 630px;
     margin-right: 50px;
+    /* margin-left: 50px; */
     .button-container{
         width: 100%;
         display: flex;

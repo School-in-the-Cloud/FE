@@ -1,68 +1,99 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+School In The Cloud
+Deployed website: https://school-in-the-cloud-fe.netlify.com/
 
-## Available Scripts
+Description
+School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.  This helps kids in communities with high student to teacher ratios. It also provides retired volunteers a sense of purpose and meaning in their day to day life when they find themselves with more free time.  The platform also connects volunteers with the students. The aim is to help close the achievement gap by connecting students with available, qualified volunteer mentors. 
 
-In the project directory, you can run:
+Getting Started
+To begin using the App as a client end user, follow the link and Sign Up for a new account with a username and password. User will be prompted to enter username and password again after the inital Sign Up to login to their dashboard.
 
-### `npm start`
+To login to the App, click the link to sign up, and create a new account.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To view the dashboard, login with correct correct user credentials.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To create a new to do list
 
-### `npm test`
+To view the to do lists
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To edit a to do list
 
-### `npm run build`
+To delete a to list
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Prerequisites
+All of the below dependencies can be installed using: yarn install or npm install
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Start development by creating a react app using: yarn start or npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Dependencies
+This project was created using yarn and designed for react client side. Other dependencies include:
 
-### `npm run eject`
+"axios": "^0.19.0",
+"formik": "^1.5.8",
+"now": "^16.2.0",
+"react": "^16.9.0",
+"react-dom": "^16.9.0",
+"react-iframe": "^1.8.0",
+"react-loader-spinner": "^3.1.4",
+"react-redux": "^7.1.1",
+"react-router-dom": "^5.0.1",
+"react-scripts": "3.1.2",
+"redux": "^4.0.4",
+"redux-thunk": "^2.3.0",
+"styled-components": "^4.4.0",
+"yup": "^0.27.0"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Examples of Tables
+The "users" table looks like this:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+"username": "demo",
+"password": "123456",
 
-## Learn More
+The "Add New Campaign" table look like this:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+"campaign_name": "Awesome projcet"
+"campaign_category": "Software"
+"Fundraising Goal: "100000"
+"Country: "United State"
+"Duration: "45 days"
+"Description": "This is an awesome project!"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Endpoint Usage
+POST - Register a new user *** Requires a username, and password
 
-### Code Splitting
+https://schoolinthecloud.herokuapp.com/api/auth/register
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+POST - Login a registered user. Also provides Web Token. *** Requires username and password
 
-### Analyzing the Bundle Size
+https://schoolinthecloud.herokuapp.com/api/auth/login
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+GET - Returns all campaigns *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
 
-### Making a Progressive Web App
+POST - Adds a new campaign *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/user/:user_id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+PUT - Edits a campaign with the selected id *** Requires JSON Web Token and a data object https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
 
-### Advanced Configuration
+DELETE - Deletes a campaign with the selected id *** Requires JSON Web Token https://schoolinthecloud.herokuapp.com/api//schoolinthecloud/:id
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Support
+There is currently no active support for this app
 
-### Deployment
+Authors and acknowledgment
+UI Engineers: Robert Gordon (https://github.com/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Front End Engineers: 
 
-### `npm run build` fails to minify
+Front End Framework Engineer:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Backend Engineer:
+
+Project Lead: 
+
+Full Repo: https://github.com/School-in-the-Cloud/
+
+Project status
+This project was completed for a Lambda School build week November 2019. There may be updates to the application periodically
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details
