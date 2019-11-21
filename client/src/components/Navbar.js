@@ -83,7 +83,7 @@ function Navbar() {
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
             <NavLink exact to='/about'>About</NavLink>
-            { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
+            { isAuthenticated ? <Link onClick={logout} to='/'>Sign out</Link> : <Link to='/login'>Login</Link>}
         </nav>
         </Navwrap>
     </header>
