@@ -91,7 +91,7 @@ const List = styled.div`
   .button-container {
       position: absolute;
       bottom: 0 auto;
-      margin-left: -16px;
+      margin-left: -11px;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -259,7 +259,9 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, ad
                     </div>
                 :
                     <div className='button-container'>
-                        <button className='complete-button' type='button' onClick={toggleCompleted}>Complete</button>
+                        {!isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Complete</button> : null }
+                        {isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Redo</button> : null }
+                        
                     </div>
                 }
 
