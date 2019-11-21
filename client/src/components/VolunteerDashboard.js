@@ -172,7 +172,7 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
-              { todoLists.map(todoList => <ToDoList key={todoList.todos_id} steps={todoList.steps} type={type} first_name={first_name} last_name={last_name} name={todoList.name}/>) }
+              { todoLists.map(todoList => <ToDoList key={todoList.todos_id} steps={todoList.steps} type={type} todos_id={todoList.todos_id} first_name={first_name} last_name={last_name} name={todoList.name} admin_id={todoList.admin_id} is_completed={todoList.is_completed} />) }
             </div>
         </ToDoListContainer>
         <div className='right-container'>
