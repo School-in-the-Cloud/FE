@@ -43,6 +43,7 @@ const Navwrap = styled.div`
             margin: 0 50px;
             color: white;
             text-decoration: none;
+            transition: all 300ms ease-in-out;
             &:hover{
                 color: lightblue;
                 cursor: pointer;
@@ -51,6 +52,7 @@ const Navwrap = styled.div`
         a.active{
             color: darkblue;
             font-weight: bold;
+            transition: all 300ms ease-in-out;
             &:hover{
                 color: lightblue;
                 font-weight: bold;
@@ -81,7 +83,7 @@ function Navbar() {
         <nav>
             <NavLink exact to={isAuthenticated ? '/dashboard' : '/'}>Home</NavLink>
             <NavLink exact to='/about'>About</NavLink>
-            { isAuthenticated && <Link onClick={logout} to='/'>Sign out</Link>}
+            { isAuthenticated ? <Link onClick={logout} to='/'>Sign out</Link> : <Link to='/login'>Login</Link>}
         </nav>
         </Navwrap>
     </header>

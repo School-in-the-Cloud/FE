@@ -1,7 +1,11 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import { flipInY } from 'react-animations';
+
+const flipAnim = keyframes `${flipInY}`
 
 const Card = styled.div`
+  animation: 1s ${flipAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +21,7 @@ const Card = styled.div`
   color: black;
   background-color: white;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-  transition: all 0.6;
+  transition: transform 300ms ease-in-out;
   &:hover{
     transform: scale(1.2);
   }
@@ -70,6 +74,7 @@ const Card = styled.div`
       padding-bottom: 2px;
       text-decoration: none;
       text-shadow: none;
+      transition: all 300ms ease-in-out;
       &:hover{
           background-color: lightgray;
           color: white;
