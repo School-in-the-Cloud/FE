@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import ToDoList from './ToDoList';
 import NewListForm from './NewListForm'
 import { adminActionCreators } from '../actions';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
     display: flex;
@@ -16,6 +19,7 @@ const MainWrap = styled.div`
     text-shadow: 2px 2px 4px #000000;
     h2{
         margin:55px;
+        animation: 1s ${pulseAnim};
     }
     .text-image{
     display: flex;
@@ -23,6 +27,14 @@ const MainWrap = styled.div`
     justify-content: center;
     align-items: center;
     width: 350px;
+    img{
+        animation: 1s ${pulseAnim};
+        animation-delay: 100ms;
+    }
+    p{
+        animation: 1s ${pulseAnim};
+        animation-delay: 200ms;
+    }
   }
 `
 
