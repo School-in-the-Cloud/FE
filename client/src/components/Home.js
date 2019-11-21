@@ -12,16 +12,25 @@ const Head = styled.section`
   /* border: 1px solid red; */
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  h1{
-      margin-top:105px;
-      margin-bottom: -25px;
-      font-size:3rem;
-  }
-  h2{
-      width:700px;
-  }
-  p{
-      width: 600px;
+  .main {
+      /* border: 1px solid red; */
+      margin-top: 150px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .text{
+          width:40%;
+          text-align: left;
+          border: 1px solid blue;
+          h1{
+            font-size: 2.9rem;
+          }
+      }
+      .image{
+          /* width: 50%; */
+          border: 1px solid red;
+      }
   }
   .join{
       /* font-weight: bold; */
@@ -63,13 +72,15 @@ function Home() {
   return (
     <>
     <Head>
-        <h1>Welcome!</h1>
-        <h2>School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.</h2>
-        <img
-          className="main-img"
-          src="/img/Main-image.svg"
-          alt="Cloud" width="450px"
-        />
+        <div className='main'>
+            <div className='text'>
+                <h1>A community that trains senior volunteers to teach students in a group or individual setting.</h1>
+            </div>
+            <div className='image'>
+                <img className="main-img" src="/img/Main-image.svg" alt="Cloud" width="650px"/>
+            </div>
+        </div>
+        
         <p>There is a wealth of knowledge available from highly qualified persons who are retiring, or already retired.  When knowledge is not shared it is lost.<br/>
         <Link to='/login' className='join'>Join us today and help share the knowledge!</Link></p>
         <div className='button-container'>

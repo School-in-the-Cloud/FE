@@ -75,7 +75,7 @@ function Navbar() {
     <header>
         <Link to={isAuthenticated ? '/dashboard' : '/'}>
             <div className='logo'>
-                <img src="/img/Main-image.svg" alt="Cloud" width="70px"/>
+                <img src="/img/Logo-image.svg" alt="Cloud" width="70px"/>
                 <h1>School In The Cloud</h1>
             </div>
         </Link>
