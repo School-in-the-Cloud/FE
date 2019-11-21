@@ -1,13 +1,17 @@
 import React from 'react'
 import { connect, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import { zoomIn } from 'react-animations';
 import {withFormik, Form, Field} from "formik";
 import * as Yup from 'yup';
 import Loading from './Loading'
 import { authActionCreators } from '../actions'
 import CountryList from './CountryList';
 
+const zoomAnim = keyframes`${zoomIn}`
+
 const Container = styled.div`
+    animation: 1s ${zoomAnim};
     margin-top: 150px;
     display: flex;
     justify-content: center;
