@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
 import { axiosWithAuth } from '../utils';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { slideInUp } from 'react-animations';
+
+const slideInDownAnim = keyframes `${slideInUp}`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -16,6 +19,7 @@ const Wrapper = styled.div`
 `
 
 const List = styled.div`
+  animation: 2s ${slideInDownAnim};
   display: flex;
   flex-direction: column;
   align-items: center;

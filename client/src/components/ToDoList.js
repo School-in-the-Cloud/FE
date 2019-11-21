@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
-import styled from 'styled-components';
+import styled, { keyframes} from 'styled-components';
+import { zoomIn } from 'react-animations';
+
+const zoominAnim = keyframes `${zoomIn}`
 
 const List = styled.div`
+  animation: 1s ${zoominAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
