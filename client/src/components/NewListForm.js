@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `
 
 const List = styled.div`
-  animation: 2s ${slideInDownAnim};
+  animation: 1s ${slideInDownAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,6 +74,7 @@ const List = styled.div`
         height: 20px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightgray;
             color: white;
@@ -96,6 +97,7 @@ const List = styled.div`
       padding-bottom: 2px;
       text-decoration: none;
       text-shadow: none;
+      transition: all 300ms ease-in-out;
       &:hover{
           background-color: lightgray;
           color: white;

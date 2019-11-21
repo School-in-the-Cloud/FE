@@ -9,6 +9,7 @@ const zoomAnim = keyframes `${zoomIn}`
 
 const List = styled.div`
   animation: 1s ${flipAnim};
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,6 +72,7 @@ const List = styled.div`
       }
       .item{
           margin-left: 10px;
+          transition: all 300ms ease-in-out;
           &:hover{
               color: darkgrey;
               cursor: pointer;
@@ -80,6 +82,7 @@ const List = styled.div`
           margin-left: 10px;
           color: darkgrey;
           text-decoration: line-through;
+          transition: all 300ms ease-in-out;
           &:hover{
               color:black;
               cursor: pointer;
@@ -87,8 +90,12 @@ const List = styled.div`
       }
   }
   .button-container {
+      position: absolute;
+      bottom: 0 auto;
+      margin-left: -16px;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
+      align-items: center;
       .edit-button{
             display: flex;
             justify-content: center;
@@ -101,10 +108,11 @@ const List = styled.div`
             height: 25px;
             box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
             margin: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 2px;
+            /* margin-bottom: 20px;
+            padding-bottom: 2px; */
             text-decoration: none;
             text-shadow: none;
+            transition: all 300ms ease-in-out;
             &:hover{
                 background-color: lightgray;
                 color: white;
@@ -123,12 +131,13 @@ const List = styled.div`
             height: 25px;
             box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
             margin: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 2px;
+            /* margin-bottom: 20px; */
+            /* padding-bottom: 2px; */
             text-decoration: none;
             text-shadow: none;
+            transition: all 300ms ease-in-out;
             &:hover{
-                background-color: lightgray;
+                background-color: red;
                 color: white;
                 cursor: pointer;
             }
@@ -216,7 +225,8 @@ function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer }){
                 </div>
                 {type === 'admin' && 
                     <div className='button-container'>
-                        <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                        {!isEditing ? <button className='edit-button' type='submit'>Edit</button> : null }
+                        {isEditing ? <button className='edit-button' type='submit'>Save</button> : null }
                         {isEditing && <button className='delete-button' onClick={deleteTodoList}>Delete</button> }
                     </div>
                 }

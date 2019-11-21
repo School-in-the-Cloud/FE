@@ -74,6 +74,7 @@ const ToDoListContainer = styled.div`
         padding-bottom: 2px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightgray;
             color: white;
@@ -95,6 +96,7 @@ const ToDoListContainer = styled.div`
         padding-bottom: 2px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightblue;
             color: white;
