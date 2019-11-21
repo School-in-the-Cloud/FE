@@ -29,6 +29,8 @@ Prerequisites
 ## Description
 School in the Cloud is a platform that trains senior volunteers to teach students in a group or individual setting.  This helps kids in communities with high student to teacher ratios. It also provides retired volunteers a sense of purpose and meaning in their day to day life when they find themselves with more free time.  The platform also connects volunteers with the students. The aim is to help close the achievement gap by connecting students with available, qualified volunteer mentors. 
 
+**Product Vision Document:** https://docs.google.com/document/d/12JL-fmcwIqmK5cSnQ7SMxMabncObBrmtGUO_wjFH5cM/
+
 ## Getting Started
 To begin using the App, follow the link and Sign Up for a new account with a username and password.  Fill in the required information, and select your user type.  Volunteers will have to add their location and available time. User will be prompted to enter email and password again after the inital Sign Up to login to their dashboard.
 
@@ -147,7 +149,7 @@ This project was created using yarn and designed for react client side. Other de
     "yup": "^0.27.0"
 ```
 
-# API
+## API
 base URL: https://school-in-the-cloud.herokuapp.com/api
 
 ## Authentication
