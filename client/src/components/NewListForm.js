@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
 import { axiosWithAuth } from '../utils';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { slideInUp } from 'react-animations';
+
+const slideInDownAnim = keyframes `${slideInUp}`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -16,6 +19,7 @@ const Wrapper = styled.div`
 `
 
 const List = styled.div`
+  animation: 1s ${slideInDownAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +74,7 @@ const List = styled.div`
         height: 20px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightgray;
             color: white;
@@ -92,11 +97,15 @@ const List = styled.div`
       padding-bottom: 2px;
       text-decoration: none;
       text-shadow: none;
+      transition: all 300ms ease-in-out;
       &:hover{
           background-color: lightgray;
           color: white;
           cursor: pointer;
       }
+  }
+  .noerrormessage{
+      display: none;
   }
 `
 
@@ -114,7 +123,9 @@ const NewListForm = ({ setIsCreating }) => {
     
     const [ currentTodo, setCurrentTodo ] = useState('');
     
-    const [ volunteers, setVolunteers ] = useState ([])
+    const [ volunteers, setVolunteers ] = useState ([]);
+
+    const [ volunteerRequired, setVolunteerRequired ] = useState (false);
 
     useEffect(() => {
         // React 1 Axios Request here! --------------------------------------------------
@@ -158,6 +169,9 @@ const NewListForm = ({ setIsCreating }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        if(!todoList.volunteer){
+            return setVolunteerRequired(true);
+        }
         dispatch(adminActionCreators.createTodoList(todoList, admin_id));
         setIsCreating(false);
     }    
@@ -171,10 +185,12 @@ const NewListForm = ({ setIsCreating }) => {
                     <input className='title' id='title' type='text' name='title' onChange={handleChanges} value={todoList.title} placeholder='Title of list' /><br />
                     <select className='dropdown' id='name' type='text' name='volunteer' onChange={handleChanges} value={todoList.volunteer_id}>
                         <option defaultValue hidden value>-- Select a Volunteer --</option>
+                        
                         {volunteers.map(volunteer => (
                             <option key={volunteer.id} value={volunteer.id}>{volunteer.first_name} {volunteer.last_name}</option>
                         ))}
                     </select>
+                        {volunteerRequired && <div className={!todoList.volunteer ? 'errormessage' : 'noerrormessage'}>Volunteer Required!</div> }
                     { todoList.todos.map((todo, index) => <p key={index}>{todo}</p>) }
                     <div className='todo-container'>
                         <input className='add-input' name='currentTodo' placeholder='Add new task' onChange={handleCurrentTodo} value={currentTodo} />

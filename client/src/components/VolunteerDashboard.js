@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { volunteerActionCreators } from '../actions';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import ToDoList from './ToDoList';
 import EditProfile from './EditProfile';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
   display: flex;
@@ -12,6 +15,7 @@ const MainWrap = styled.div`
   flex-direction: column;
   max-height: 90vh;
   max-width: 100vw;
+  min-width: 760px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
@@ -25,6 +29,8 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   img{
+    animation: 1s ${pulseAnim};
+    animation-delay: 100ms;
     margin-left: 20px;
   }
   .right-container{
@@ -33,8 +39,13 @@ const Main = styled.section`
     justify-content: center;
     align-items: center;
     width: 350px;
+    p{
+      animation: 1s ${pulseAnim};
+      animation-delay: 200ms;
+    }
   }
   .edit-profile-button {
+    animation: 1s ${pulseAnim};
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
@@ -81,9 +92,10 @@ const Main = styled.section`
 const ToDoListContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
-    width: 36%;
+    min-width: 350px;
+    max-width: 630px;
     margin-right: 50px;
+    /* margin-left: 50px; */
     .button-container{
         width: 100%;
         display: flex;
@@ -159,7 +171,7 @@ function VolunteerDashboard() {
                 <h3>Here are your to do's:</h3>
             </div>
             <div className='lists'>
-              { todoLists.map(todoList => <ToDoList key={todoList.todo_id} steps={todoList.steps} type={type} />) }
+              { todoLists.map(todoList => <ToDoList key={todoList.todos_id} steps={todoList.steps} type={type} todos_id={todoList.todos_id} first_name={first_name} last_name={last_name} name={todoList.name} admin_id={todoList.admin_id} is_completed={todoList.is_completed} />) }
             </div>
         </ToDoListContainer>
         <div className='right-container'>

@@ -1,24 +1,31 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { adminActionCreators } from '../actions';
-import styled from 'styled-components';
+import { adminActionCreators, volunteerActionCreators } from '../actions';
+import styled, { keyframes} from 'styled-components';
+import { flipInY } from 'react-animations';
+
+const flipAnim = keyframes `${flipInY}`
 
 const List = styled.div`
+  animation: 1s ${flipAnim};
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
   width: 250px;
-  height: 340px;
   margin: 20px;
   margin-top: 40px;
   text-shadow: none;
   color: black;
   background-color: white;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-  transition: transform 0.3 ease;
+  transition: transform 300ms ease-in-out;
   &:hover{
       transform: scale(1.2);
+  }
+  .fix-mystylingdiv{
+      height: 340px;
   }
   .title{
     font-weight: bold;
@@ -27,71 +34,159 @@ const List = styled.div`
     margin: 12px;
     border-bottom: 1px solid black;
   }
+  .assigned-to{
+      margin-top:-15px;
+      font-size: 0.9rem;
+  }
+  .assigned-name{
+      margin-top: -3px;
+      margin-bottom: 5px;
+      font-weight: bold;
+  }
   .name{
       margin-top: -10px;
       margin-bottom: 5px;
       font-weight: bold;
   }
+  .admin-items{
+        text-align: left;
+        width: 220px;
+        height: 260px;
+        margin: 10px 0 auto;
+        /* border: 1px solid red; */
+        overflow: hidden;
+        p{
+            margin: 0 0 5px 0;
+        }
+  }
   .items{
-      width: 80%;
       text-align: left;
-      min-height: 200px;
+      width: 230px;
+      height: 270px;
+      margin: 10px 0 auto;
+      overflow: hidden;
+      /* border: 1px solid blue; */
+      p{
+          margin: 0 0 5px 0;
+      }
+      .item{
+          margin-left: 10px;
+          transition: all 300ms ease-in-out;
+          &:hover{
+              color: darkgrey;
+              cursor: pointer;
+          }
+      }
+      .item-completed {
+          margin-left: 10px;
+          color: darkgrey;
+          text-decoration: line-through;
+          transition: all 300ms ease-in-out;
+          &:hover{
+              color:black;
+              cursor: pointer;
+          }
+      }
   }
   .button-container {
+      position: absolute;
+      bottom: 0 auto;
+      margin-left: -11px;
       display: flex;
-      justify-content: center;
-  }
-  .edit-button{
-      display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
-      background-color: whitesmoke;
-      color: black;
-      border: 1px solid grey;
-      border-radius: 10px;
-      width: 55px;
-      height: 25px;
-      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
-      margin: 15px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
+      .edit-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 55px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            /* margin-bottom: 40px; */
+            /* padding-bottom: 2px; */
+            text-decoration: none;
+            text-shadow: none;
+            transition: all 300ms ease-in-out;
+            &:hover{
+                background-color: lightgray;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .delete-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkred;
+            color: white;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 55px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            /* margin-bottom: 20px; */
+            /* padding-bottom: 2px; */
+            text-decoration: none;
+            text-shadow: none;
+            transition: all 300ms ease-in-out;
+            &:hover{
+                background-color: red;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .complete-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 10px;
+            width: 75px;
+            height: 25px;
+            box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
+            margin: 15px;
+            /* margin-bottom: 20px;
+            padding-bottom: 2px; */
+            text-decoration: none;
+            text-shadow: none;
+            transition: all 300ms ease-in-out;
+            &:hover{
+                background-color: lightgray;
+                color: white;
+                cursor: pointer;
+            }
+        }
   }
-  .delete-button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: darkred;
-      color: white;
-      border: 1px solid grey;
-      border-radius: 10px;
-      width: 55px;
-      height: 25px;
-      box-shadow: 0 5px 9px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.22);
-      margin: 15px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      text-shadow: none;
-      &:hover{
-          background-color: lightgray;
-          color: white;
-          cursor: pointer;
-      }
+  .title-input{
+      margin: 12px 0;
+      border: none;
+      border-bottom: 1px solid grey;
+      width: 100%
+  }
+  .item-input{
+      margin-bottom: 4px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid grey;
   }
 `
 
-function ToDoList ({ steps, name, todo_id }){
+function ToDoList ({ steps, name, todos_id, first_name, last_name, volunteer, admin_id, is_completed }){
     
     const type = useSelector(state => state.authentication.user.type);
-    const admin_id = useSelector(state => state.authentication.user.id);
+    const user_id = useSelector(state => state.authentication.user.id);
     const dispatch = useDispatch();
     const [ isEditing, setIsEditing ] = useState(false);
     const [ listTitle, setListTitle ] = useState(name);
+    const [ isCompleted, setIsCompleted] = useState(is_completed)
     const [ todos, setTodos ] = useState(() => {
         const state = {};
         steps.forEach(step => (
@@ -108,14 +203,27 @@ function ToDoList ({ steps, name, todo_id }){
         setIsEditing(true);
     }
 
-    const updateTodoList = async event => {
+    console.log(listTitle);
+
+    const updateTodoList = event => {
         event.preventDefault();
-        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todo_id, admin_id));
+        dispatch(adminActionCreators.updateTodoList(todos, listTitle, todos_id, user_id));
+        setIsEditing(false);
+    }
+
+    const deleteTodoList = event => {
+        event.preventDefault();
+        dispatch(adminActionCreators.deleteTodoList(todos_id));
         setIsEditing(false);
     }
 
     const handleTitleChanges = event => {
         setListTitle(event.target.value);
+    }
+
+    const toggleCompleted = event => {
+        event.preventDefault();
+        dispatch(volunteerActionCreators.toggleTodo(admin_id, user_id, todos_id, is_completed, setIsCompleted))
     }
 
     const handleChanges = event => {
@@ -129,20 +237,34 @@ function ToDoList ({ steps, name, todo_id }){
     }
 
     return (
-        <List>
+        <List style={{height: '415px'}}>
             <form onSubmit={isEditing ? updateTodoList : startEditing}>
-                { isEditing ? <input className='title' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
-                <div className='name'>Volunteer</div>
-                <div className='items'>
+                { isEditing ? <input className='title-input' value={listTitle} onChange={handleTitleChanges} /> : <div className='title'>{name}</div> }
+                {type === 'admin' ? <div className='assigned-to'>Assigned to:</div> : `` }
+                <div className={type === 'admin' ? 'assigned-name' : 'name' }>{type === 'admin' ? `${volunteer[0].first_name} ${volunteer[0].last_name}` : `${first_name} ${last_name}` }</div>
+                <div className={type === 'admin' ? 'items' : 'items'}>
                     {steps.map((step, index) => (
                         isEditing
-                            ? <input key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
-                            : <p key={index}>{`${index+1}.)`} {step.description}</p>
+                            ? <input className='item-input' key={index} name={JSON.stringify(step.id)} onChange={handleChanges} value={todos[JSON.stringify(step.id)].description} />
+                            : <p key={index}  className={ isCompleted ? 'item-completed' : 'item'}>{`${index+1}.)`} {step.description}</p>
                         )
                     )}
                 </div>
-                {type === 'admin' && <button className='edit-button' type='submit'>{isEditing ? 'Save' : 'Edit'}</button>
+                {
+                type === 'admin' ? 
+                    <div className='button-container'>
+                        {!isEditing ? <button className='edit-button' type='submit'>Edit</button> : null }
+                        {isEditing ? <button className='edit-button' type='submit'>Save</button> : null }
+                        {isEditing && <button className='delete-button' onClick={deleteTodoList}>Delete</button> }
+                    </div>
+                :
+                    <div className='button-container'>
+                        {!isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Complete</button> : null }
+                        {isCompleted ? <button className='complete-button' type='button' onClick={toggleCompleted}>Redo</button> : null }
+                        
+                    </div>
                 }
+
             </form>
         </List>
     )

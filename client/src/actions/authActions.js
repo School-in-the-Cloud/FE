@@ -1,4 +1,5 @@
 import { axiosWithAuth } from '../utils';
+import { adminActionCreators } from './adminActions';
 
 const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
 const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
@@ -52,8 +53,7 @@ const authenticateUser = (values, redirect) => dispatch => {
 }
 
 const logoutUser = () => dispatch => {
-    dispatch({type: LOGOUT});
-    sessionStorage.clear();
+    dispatch({ type: LOGOUT });
 }
 
 export const authActionTypes = {

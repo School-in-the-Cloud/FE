@@ -36,11 +36,6 @@ export const authentication = (state=initialState, action) => {
                 isLoading: false,
                 error: action.payload
             }
-        case LOGOUT:
-            return {
-                ...state,
-                isAuthenticated: false
-            }
 
         default:
             return state;

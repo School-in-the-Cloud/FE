@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const token = sessionStorage.getItem('token');
 
 export const axiosWithAuth = () => {
+    const token = sessionStorage.getItem('token');
     return axios.create({
         baseURL: 'https://school-in-the-cloud.herokuapp.com/api',
         headers: {

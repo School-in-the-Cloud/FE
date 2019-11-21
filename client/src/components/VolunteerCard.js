@@ -1,23 +1,27 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import { flipInY } from 'react-animations';
+
+const flipAnim = keyframes `${flipInY}`
 
 const Card = styled.div`
+  animation: 1s ${flipAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
   /* border: 1px solid black; */
   border-radius: 5px;
   width: 250px;
-  /* height: 220px; */
+  max-height: 375px;
   margin: 20px;
   padding-top: 50px;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 40px;
   text-shadow: none;
   color: black;
   background-color: white;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-  transition: all 0.6;
+  transition: transform 300ms ease-in-out;
   &:hover{
     transform: scale(1.2);
   }
@@ -70,6 +74,7 @@ const Card = styled.div`
       padding-bottom: 2px;
       text-decoration: none;
       text-shadow: none;
+      transition: all 300ms ease-in-out;
       &:hover{
           background-color: lightgray;
           color: white;
@@ -86,7 +91,8 @@ function VolunteerCard (props){
     return (
         <>
         <Card>
-            <div className='title'>{props.first_name} {props.last_name}</div>
+            <img src='../../img/profile/missingprofile.jpg' alt='profile' />
+            <div className='title'>{props.first_name}<br/>{props.last_name}</div>
             <div className='description'>
                 <div><span>Country:</span> {props.country}</div>
                 <div><span>Availability:</span> {props.availability}</div>

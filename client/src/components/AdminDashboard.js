@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import ToDoList from './ToDoList';
 import NewListForm from './NewListForm'
 import { adminActionCreators } from '../actions';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
     display: flex;
@@ -12,10 +15,12 @@ const MainWrap = styled.div`
     flex-direction: column;
     max-height: 90vh;
     max-width: 100vw;
+    min-width: 760px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     h2{
         margin:55px;
+        animation: 1s ${pulseAnim};
     }
     .text-image{
     display: flex;
@@ -23,6 +28,14 @@ const MainWrap = styled.div`
     justify-content: center;
     align-items: center;
     width: 350px;
+    img{
+        animation: 1s ${pulseAnim};
+        animation-delay: 100ms;
+    }
+    p{
+        animation: 1s ${pulseAnim};
+        animation-delay: 200ms;
+    }
   }
 `
 
@@ -36,8 +49,8 @@ const Main = styled.section`
 const ToDoListContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
-    width: 36%;
+    min-width: 350px;
+    max-width: 630px;
     margin-left: 50px;
     .button-container{
         width: 100%;
@@ -62,6 +75,7 @@ const ToDoListContainer = styled.div`
         padding-bottom: 2px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightgray;
             color: white;
@@ -83,6 +97,7 @@ const ToDoListContainer = styled.div`
         padding-bottom: 2px;
         text-decoration: none;
         text-shadow: none;
+        transition: all 300ms ease-in-out;
         &:hover{
             background-color: lightblue;
             color: white;
@@ -116,15 +131,14 @@ const ToDoListContainer = styled.div`
 
 function AdminDashboard() {
   const { first_name, last_name } = useSelector(state => state.authentication.user);
-  const todoLists = useSelector(state => state.admin.todoLists);
+  const admin_id = useSelector(state => state.authentication.user.id);
+  const todoLists = useSelector(state => state.admin.todoLists).filter(todoList => todoList.admin_id === admin_id);
   const dispatch = useDispatch();
   const [ isCreating, setIsCreating ] = useState(false);
 
   useEffect(() => {
     dispatch(adminActionCreators.fetchTodos());
   }, []);
-
-  console.log();
 
   return (
     <MainWrap>
@@ -146,7 +160,7 @@ function AdminDashboard() {
                 </div>
                 {isCreating ? <NewListForm setIsCreating={setIsCreating} /> : 
                     <div className='lists'>
-                        {todoLists.map(todoList => <ToDoList key={todoList.todo_id} {...todoList} />)}
+                        {todoLists.map(todoList => <ToDoList key={todoList.todos_id} {...todoList} />)}
                     </div>
                 }
             </ToDoListContainer>

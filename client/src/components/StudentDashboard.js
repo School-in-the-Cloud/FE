@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import VolunteerCard from './VolunteerCard';
 import { axiosWithAuth } from '../utils';
 import CountryList from './CountryList';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
   display: flex;
@@ -12,6 +15,7 @@ const MainWrap = styled.div`
   flex-direction: column;
   max-height: 90vh;
   max-width: 100vw;
+  min-width: 760px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
@@ -25,7 +29,13 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   img{
+    animation: 1s ${pulseAnim};
+    animation-delay: 100ms;
     margin-left: 20px;
+  }
+  p{
+    animation: 1s ${pulseAnim};
+    animation-delay: 200ms;
   }
   .text-image{
     display: flex;
@@ -39,8 +49,8 @@ const Main = styled.section`
 const ToDoListContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 350px;
-    width: 36%;
+    min-width: 350px;
+    max-width: 630px;
     margin-right: 50px;
     .button-container{
         width: 100%;
@@ -131,6 +141,7 @@ const SearchBar = styled.div`
         border-radius: 5px;
         background-color: slategray;
         color: white;
+        transition: all 300ms ease-in-out;
         &:hover {
             background-color: lightgray;
             cursor: pointer;
