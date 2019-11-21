@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { adminActionCreators } from '../actions';
 import styled, { keyframes} from 'styled-components';
-import { zoomIn } from 'react-animations';
+import { flipInY, zoomIn } from 'react-animations';
 
-const zoominAnim = keyframes `${zoomIn}`
+const flipAnim = keyframes `${flipInY}`
+const zoomAnim = keyframes `${zoomIn}`
 
 const List = styled.div`
-  animation: 1s ${zoominAnim};
+  animation: 1s ${flipAnim};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +20,7 @@ const List = styled.div`
   color: black;
   background-color: white;
   box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
-  transition: transform 0.3 ease;
+  transition: transform 300ms ease-in-out;
   &:hover{
       transform: scale(1.2);
   }
@@ -61,7 +62,7 @@ const List = styled.div`
   .items{
       text-align: left;
       width: 230px;
-      height: 260px;
+      height: 270px;
       margin: 10px 0 auto;
       overflow: hidden;
       /* border: 1px solid blue; */

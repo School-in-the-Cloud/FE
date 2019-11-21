@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { volunteerActionCreators } from '../actions';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+import {pulse} from 'react-animations';
 import ToDoList from './ToDoList';
 import EditProfile from './EditProfile';
+
+const pulseAnim = keyframes`${pulse}`
 
 const MainWrap = styled.div`
   display: flex;
@@ -25,6 +28,8 @@ const Main = styled.section`
   display: flex;
   justify-content: center;
   img{
+    animation: 1s ${pulseAnim};
+    animation-delay: 100ms;
     margin-left: 20px;
   }
   .right-container{
@@ -33,8 +38,13 @@ const Main = styled.section`
     justify-content: center;
     align-items: center;
     width: 350px;
+    p{
+      animation: 1s ${pulseAnim};
+      animation-delay: 200ms;
+    }
   }
   .edit-profile-button {
+    animation: 1s ${pulseAnim};
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
