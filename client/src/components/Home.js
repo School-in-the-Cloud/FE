@@ -10,21 +10,21 @@ const Head = styled.section`
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    height: 86vh;
+    max-height: 85vh;
     width: 99vw;
     min-width: 350px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     overflow: auto;
     overflow-x: hidden;
-    margin: 0 auto;
+    margin: 30px auto;
     /* @media screen and (max-width: 1024px) {
         min-width: 350px;
     } */
     section{
-        /* border: 1px solid red; */
         width: 100%;
         margin-left: 20px;
+        margin-top: 20px;
         min-height: 86vh;
         display: flex;
         align-items: center;
@@ -94,6 +94,7 @@ const Head = styled.section`
         background-color: white;
         color: #6c63ff;
         text-shadow: none;
+        overflow: hidden;
         @media screen and (max-width: 650px) {
                 flex-direction: column-reverse;
         }
@@ -128,7 +129,10 @@ const Head = styled.section`
             margin-left: 55px;
             margin-top: 105px;
             @media screen and (max-width: 650px) {
+                /* border: 1px solid red; */
                 margin: 20px;
+                margin-top: -20px;
+                padding-top: 20px;
             }
             h2{
                 animation: 1s ${pulseAnim};

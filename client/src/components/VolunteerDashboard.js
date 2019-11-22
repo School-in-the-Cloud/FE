@@ -35,6 +35,10 @@ const Main = styled.section`
     animation: 1s ${pulseAnim};
     animation-delay: 100ms;
     margin-left: 20px;
+    transition: all 300ms ease-in-out;
+    &:hover{
+          transform: scale(1.05);
+      }
   }
   .right-container{
     display: flex;
@@ -50,6 +54,10 @@ const Main = styled.section`
     p{
       animation: 1s ${pulseAnim};
       animation-delay: 200ms;
+      transition: all 300ms ease-in-out;
+      &:hover{
+          transform: scale(1.05);
+      }
     }
   }
   .edit-profile-button {

@@ -47,10 +47,18 @@ const Main = styled.section`
             img{
                 animation: 1s ${pulseAnim};
                 animation-delay: 100ms;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
             }
             p{
                 animation: 1s ${pulseAnim};
                 animation-delay: 200ms;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
             }
     }
 `
