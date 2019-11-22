@@ -14,25 +14,32 @@ const MainWrap = styled.div`
   align-items: center;
   flex-direction: column;
   max-height: 90vh;
-  min-width: 650px;
+  /* min-width: 650px; */
   margin: 0 auto;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
       animation: 7s ${pulseAnim};
       margin-top:100px;
-      font-size: 2.5rem;
+      font-size: 2.5vh;
+      @media screen and (max-width: 650px) {
+        margin-top: 30px;
+    }
   }
 `
 
 const Main = styled.div`
   width: 100%;
   min-width: 350px;
-  height: 60vh;
+  min-height: 60vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 650px) {
+        height: 75vh;
+        overflow: auto;
+    }
     #one{
             animation: 3s ${cardAnim};
     }
