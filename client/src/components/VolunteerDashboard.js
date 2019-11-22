@@ -15,12 +15,15 @@ const MainWrap = styled.div`
   flex-direction: column;
   max-height: 90vh;
   max-width: 100vw;
-  min-width: 760px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
-      margin:55px;
-  }
+        margin:55px;
+        animation: 1s ${pulseAnim};
+        @media screen and (max-width: 650px) {
+            margin: 20px;
+        }
+    }
 `
 
 const Main = styled.section`
@@ -32,6 +35,10 @@ const Main = styled.section`
     animation: 1s ${pulseAnim};
     animation-delay: 100ms;
     margin-left: 20px;
+    transition: all 300ms ease-in-out;
+    &:hover{
+          transform: scale(1.05);
+      }
   }
   .right-container{
     display: flex;
@@ -39,9 +46,18 @@ const Main = styled.section`
     justify-content: center;
     align-items: center;
     width: 350px;
+    @media screen and (max-width: 650px) {
+            flex-direction: column;
+            margin: 0 auto;
+            display: none;
+        }
     p{
       animation: 1s ${pulseAnim};
       animation-delay: 200ms;
+      transition: all 300ms ease-in-out;
+      &:hover{
+          transform: scale(1.05);
+      }
     }
   }
   .edit-profile-button {
@@ -95,7 +111,13 @@ const ToDoListContainer = styled.div`
     min-width: 350px;
     max-width: 630px;
     margin-right: 50px;
-    /* margin-left: 50px; */
+    @media screen and (max-width: 650px) {
+        /* width: 350px; */
+        margin: 0 auto;
+        /* overflow: auto; */
+        /* min-height: 650px; */
+        /* border: 1px solid red; */
+    }
     .button-container{
         width: 100%;
         display: flex;
@@ -193,5 +215,4 @@ function VolunteerDashboard() {
     </>
   );
 }
-
 export default VolunteerDashboard

@@ -15,28 +15,15 @@ const MainWrap = styled.div`
     flex-direction: column;
     max-height: 90vh;
     max-width: 100vw;
-    min-width: 760px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     h2{
         margin:55px;
         animation: 1s ${pulseAnim};
+        @media screen and (max-width: 650px) {
+            margin: 20px;
+        }
     }
-    .text-image{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 350px;
-    img{
-        animation: 1s ${pulseAnim};
-        animation-delay: 100ms;
-    }
-    p{
-        animation: 1s ${pulseAnim};
-        animation-delay: 200ms;
-    }
-  }
 `
 
 const Main = styled.section`
@@ -44,6 +31,36 @@ const Main = styled.section`
     height: 70vh;
     display: flex;
     justify-content: center;
+    /* border: 1px solid yellow; */
+    .text-image{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        /* border: 1px solid blue; */
+        @media screen and (max-width: 650px) {
+            flex-direction: column;
+            margin: 0 auto;
+            display: none;
+        }
+            img{
+                animation: 1s ${pulseAnim};
+                animation-delay: 100ms;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
+            p{
+                animation: 1s ${pulseAnim};
+                animation-delay: 200ms;
+                transition: all 300ms ease-in-out;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
+    }
 `
 
 const ToDoListContainer = styled.div`
@@ -52,6 +69,13 @@ const ToDoListContainer = styled.div`
     min-width: 350px;
     max-width: 630px;
     margin-left: 50px;
+    @media screen and (max-width: 650px) {
+        /* width: 350px; */
+        margin: 0 auto;
+        /* overflow: auto; */
+        min-height: 700px;
+        /* border: 1px solid red; */
+    }
     .button-container{
         width: 100%;
         display: flex;

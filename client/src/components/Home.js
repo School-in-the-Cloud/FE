@@ -10,18 +10,21 @@ const Head = styled.section`
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    height: 86vh;
+    max-height: 85vh;
     width: 99vw;
-    min-width: 760px;
-    /* border: 1px solid red; */
+    min-width: 350px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     overflow: auto;
     overflow-x: hidden;
+    margin: 30px auto;
+    /* @media screen and (max-width: 1024px) {
+        min-width: 350px;
+    } */
     section{
-        /* border: 1px solid red; */
         width: 100%;
         margin-left: 20px;
+        margin-top: 20px;
         min-height: 86vh;
         display: flex;
         align-items: center;
@@ -48,6 +51,9 @@ const Head = styled.section`
         display: flex;
         align-items: center;
         justify-content: center;
+        @media screen and (max-width: 1024px) {
+            flex-direction: column-reverse;
+        }
         .text{
             width:50%;
             text-align: left;
@@ -88,17 +94,31 @@ const Head = styled.section`
         background-color: white;
         color: #6c63ff;
         text-shadow: none;
+        overflow: hidden;
+        @media screen and (max-width: 650px) {
+                flex-direction: column-reverse;
+        }
         .image{
             width: 25%;
+            @media screen and (max-width: 650px) {
+                    width: 100%;
+                }
             img{
                 width: 25vw;
                 max-width: 250px;
+                @media screen and (max-width: 650px) {
+                    width: 200px;
+                }
             }
             #volunteer-image{
                 width: 35vw;
                 min-width: 100px;
                 padding-top: 30px;
                 padding-right: 50px;
+                @media screen and (max-width: 650px) {
+                    width: 200px;
+                    padding: 0;
+                }
             }
         }
         .text{
@@ -108,12 +128,22 @@ const Head = styled.section`
             text-align: left;
             margin-left: 55px;
             margin-top: 105px;
-            /* border: 1px solid red; */
+            @media screen and (max-width: 650px) {
+                /* border: 1px solid red; */
+                margin: 20px;
+                margin-top: -20px;
+                padding-top: 20px;
+            }
             h2{
                 animation: 1s ${pulseAnim};
                 font-family: 'Special Elite', cursive;
                 font-size: 1.8vw;
             }    
+        }
+    }
+    #volunteer{
+        @media screen and (max-width: 650px) {
+            flex-direction: column;
         }
     }
     &::-webkit-scrollbar {
@@ -133,6 +163,10 @@ const Head = styled.section`
             justify-content: flex-start;
             width: 65%;
             margin-top: -65px;
+            @media screen and (max-width: 1024px) {
+                justify-content: center;
+                margin: 10px;
+            }
           }
           .button{
             animation: 1s ${pulseAnim};
@@ -188,7 +222,7 @@ function Home() {
                     <h2>We help kids in communities with high student to teacher ratios.<br/>Students can learn from our experienced voluteers.</h2>
                 </div>
             </div>
-            <div className='content'>
+            <div id='volunteer' className='content'>
                 <div className='text'>
                     <h2>We provide retired professional a sense of purpose.<br/>Our voluteers can pick up tasks and teach students with their wealth of knowledge</h2>
                 </div>
