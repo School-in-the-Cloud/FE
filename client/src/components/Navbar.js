@@ -14,10 +14,16 @@ const Headerwrap = styled.div`
         color: white;
         width: 99vw;
         height: 5vh;
+        @media screen and (max-width: 650px) {
+                flex-direction: column;
+            }
         .logo{
             display: flex;
             justify-content: space-between;
             margin-left: 75px;
+            @media screen and (max-width: 650px) {
+                margin-left: 10px;
+            }
         }
         h1{
             text-shadow: 2px 2px 4px #000000;
@@ -35,13 +41,17 @@ const Navwrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin: 0 50px;
     nav{
         display: flex;
-        width: 100%;
+        min-width: 350px;
         flex-direction: row;
         justify-content: space-around;
         a{  
             margin: 0 30px;
+            @media screen and (max-width: 1024px) {
+                margin: 0;
+            }
             color: white;
             text-decoration: none;
             transition: all 300ms ease-in-out;

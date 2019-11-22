@@ -48,8 +48,6 @@ This project was created using yarn and designed for react client side. Other de
     "yup": "^0.27.0"
 ```
 
-
-
 # API
 base URL: https://school-in-the-cloud.herokuapp.com/api
 
