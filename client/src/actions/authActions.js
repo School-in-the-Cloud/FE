@@ -17,15 +17,9 @@ const registerUser = (values, redirect) => dispatch => {
         .post('/auth/register', values)
         .then(res => {
             const { user, token } = res.data;
-            const data = {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                type: user.type
-            }
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user', JSON.stringify(user));
-            dispatch({type: REGISTRATION_SUCCESS, payload: data });
+            dispatch({type: REGISTRATION_SUCCESS, payload: user });
             redirect();
         })
         .catch(err => dispatch({type: REGISTRATION_FAIL, payload: err.message}));
@@ -38,15 +32,9 @@ const authenticateUser = (values, redirect) => dispatch => {
         .post('/auth/login', values)
         .then(res => {
             const { user, token } = res.data;
-            const data = {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                type: user.type
-            }
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('user', JSON.stringify(user));
-            dispatch({type: LOGIN_SUCCESS, payload: data });
+            dispatch({type: LOGIN_SUCCESS, payload: user });
             redirect();
         })
         .catch(err => dispatch({type: LOGIN_FAIL, payload: err.message}));
