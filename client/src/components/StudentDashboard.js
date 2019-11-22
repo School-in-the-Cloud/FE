@@ -15,12 +15,15 @@ const MainWrap = styled.div`
   flex-direction: column;
   max-height: 90vh;
   max-width: 100vw;
-  min-width: 760px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   h2{
-      margin:55px;
-  }
+        margin:55px;
+        animation: 1s ${pulseAnim};
+        @media screen and (max-width: 650px) {
+            margin: 20px;
+        }
+    }
 `
 
 const Main = styled.section`
@@ -28,6 +31,9 @@ const Main = styled.section`
   height: 70vh;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 650px) {
+    max-height: 65vh;
+  }
   img{
     animation: 1s ${pulseAnim};
     animation-delay: 100ms;
@@ -43,6 +49,11 @@ const Main = styled.section`
     justify-content: center;
     align-items: center;
     width: 350px;
+    @media screen and (max-width: 650px) {
+            flex-direction: column;
+            margin: 0 auto;
+            display: none;
+        }
   }
 `
 
@@ -52,6 +63,13 @@ const ToDoListContainer = styled.div`
     min-width: 350px;
     max-width: 630px;
     margin-right: 50px;
+    @media screen and (max-width: 650px) {
+        /* width: 350px; */
+        margin: 0 auto;
+        /* overflow: auto; */
+        /* min-height: 650px; */
+        /* border: 1px solid red; */
+    }
     .button-container{
         width: 100%;
         display: flex;
@@ -108,6 +126,7 @@ const ToDoListContainer = styled.div`
 const SearchBar = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 10px auto;
     margin-top: -50px;
     width: 650px;
@@ -118,11 +137,19 @@ const SearchBar = styled.div`
     box-shadow: 0 9px 18px rgba(0, 0, 0, 0.3), 0 5px 12px rgba(0, 0, 0, 0.22);
     color: black;
     text-shadow: none;
+    @media screen and (max-width: 650px) {
+        width: 320px;
+        margin-top: -10px;
+    }
     form {
       display: flex;
       width: 100%;
       justify-content: space-evenly;
-      /* border: 1px solid red; */
+      align-items: center;
+      @media screen and (max-width: 650px) {
+        
+        flex-direction: column;
+      }
     }    
     input{
       margin: 0 5px;
@@ -131,6 +158,15 @@ const SearchBar = styled.div`
     }
     label{
       margin: 0 10px;
+      @media screen and (max-width: 650px) {
+        margin: 2px;
+      }
+    }
+    #country{
+      display: flex;
+      select{
+        width: 250px;
+      }
     }
     select{
         margin: 0 5px;
@@ -141,6 +177,8 @@ const SearchBar = styled.div`
         border-radius: 5px;
         background-color: slategray;
         color: white;
+        width: 70px;
+        margin: 2px auto;
         transition: all 300ms ease-in-out;
         &:hover {
             background-color: lightgray;
@@ -212,7 +250,7 @@ function StudentDashboard() {
     <h2>Welcome {first_name} {last_name}!</h2>
     <SearchBar>
         <form onSubmit={handleSubmit}>
-          <label>
+          <label id='country'>
             Country:
             <select name="country" onChange={handleChange}>
               <CountryList />
